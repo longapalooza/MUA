@@ -549,12 +549,18 @@ function build_add_inp_dialog(){
   $("#add_inp_dialog form").append("<input id='add_inp_label' name='add_inp_label'>");
   $("#add_inp_dialog form").append("<label for='add_inp_nominal'>Nominal Value:</label>");
   $("#add_inp_dialog form").append("<input id='add_inp_nominal' name='add_inp_nominal'>");
-  $("#add_inp_dialog form").append("<label for='add_inp_random'>Random Uncertainty Value:</label>");
-  $("#add_inp_dialog form").append("<input id='add_inp_random' for='add_inp_random'>");
-  $("#add_inp_dialog form").append("<label for='add_inp_systematic'>Systematic Uncertainty Value:</label>");
-  $("#add_inp_dialog form").append("<input id='add_inp_systematic' name='add_inp_systematic'>");
+  $("#add_inp_dialog form").append("<label for='add_inp_random'>Random Uncertainty:</label><br>");
+  $("#add_inp_dialog form").append("<input id='add_inp_random' for='add_inp_random' style='width: 44%;'>");
+  $("#add_inp_dialog form").append(" or ");
+  $("#add_inp_dialog form").append("<input id='add_inp_random_data' name='Data' value='Add Data' style='width: 44%;'><br>");
+  $("#add_inp_dialog form").append("<label for='add_inp_systematic'>Systematic Uncertainty Sources:</label><br>");
+  $("#add_inp_dialog form").append("<input id='add_inp_systematic_add' name='add_systematic' value='Add' style='width: 33%;'>");
+  $("#add_inp_dialog form").append("<input id='add_inp_systematic_edit' name='edit_systematic' value='Edit' style='width: 33%;'>");
+  $("#add_inp_dialog form").append("<input id='add_inp_systematic_del' name='del_systematic' value='Delete' style='width: 33%;'>");
   $("#add_inp_dialog form input").attr("type", "text");
   $("#add_inp_dialog form input").attr("class", "text ui-widget-content ui-corner-all");
+  $("#add_inp_random_data, #add_inp_systematic_add, #add_inp_systematic_del, #add_inp_systematic_edit").attr("type", "button");
+  $("#add_inp_random_data, #add_inp_systematic_add, #add_inp_systematic_del, #add_inp_systematic_edit").attr("class", "");
 }
 // Custom function to build Raphael canvas given a JSON string in sys
 function build_canvas(sys){
