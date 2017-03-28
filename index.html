@@ -28,32 +28,22 @@
           </ul>
         </li>
         <li>
-          Edit
+          Actions
           <ul>
-            <li>
-              Input
-              <ul>
-                <li><a id="add_inp" href="">Add</a></li>
-                <li><a id="edit_inp" href="">Edit</a></li>
-                <li><a id="del_inp" href="">Delete</a></li>
-              </ul>
-            </li>
-            <li>
-              Component
-              <ul>
-                <li><a id="add_com" href="">Add</a></li>
-                <li><a id="edit_com" href="">Edit</a></li>
-                <li><a id="del_com" href="">Delete</a></li>
-              </ul>
-            </li>
-            <li>
-              Correlation
-              <ul>
-                <li><a id="add_cor" href="">Add</a></li>
-                <li><a id="edit_cor" href="">Edit</a></li>
-                <li><a id="del_cor" href="">Delete</a></li>
-              </ul>
-            </li>
+            <li><a id="Datasets" href="">Datasets</a></li>
+            <li><a id="Sources" href="">Systematic Uncertainty Sources</a></li>
+            <li><a id="Inputs" href="">Inputs</a></li>
+            <li><a id="Components" href="">Components</a></li>
+          </ul>
+        </li>
+        <li>
+          View
+          <ul id="view">
+            <li><a id="sum_ds" href="">Dataset Summary</a></li>
+            <li><a id="sum_src" href="">Source Summary</a></li>
+            <li><a id="sum_inp" href="">Input Summary</a></li>
+            <li><a id="sum_comp" href="">Component Summary</a></li>
+            <li><a id="sum_corr" href="">Correlation Summary</a></li>
           </ul>
         </li>
         <li>
@@ -74,46 +64,51 @@
             <li><a id="calc_upc" href="">Uncertainty Percent Contribution</a></li>
           </ul>
         </li>
-        <li>
-          View
-          <ul id="view">
-            <li><a id="inp_sum" href="">Input Summary</a></li>
-            <li><a id="com_sum" href="">Components Summary</a></li>
-            <li><a id="cor_sum" href="">Correlation Summary</a></li>
-          </ul>
-        </li>
       </ul>
     </div>
     <div id="toolbar"></div>
     <div id="holder"></div>
 
-    <div id="add_com_dialog" class="dialog" title="Add Component"></div>
-    <div id="add_cor_dialog" class="dialog" title="Add Correlation"></div>
+    <div id="ds_dialog" class="dialog" title="Dataset(s)"></div>
+    <div id="src_dialog" class="dialog" title="Systematic Uncertainty Source(s)"></div>
+    <div id="inp_dialog" class="dialog" title="Input(s)"></div>
+    <div id="comp_dialog" class="dialog" title="Component(s)"></div>
+
+    <div id="add_ds_dialog" class="dialog" title="Add Dataset"></div>
+    <div id="add_src_dialog" class="dialog" title="Add Systematic Uncertainty Source"></div>
     <div id="add_inp_dialog" class="dialog" title="Add Input"></div>
+    <div id="add_comp_dialog" class="dialog" title="Add Component"></div>
+
+    <div id="edit_ds_dialog" class="dialog" title="Edit Dataset"></div>
+    <div id="edit_src_dialog" class="dialog" title="Edit Systematic Uncertainty Source"></div>
+    <div id="edit_inp_dialog" class="dialog" title="Edit Input"></div>
+    <div id="edit_comp_dialog" class="dialog" title="Edit Component"></div>
+
+    <div id="del_ds_dialog" class="dialog" title="Delete Dataset, Are You Sure?"></div>
+    <div id="del_src_dialog" class="dialog" title="Delete Source, Are You Sure?"></div>
+    <div id="del_inp_dialog" class="dialog" title="Delete Input, Are You Sure?"></div>
+    <div id="del_comp_dialog" class="dialog" title="Delete Component, Are You Sure?"></div>
+
+    <div id="sum_ds_dialog" class="dialog" title="Dataset Summary"></div>
+    <div id="sum_src_dialog" class="dialog" title="Systematic Uncertainty Source Summary"></div>
+    <div id="sum_inp_dialog" class="dialog" title="Input Summary"></div>
+    <div id="sum_comp_dialog" class="dialog" title="Component Summary"></div>
+    <div id="sum_corr_dialog" class="dialog" title="Correlation Summary"></div>
+    <div id="sum_u_dialog" classs="dialog" title="Component Total Uncertainty Summary"></div>
+    <div id="sum_umf_dialog" classs="dialog" title="Uncertainty Magnification Fator Summary"></div>
+    <div id="sum_upc_dialog" classs="dialog" title="Uncertainty Percent Contribution Summary"></div>
+
+    <div id="apply_ds_2_nom_dialog" class="dialog" title="Select Dataset"></div>
+    <div id="apply_ds_2_rand_dialog" class="dialog" title="Select Dataset"></div>
+    <div id="apply_src_2_sys_dialog" class="dialog" title="Select Source(s)"></div>
+
     <div id="calc_u_dialog" class="dialog"></div>
     <div id="calc_umf_dialog" class="dialog"></div>
     <div id="calc_upc_dialog" class="dialog"></div>
-    <div id="com_sum_dialog" class="dialog" title="Component Summary"></div>
-    <div id="cor_sum_dialog" class="dialog" title="Correlation Summary"></div>
-    <div id="del_com_dialog" class="dialog" title="Component Delete Confirmation"></div>
-    <div id="del_com_select_dialog" class="dialog" title="Select Component to Delete"></div>
-    <div id="del_cor_dialog" class="dialog" title="Correlation Delete Confirmation"></div>
-    <div id="del_cor_select_dialog" class="dialog" title="Select Correlation to Delete"></div>
-    <div id="del_inp_dialog" class="dialog" title="Input Delete Confirmation"></div>
-    <div id="del_inp_select_dialog" class="dialog" title="Select Input to Delete"></div>
-    <div id="edit_com_dialog" class="dialog" title="Edit Component"></div>
-    <div id="edit_com_select_dialog" class="dialog" title="Select Component to Edit"></div>
-    <div id="edit_cor_dialog" class="dialog" title="Edit Correlation"></div>
-    <div id="edit_cor_select_dialog" class="dialog" title="Select Correlation to Edit"></div>
-    <div id="edit_inp_dialog" class="dialog" title="Edit Input"></div>
-    <div id="edit_inp_select_dialog" class="dialog" title="Select Input to Edit"></div>
+
     <div id="exit_dialog" class="dialog" title="Exit"></div>
-    <div id="inp_sum_dialog" class="dialog" title="Input Summary"></div>
     <div id="new_dialog" class="dialog" title="New"></div>
     <div id="save_dialog" class="dialog" title="Save As..."></div>
-    <div id="u_sum_dialog" classs="dialog" title="Component Total Uncertainty Summary"></div>
-    <div id="umf_sum_dialog" classs="dialog" title="Uncertainty Magnification Factor Summary"></div>
-    <div id="upc_sum_dialog" classs="dialog" title="Uncertainty Percent Contribution Summary"></div>
     <div id="tip"></div>
   </body>
   <script src="js/script.js" type="text/javascript" charset="utf-8"></script>

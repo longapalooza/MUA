@@ -56,56 +56,26 @@ input.text{
   font-size: 12px;
 }
 
-.ui-icon.add_inp{
-  background-image: url('images/add_inp.png');
+.ui-icon.ds{
+  background-image: url('images/ds.png');
   width: 16px;
   height: 16px;
 }
 
-.ui-icon.edit_inp{
-  background-image: url('images/edit_inp.png');
+.ui-icon.src{
+  background-image: url('images/src.png');
   width: 16px;
   height: 16px;
 }
 
-.ui-icon.del_inp{
-  background-image: url('images/del_inp.png');
+.ui-icon.inp{
+  background-image: url('images/inp.png');
   width: 16px;
   height: 16px;
 }
 
-.ui-icon.add_com{
-  background-image: url('images/add_com.png');
-  width: 16px;
-  height: 16px;
-}
-
-.ui-icon.edit_com{
-  background-image: url('images/edit_com.png');
-  width: 16px;
-  height: 16px;
-}
-
-.ui-icon.del_com{
-  background-image: url('images/del_com.png');
-  width: 16px;
-  height: 16px;
-}
-
-.ui-icon.add_cor{
-  background-image: url('images/add_cor.png');
-  width: 16px;
-  height: 16px;
-}
-
-.ui-icon.edit_cor{
-  background-image: url('images/edit_cor.png');
-  width: 16px;
-  height: 16px;
-}
-
-.ui-icon.del_cor{
-  background-image: url('images/del_cor.png');
+.ui-icon.comp{
+  background-image: url('images/comp.png');
   width: 16px;
   height: 16px;
 }
