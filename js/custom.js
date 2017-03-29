@@ -487,7 +487,7 @@ Raphael.fn.onmove = function (dx, dy) {
   // update tool tip posistion
   $("#tip").css("left", event.clientX+20).css("top", event.clientY+20);
   // Safari browser fix
-  r.safari();
+  //r.safari();
 }
 
 Raphael.fn.onstart = function () {
