@@ -1991,6 +1991,35 @@ function svg_label(label){
   return label;
 }
 
+function save_data(data, filename){
+  // Create a tag
+  var a=document.createElement("a");
+  // Add it to html body
+  document.body.appendChild(a);
+  // set a tag id
+  a.id='file_download';
+  // set a tag style
+  a.style="display: none";
+  //return function(data, fileName){
+    // turn data into JSON
+  var json=JSON.stringify(data);
+    // BLOB JSON
+  var blob=new Blob([json], {type: "octet/stream"});
+    // create url for BLOB
+  var url=window.URL.createObjectURL(blob);
+    // set a tag href
+  a.href=url;
+    // set a tag download to filename
+  a.download=filename;
+    // click a tag
+  a.click();
+    // remove a tag url
+  window.URL.revokeObjectURL(url);
+    // remove a tag
+  $("#file_download").remove();
+};
+
+
 
 
 

@@ -1773,7 +1773,7 @@ var save_dialog=$("#save_dialog").dialog({
     "Save As": function(){
       var filename=$("#save_filename").val().trim();
       if(filename.length>0){
-        saveData(export_canvas(),filename+'.ujs');
+        save_data(export_canvas(),filename+'.ujs');
         save_dialog.dialog("close");
       } else {
         $("body").append("<div id='warn' class='dialog' title='Warning'><p>Filename is required.</p></div>");
@@ -1796,35 +1796,6 @@ var save_dialog=$("#save_dialog").dialog({
   },
   close: empty_save_dialog
 })
-
-var saveData=(function(){
-  // Create a tag
-  var a=document.createElement("a");
-  // Add it to html body
-  document.body.appendChild(a);
-  // set a tag id
-  a.id='file_download';
-  // set a tag style
-  a.style="display: none";
-  return function(data, fileName){
-    // turn data into JSON
-    var json=JSON.stringify(data);
-    // BLOB JSON
-    var blob=new Blob([json], {type: "octet/stream"});
-    // create url for BLOB
-    var url=window.URL.createObjectURL(blob);
-    // set a tag href
-    a.href=url;
-    // set a tag download to filename
-    a.download=fileName;
-    // click a tag
-    a.click();
-    // remove a tag url
-    window.URL.revokeObjectURL(url);
-    // remove a tag
-    $("#file_download").remove();
-  };
-}())
 
 window.onload=function(){
 
