@@ -49,12 +49,7 @@ Raphael.fn.addobj=function(attr){
     // Set input label object cursor
     input_labels[is].attr({cursor: "default"});
     // Change the inner HTML of label to allow HTML code and entities
-    var temp=attr.label;
-    temp=temp.replace(/<sub>/g, "<tspan baseline-shift='sub'>");
-    temp=temp.replace(/<sup>/g, "<tspan baseline-shift='super'>");
-    temp=temp.replace(/<\/sub>/g, "</tspan>");
-    temp=temp.replace(/<\/sup>/g, "</tspan>");
-    input_labels[is].node.getElementsByTagName("tspan")[0].innerHTML=temp;
+    input_labels[is].node.getElementsByTagName("tspan")[0].innerHTML=svg_label(attr.label);
   // For component objects
   } else if(attr.type=="rect"){
     // Find number of components
@@ -86,12 +81,7 @@ Raphael.fn.addobj=function(attr){
     // Set component label object cursor
     component_labels[cs].attr({cursor: "default"});
     // // Change the inner HTML of label to all HTML code and entities
-    var temp=attr.label;
-    temp=temp.replace(/<sub>/g, "<tspan baseline-shift='sub'>");
-    temp=temp.replace(/<sup>/g, "<tspan baseline-shift='super'>");
-    temp=temp.replace(/<\/sub>/g, "</tspan>");
-    temp=temp.replace(/<\/sup>/g, "</tspan>");
-    component_labels[cs].node.getElementsByTagName("tspan")[0].innerHTML=temp;
+    component_labels[cs].node.getElementsByTagName("tspan")[0].innerHTML=svg_label(attr.label);
   }
 }
 
@@ -408,12 +398,7 @@ Raphael.fn.onend = function () {
     att={cx: ox, cy: oy};
     // Change label position
     input_labels[li].attr({x: att.cx, y: att.cy});
-    var temp=this.data("label");
-    temp=temp.replace(/<sub>/g, "<tspan baseline-shift='sub'>");
-    temp=temp.replace(/<sup>/g, "<tspan baseline-shift='super'>");
-    temp=temp.replace(/<\/sub>/g, "</tspan>");
-    temp=temp.replace(/<\/sup>/g, "</tspan>");
-    input_labels[li].node.getElementsByTagName("tspan")[0].innerHTML=temp;
+    input_labels[li].node.getElementsByTagName("tspan")[0].innerHTML=svg_label(this.data("label"));
     input_labels[li].node.getElementsByTagName("tspan")[0].setAttribute("dy", "3.5");
   // if object is component
   } else if (this.type == "rect"){
@@ -426,12 +411,7 @@ Raphael.fn.onend = function () {
     att={x: ox, y: oy};
     // Change label position
     component_labels[li].attr({x: att.x+this.ow/2, y: att.y+this.oh/2});
-    var temp=this.data("label");
-    temp=temp.replace(/<sub>/g, "<tspan baseline-shift='sub'>");
-    temp=temp.replace(/<sup>/g, "<tspan baseline-shift='super'>");
-    temp=temp.replace(/<\/sub>/g, "</tspan>");
-    temp=temp.replace(/<\/sup>/g, "</tspan>");
-    component_labels[li].node.getElementsByTagName("tspan")[0].innerHTML=temp;
+    component_labels[li].node.getElementsByTagName("tspan")[0].innerHTML=svg_label(this.data("label"));
     component_labels[li].node.getElementsByTagName("tspan")[0].setAttribute("dy", "3.5");
   }
   // change object position
@@ -454,12 +434,7 @@ Raphael.fn.onmove = function (dx, dy) {
     att={cx: this.ox + (dx)/zoom, cy: this.oy + (dy)/zoom};
     // update label position
     input_labels[li].attr({x: this.ox + (dx)/zoom, y: this.oy + (dy)/zoom});
-    var temp=this.data("label");
-    temp=temp.replace(/<sub>/g, "<tspan baseline-shift='sub'>");
-    temp=temp.replace(/<sup>/g, "<tspan baseline-shift='super'>");
-    temp=temp.replace(/<\/sub>/g, "</tspan>");
-    temp=temp.replace(/<\/sup>/g, "</tspan>");
-    input_labels[li].node.getElementsByTagName("tspan")[0].innerHTML=temp;
+    input_labels[li].node.getElementsByTagName("tspan")[0].innerHTML=svg_label(this.data("label"));
     input_labels[li].node.getElementsByTagName("tspan")[0].setAttribute("dy", "3.5");
   // if object is component
   } else if (this.type=="rect"){
@@ -469,12 +444,7 @@ Raphael.fn.onmove = function (dx, dy) {
     att={x: this.ox + (dx)/zoom, y: this.oy + (dy)/zoom};
     // update label position
     component_labels[li].attr({x: this.ox+this.ow/2 + (dx)/zoom, y: this.oy+this.oh/2 + (dy)/zoom});
-    var temp=this.data("label");
-    temp=temp.replace(/<sub>/g, "<tspan baseline-shift='sub'>");
-    temp=temp.replace(/<sup>/g, "<tspan baseline-shift='super'>");
-    temp=temp.replace(/<\/sub>/g, "</tspan>");
-    temp=temp.replace(/<\/sup>/g, "</tspan>");
-    component_labels[li].node.getElementsByTagName("tspan")[0].innerHTML=temp;
+    component_labels[li].node.getElementsByTagName("tspan")[0].innerHTML=svg_label(this.data("label"));
     component_labels[li].node.getElementsByTagName("tspan")[0].setAttribute("dy", "3.5");
   }
   // update object position
@@ -2013,7 +1983,13 @@ function ns_nc(){
   return {ns:u, nc:c};
 }
 
-
+function svg_label(label){
+  label=label.replace(/<sub>/g, "<tspan baseline-shift='sub'>");
+  label=label.replace(/<sup>/g, "<tspan baseline-shift='super'>");
+  temp=label.replace(/<\/sub>/g, "</tspan>");
+  label=label.replace(/<\/sup>/g, "</tspan>");
+  return label;
+}
 
 
 

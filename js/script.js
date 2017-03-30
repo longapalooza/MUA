@@ -1005,12 +1005,7 @@ var edit_inp_dialog=$("#edit_inp_dialog").dialog({
           // set input label object variable
           input_labels[inp_edit].data("variable", variable);
           // set input label object label
-          var temp=label;
-          temp=temp.replace(/<sub>/g, "<tspan baseline-shift='sub'>");
-          temp=temp.replace(/<sup>/g, "<tspan baseline-shift='super'>");
-          temp=temp.replace(/<\/sub>/g, "</tspan>");
-          temp=temp.replace(/<\/sup>/g, "</tspan>");
-          input_labels[inp_edit].node.getElementsByTagName("tspan")[0].innerHTML=temp;
+          input_labels[inp_edit].node.getElementsByTagName("tspan")[0].innerHTML=svg_label(label);
           // Run custom function
           calc_comp_nom();
           // Reset Jacobian matrix flag
@@ -1159,12 +1154,7 @@ var edit_comp_dialog=$("#edit_comp_dialog").dialog({
           // Set component label variable
           component_labels[comp_edit].data("variable", variable);
           // Change html of component label
-          var temp=label;
-          temp=temp.replace(/<sub>/g, "<tspan baseline-shift='sub'>");
-          temp=temp.replace(/<sup>/g, "<tspan baseline-shift='super'>");
-          temp=temp.replace(/<\/sub>/g, "</tspan>");
-          temp=temp.replace(/<\/sup>/g, "</tspan>");
-          component_labels[comp_edit].node.getElementsByTagName("tspan")[0].innerHTML=temp;
+          component_labels[comp_edit].node.getElementsByTagName("tspan")[0].innerHTML=svg_label(label);
           component_labels[comp_edit].node.getElementsByTagName("tspan")[0].setAttribute("dy", "3.5");
           // get dependent variables from component funciton
           var dep_var=get_dep(fun);
