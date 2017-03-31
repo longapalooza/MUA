@@ -23,396 +23,262 @@ r.setViewBox(0, 0, $("#holder").width(), $("#holder").height());
 
 
 var ds_dialog=$("#ds_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_ds_dialog,
-
   buttons: {
-
     Ok: ds_action_ok
-
   },
-  close: empty_ds_dialog
+  close: empty_dialog
 });
 
 var src_dialog=$("#src_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_src_dialog,
-
   buttons: {
-
     Ok: src_action_ok
-
   },
-  close: empty_src_dialog
+  close: empty_dialog
 });
 
 var inp_dialog=$("#inp_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_inp_dialog,
 
   buttons: {
-
     Ok: inp_action_ok
-
   },
-  close: empty_inp_dialog
+  close: empty_dialog
 });
 
 var comp_dialog=$("#comp_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_comp_dialog,
-
   buttons: {
-
     Ok: comp_action_ok
-
   },
-  close: empty_comp_dialog
+  close: empty_dialog
 });
 
 
 
 var add_ds_dialog=$("#add_ds_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_add_ds_dialog,
-
   buttons: {
-
     "Add Dataset": add_ds_action_add_dataset,
-
     Cancel: add_ds_action_cancel
-
   },
-  close: empty_add_ds_dialog
+  close: empty_dialog
 });
 
 var add_src_dialog=$("#add_src_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_add_src_dialog,
-
   buttons: {
-
     "Add Source": add_src_action_add_source,
-
     Cancel: add_src_action_cancel
   },
-  close: empty_add_src_dialog
+  close: empty_dialog
 });
 
 var add_inp_dialog=$("#add_inp_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_add_inp_dialog,
-
   buttons: {
-
     "Add Input": add_inp_action_add_input,
-
     Cancel: add_inp_action_cancel
-
   },
-  close: empty_add_inp_dialog
+  close: empty_dialog
 });
 
 var add_comp_dialog=$("#add_comp_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_add_comp_dialog,
-
   buttons: {
     "Add Component": add_comp_action_add_component,
-
     Cancel: add_comp_action_cancel
   },
-  close: empty_add_comp_dialog
+  close: empty_dialog
 });
 
 
 
 var edit_ds_dialog=$("#edit_ds_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_edit_ds_dialog,
-
   buttons: {
-
     "Edit Dataset": edit_ds_action_edit_dataset,
-
     Cancel: edit_ds_action_cancel
   },
-  close: empty_edit_ds_dialog
+  close: empty_dialog
 });
 
 var edit_src_dialog=$("#edit_src_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_edit_src_dialog,
-
   buttons: {
-
     "Edit Source": edit_src_action_edit_source,
     Cancel: edit_src_action_cancel
   },
-  close: empty_edit_src_dialog
+  close: empty_dialog
 });
 
 var edit_inp_dialog=$("#edit_inp_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_edit_inp_dialog,
-
   buttons: {
-
     "Edit Input": edit_inp_action_edit_input,
-
     Cancel: edit_inp_action_cancel
-
   },
-  close: empty_edit_inp_dialog
+  close: empty_dialog
 });
 
 var edit_comp_dialog=$("#edit_comp_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_edit_comp_dialog,
 
   buttons: {
     "Edit Component": edit_comp_action_edit_component,
     Cancel: edit_comp_action_cancel
   },
-  close: empty_edit_comp_dialog
+  close: empty_dialog
 });
 
 
 
 var del_ds_dialog=$("#del_ds_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   open: build_del_ds_dialog,
-
   buttons: {
     Ok: del_ds_action_ok,
     Cancel: del_ds_action_cancel
   },
-  close: empty_del_ds_dialog
+  close: empty_dialog
 });
 
 var del_src_dialog=$("#del_src_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_del_src_dialog,
-
   buttons: {
     Ok: del_src_action_ok,
     Cancel: del_src_action_cancel
   },
-  close: empty_del_src_dialog
+  close: empty_dialog
 });
 
 var del_inp_dialog=$("#del_inp_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_del_inp_dialog,
-
   title: "Confirmation",
-
   buttons: {
     Yes: del_inp_action_yes,
     No: del_inp_action_no
   },
-
-  close: empty_del_inp_dialog
+  close: empty_dialog
 });
 
 var del_comp_dialog=$("#del_comp_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_del_comp_dialog,
-
   title: "Confirmation",
-
   buttons: {
     Yes: del_comp_action_yes,
     No: del_comp_action_no
   },
-
-  close: empty_del_comp_dialog
+  close: empty_dialog
 });
 
 
 
 var sum_ds_dialog=$("#sum_ds_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_sum_ds_dialog,
-
   buttons: {
     "Export CSV": sum_ds_action_export_csv,
     Ok: sum_ds_action_ok
   },
-
-  close: empty_sum_ds_dialog
+  close: empty_dialog
 });
 
 var sum_src_dialog=$("#sum_src_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_sum_src_dialog,
-
   buttons: {
     "Export CSV": sum_src_action_export_csv,
     Ok: sum_src_action_ok
   },
-
-  close: empty_sum_src_dialog
+  close: empty_dialog
 });
 
 var sum_inp_dialog=$("#sum_inp_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_sum_inp_dialog,
-
   buttons: {
     "Export CSV": sum_inp_action_export_csv,
     Ok: sum_inp_action_ok
   },
-
-  close: empty_sum_inp_dialog
+  close: empty_dialog
 });
 
 var sum_comp_dialog=$("#sum_comp_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_sum_comp_dialog,
-
   buttons: {
     "Export CSV": sum_comp_action_export_csv,
     Ok: sum_comp_action_ok
   },
-
-  close: empty_sum_comp_dialog
+  close: empty_dialog
 });
 
 var sum_corr_dialog=$("#sum_corr_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_sum_corr_dialog,
-
   buttons: {
     "Export CSV": sum_corr_action_export_csv,
     Ok: sum_corr_action_ok
   },
-
-  close: empty_sum_corr_dialog
+  close: empty_dialog
 });
 
 var sum_u_dialog=$("#sum_u_dialog").dialog({
@@ -424,7 +290,7 @@ var sum_u_dialog=$("#sum_u_dialog").dialog({
     "Export CSV": sum_u_action_export_csv,
     Ok: sum_u_action_ok
   },
-  close: empty_sum_u_dialog
+  close: empty_dialog
 })
 
 var sum_umf_dialog=$("#sum_umf_dialog").dialog({
@@ -436,7 +302,7 @@ var sum_umf_dialog=$("#sum_umf_dialog").dialog({
     "Export CSV": sum_umf_action_export_csv,
     Ok: sum_umf_action_ok
   },
-  close: empty_sum_umf_dialog
+  close: empty_dialog
 })
 
 var sum_upc_dialog=$("#sum_upc_dialog").dialog({
@@ -448,62 +314,46 @@ var sum_upc_dialog=$("#sum_upc_dialog").dialog({
     "Export CSV": sum_upc_action_export_csv,
     Ok: sum_upc_action_ok
   },
-  close: empty_sum_upc_dialog
+  close: empty_dialog
 })
 
 
 
 var apply_ds_2_nom_dialog=$("#apply_ds_2_nom_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_apply_ds_2_nom_dialog,
-
   buttons: {
     Ok: apply_ds_2_nom_action_ok,
     Cancel: apply_ds_2_nom_action_cancel
   },
-  close: empty_apply_ds_2_nom_dialog
+  close: empty_dialog
 });
 
 var apply_ds_2_rand_dialog=$("#apply_ds_2_rand_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_apply_ds_2_rand_dialog,
-
   buttons: {
     Ok: apply_ds_2_rand_action_ok,
     Cancel: apply_ds_2_rand_action_cancel
   },
 
-  close: empty_apply_ds_2_rand_dialog
+  close: empty_dialog
 });
 
 var apply_src_2_sys_dialog=$("#apply_src_2_sys_dialog").dialog({
-
   autoOpen: false,
-
   modal: true,
-
   width: 'auto',
-
   open: build_apply_src_2_sys_dialog,
-
   buttons: {
-
     Ok: apply_src_2_sys_action_ok,
     Cancel: apply_src_2_sys_action_cancel
   },
-  close: empty_apply_src_2_sys_dialog
+  close: empty_dialog
 });
 
 
@@ -513,7 +363,7 @@ var calc_u_dialog=$("#calc_u_dialog").dialog({
   modal: true,
   maxWidth: '500px',
   open: build_calc_u_dialog,
-  close: empty_calc_u_dialog
+  close: empty_dialog
 });
 
 var calc_umf_dialog=$("#calc_umf_dialog").dialog({
@@ -521,7 +371,7 @@ var calc_umf_dialog=$("#calc_umf_dialog").dialog({
   modal: true,
   maxWidth: '500px',
   open: build_calc_umf_dialog,
-  close: empty_calc_umf_dialog
+  close: empty_dialog
 });
 
 var calc_upc_dialog=$("#calc_upc_dialog").dialog({
@@ -529,7 +379,7 @@ var calc_upc_dialog=$("#calc_upc_dialog").dialog({
   modal: true,
   maxWidth: '500px',
   open: build_calc_upc_dialog,
-  close: empty_calc_upc_dialog
+  close: empty_dialog
 })
 
 
@@ -543,7 +393,7 @@ var exit_dialog=$("#exit_dialog").dialog({
     Yes: exit_action_yes,
     No: exit_action_no
   },
-  close: empty_exit_dialog
+  close: empty_dialog
 });
 
 var new_dialog=$("#new_dialog").dialog({
@@ -555,7 +405,7 @@ var new_dialog=$("#new_dialog").dialog({
     Yes: new_action_yes,
     No: new_action_no
   },
-  close: empty_new_dialog
+  close: empty_dialog
 })
 
 var save_dialog=$("#save_dialog").dialog({
@@ -567,15 +417,12 @@ var save_dialog=$("#save_dialog").dialog({
     "Save As": save_action_save_as,
     Cancel: save_action_cancel
   },
-  close: empty_save_dialog
+  close: empty_dialog
 })
 
 window.onload=function(){
 
   build_toolbar();
-
-
-
 
 
 
@@ -651,17 +498,6 @@ window.onload=function(){
     calc_upc_dialog.dialog("open");
     event.preventDefault();
   })
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1575,131 +1575,26 @@ function build_calc_upc_dialog(){
 
 
 
-
-
-
-function empty_ds_dialog(){
-  $("#ds_dialog").empty();
 }
 
-function empty_src_dialog(){
-  $("#src_dialog").empty();
 }
 
-function empty_inp_dialog(){
-  $("#inp_dialog").empty();
-}
-
-function empty_comp_dialog(){
-  $("#comp_dialog").empty();
 }
 
 
 
-function empty_add_ds_dialog(){
-  $("#add_ds_dialog").empty();
-}
-
-function empty_add_src_dialog(){
-  $("#add_src_dialog").empty();
-}
-
-function empty_add_inp_dialog(){
-  ds_nom=-1;
-  ds_rand=-1;
-  $("#add_inp_dialog").empty();
-}
-
-function empty_add_comp_dialog(){
-  $("#add_comp_dialog").empty();
-}
-
-
-
-function empty_edit_ds_dialog(){
-  $("#edit_ds_dialog").empty();
-}
-
-function empty_edit_src_dialog(){
-  $("#edit_src_dialog").empty();
-}
-
-function empty_edit_inp_dialog(){
-  inp_edit=-1;
-  $("#edit_inp_dialog").empty();
-}
-
-function empty_edit_comp_dialog(){
-  comp_edit=-1;
-  $("#edit_comp_dialog").empty();
-}
-
-
-
-function empty_del_ds_dialog(){
-  $("#del_ds_dialog").empty();
-}
-
-function empty_del_src_dialog(){
-  $("#del_src_dialog").empty();
-}
-
-function empty_del_inp_dialog(){
-  inp_del=-1;
-  $("#del_inp_dialog").empty();
-}
-
-function empty_del_comp_dialog(){
-  comp_del=-1;
-  $("#del_comp_dialog").empty();
-}
-
-
-
-function empty_sum_ds_dialog(){
-  $("#sum_ds_dialog").empty();
-}
-
-function empty_sum_src_dialog(){
-  $("#sum_src_dialog").empty();
-}
-
-function empty_sum_inp_dialog(){
-  $("#sum_inp_dialog").empty();
-}
-
-function empty_sum_comp_dialog(){
-  $("#sum_comp_dialog").empty();
-}
-
-function empty_sum_corr_dialog(){
-  $("#sum_corr_dialog").empty();
-}
-
-function empty_sum_u_dialog(){
-  $("#sum_u_dialog").empty();
-}
-
-function empty_sum_umf_dialog(){
-  $("#sum_umf_dialog").empty();
-}
-
-function empty_sum_upc_dialog(){
-  $("#sum_upc_dialog").empty();
-}
-
-
-
-function empty_apply_ds_2_nom_dialog(){
-  $("#apply_ds_2_nom_dialog").empty();
-}
-
-function empty_apply_ds_2_rand_dialog(){
-  $("#apply_ds_2_rand_dialog").empty();
-}
-
-function empty_apply_src_2_sys_dialog(){
-  $("#apply_src_2_sys_dialog").empty();
+function empty_dialog(){
+  if($(this).attr("id")=="edit_inp_dialog"){
+    inp_edit=-1;
+    ds_nom=-1;
+    ds_rand=-1;
+  }
+  if($(this).attr("id")=="del_inp_dialog"){inp_del=-1;}
+  if($(this).attr("id")=="edit_comp_dialog"){comp_edit=-1;}
+  if($(this).attr("id")=="del_comp_dialog"){comp_del=-1;}
+  if($(this).attr("id")=="apply_ds_2_nom_dialog"){ds_nom=-1;}
+  if($(this).attr("id")=="apply_ds_2_rand_dialog"){ds_rand=-1;}
+  $(this).empty();
 }
 
 
@@ -3133,13 +3028,6 @@ function calc_upc_action_ok(){
 
 
 
-
-
-
-
-
-
-
 function calc_U(){
   if(!flags.U){
     if(inputs.length>0 && components.length>0){
@@ -3224,21 +3112,7 @@ function calc_UPC(){
 
 
 
-function empty_calc_u_dialog(){
-  $("#calc_u_dialog").empty();
 }
-
-function empty_calc_umf_dialog(){
-  $("#calc_umf_dialog").empty();
-}
-
-function empty_calc_upc_dialog(){
-  $("#calc_upc_dialog").empty();
-}
-
-
-
-
 
 
 
@@ -3358,7 +3232,6 @@ function UPC2CSV(){
   }
   return str;
 }
-
 
 
 
@@ -3515,10 +3388,6 @@ function save_data(data, filename){
 
   $("#file_download").remove();
 };
-
-
-
-
 
 
 
@@ -3927,18 +3796,6 @@ function empty_canvas(){
     connections[i].arr.remove();
   }
   connections=[];
-}
-
-function empty_exit_dialog(){
-  $("#exit_dialog").empty();
-}
-
-function empty_new_dialog(){
-  $("#new_dialog").empty();
-}
-
-function empty_save_dialog(){
-  $("#save_dialog").empty();
 }
 
 function empty_toolbar(){
