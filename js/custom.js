@@ -482,7 +482,8 @@ Raphael.fn.onstart = function () {
 
 
 function build_ds_dialog(){
-  var i, dsi;
+  var i, dsi, style;
+  style="text-align: center; max-width: 300px; vertical-align: text-top;";
   dsi=datasets.length;
   $("#ds_dialog").append("<form></form>");
   $("#ds_dialog form").append("<input id='add_ds' name='add_ds' type='button' value='Add Dataset'>");
@@ -492,26 +493,26 @@ function build_ds_dialog(){
   if(dsi==0){
     $("#ds_dialog form table tbody tr:last-child").append("No datasets have been added yet. Please add a dataset.");
   } else {
-    $("#ds_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>id</th>");
-    $("#ds_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Name</th>");
-    $("#ds_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Number</th>");
-    $("#ds_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Mean</th>");
-    $("#ds_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>StDev</th>");
-    $("#ds_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'></th>");
-    $("#ds_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'></th>");
+    $("#ds_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>id</th>");
+    $("#ds_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Name</th>");
+    $("#ds_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Number</th>");
+    $("#ds_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Mean</th>");
+    $("#ds_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>StDev</th>");
+    $("#ds_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'></th>");
+    $("#ds_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'></th>");
     for(i=0; i<dsi; i++){
       var n, mean, stdev;
       n=num_samples(datasets[i].values);
       mean=mu(datasets[i].values);
       stdev=sig(datasets[i].values, mean);
       $("#ds_dialog form table tbody").append("<tr></tr>");
-      $("#ds_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+(i+1)+"</td>");
-      $("#ds_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+datasets[i].name+"</td>");
-      $("#ds_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+n+"</td>");
-      $("#ds_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(mean)+"</td>");
-      $("#ds_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(stdev)+"</td>");
-      $("#ds_dialog form table tbody tr:last-child").append("<td style='text-align: center;'><a href='' id='edit_ds_"+i+"''>Edit</a></td>");
-      $("#ds_dialog form table tbody tr:last-child").append("<td style='text-align: center;'><a href='' id='del_ds_"+i+"'>Delete</a></td>");
+      $("#ds_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+(i+1)+"</td>");
+      $("#ds_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+datasets[i].name+"</td>");
+      $("#ds_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+n+"</td>");
+      $("#ds_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(mean)+"</td>");
+      $("#ds_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(stdev)+"</td>");
+      $("#ds_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'><a href='' id='edit_ds_"+i+"''>Edit</a></td>");
+      $("#ds_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'><a href='' id='del_ds_"+i+"'>Delete</a></td>");
       $("#edit_ds_"+i).click(function(){
         ds_edit=Number($(this).attr('id').slice(-1));
         edit_ds_dialog.dialog("open");
@@ -582,7 +583,8 @@ function build_ds_dialog(){
 }
 
 function build_src_dialog(){
-  var i, srci;
+  var i, srci, style;
+  style="text-align: center; max-width: 300px; vertical-align: text-top;";
   srci=sources.length;
   $("#src_dialog").append("<form></form>");
   $("#src_dialog form").append("<input id='add_src' name='add_src' type='button' value='Add Source'>");
@@ -592,18 +594,18 @@ function build_src_dialog(){
   if(srci==0){
     $("#src_dialog form table tbody tr:last-child").append("No sources have been added yet. Please add a sources.")
   } else {
-    $("#src_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>id</th>");
-    $("#src_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Name</th>");
-    $("#src_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Value</th>");
-    $("#src_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'></th>");
-    $("#src_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'></th>");
+    $("#src_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>id</th>");
+    $("#src_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Name</th>");
+    $("#src_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Value</th>");
+    $("#src_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'></th>");
+    $("#src_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'></th>");
     for(i=0; i<srci; i++){
       $("#src_dialog form table tbody").append("<tr></tr>");
-      $("#src_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+(i+1)+"</td>");
-      $("#src_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+sources[i].name+"</td>");
-      $("#src_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+sources[i].value+"</td>");
-      $("#src_dialog form table tbody tr:last-child").append("<td style='text-align: center;'><a href='' id='edit_src_"+i+"''>Edit</a></td>");
-      $("#src_dialog form table tbody tr:last-child").append("<td style='text-align: center;'><a href='' id='del_src_"+i+"'>Delete</a></td>");
+      $("#src_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+(i+1)+"</td>");
+      $("#src_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+sources[i].name+"</td>");
+      $("#src_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+sources[i].value+"</td>");
+      $("#src_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'><a href='' id='edit_src_"+i+"''>Edit</a></td>");
+      $("#src_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'><a href='' id='del_src_"+i+"'>Delete</a></td>");
       $("#edit_src_"+i).click(function(){
         src_edit=Number($(this).attr('id').slice(-1));
         edit_src_dialog.dialog("open");
@@ -619,7 +621,8 @@ function build_src_dialog(){
 }
 
 function build_inp_dialog(){
-  var i, ni, mess="", si, i2, ns;
+  var i, ni, mess="", si, i2, ns, style;
+  style="text-align: center; max-width: 300px; vertical-align: text-top;";
   ni=inputs.length;
   ns=ns_nc().ns;
   $("#inp_dialog").append("<form></form>");
@@ -632,50 +635,50 @@ function build_inp_dialog(){
     $("#inp_dialog form table tbody tr:last-child").append("No inputs have been added yet. Please add an input.")
   } else{
     $("#inp_dialog form table tbody").append("<tr></tr>");
-    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>id</th>");
-    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Name</th>");
-    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Variable</th>");
-    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Label</th>");
-    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Nominal</th>");
-    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Random</th>");
-    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Systematic Src Id(s)</th>");
-    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Systematic</th>");
-    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'></th>");
-    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'></th>");
+    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>id</th>");
+    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Name</th>");
+    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Variable</th>");
+    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Label</th>");
+    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Nominal</th>");
+    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Random</th>");
+    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Systematic Src Id(s)</th>");
+    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Systematic</th>");
+    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'></th>");
+    $("#inp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'></th>");
     for(i=0; i<ni; i++){
       $("#inp_dialog form table tbody").append("<tr></tr>");
-      $("#inp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+(i+1)+"</td>");
-      $("#inp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+inputs[i].data("name")+"</td>");
-      $("#inp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+inputs[i].data("variable")+"</td>");
-      $("#inp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+inputs[i].data("label")+"</td>");
+      $("#inp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+(i+1)+"</td>");
+      $("#inp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+inputs[i].data("name")+"</td>");
+      $("#inp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+inputs[i].data("variable")+"</td>");
+      $("#inp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+inputs[i].data("label")+"</td>");
       if(inputs[i].data("nom_ds")>=0){
-        $("#inp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(Number(inputs[i].data("nominal")))+" (ds "+(inputs[i].data("nom_ds")+1)+")</td>");
+        $("#inp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(Number(inputs[i].data("nominal")))+" (ds "+(inputs[i].data("nom_ds")+1)+")</td>");
       } else {
-        $("#inp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(Number(inputs[i].data("nominal")))+"</td>");
+        $("#inp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(Number(inputs[i].data("nominal")))+"</td>");
       }
       if(inputs[i].data("rand_ds")>=0){
-        $("#inp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(Number(inputs[i].data("random")))+" (ds "+(inputs[i].data("rand_ds")+1)+")</td>");
+        $("#inp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(Number(inputs[i].data("random")))+" (ds "+(inputs[i].data("rand_ds")+1)+")</td>");
       } else{
-        $("#inp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(Number(inputs[i].data("random")))+"</td>");
+        $("#inp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(Number(inputs[i].data("random")))+"</td>");
       }
       if(inputs[i].data("sys_src").length==0){
-        $("#inp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>0</td>");
+        $("#inp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>0</td>");
       } else {
         si=inputs[i].data("sys_src").length;
         if(si==1){
-          $("#inp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+inputs[i].data("sys_src")[0]+"</td>");
+          $("#inp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+inputs[i].data("sys_src")[0]+"</td>");
         } else {
           mess="";
           for(i2=0; i2<si-1; i2++){
             mess+=inputs[i].data("sys_src")[i2]+", ";
           }
           mess+=" and "+inputs[i].data("sys_src")[si-1];
-          $("#inp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+mess+"</td>");
+          $("#inp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+mess+"</td>");
         }
       }
-      $("#inp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(ns[i])+"</td>");
-      $("#inp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'><a href='' id='edit_inp_"+i+"''>Edit</a></td>");
-      $("#inp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'><a href='' id='del_inp_"+i+"'>Delete</a></td>");
+      $("#inp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(ns[i])+"</td>");
+      $("#inp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'><a href='' id='edit_inp_"+i+"''>Edit</a></td>");
+      $("#inp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'><a href='' id='del_inp_"+i+"'>Delete</a></td>");
       $("#edit_inp_"+i).click(function(){
         inp_edit=Number($(this).attr('id').slice(-1));
         edit_inp_dialog.dialog("open");
@@ -715,7 +718,8 @@ function build_inp_dialog(){
 }
 
 function build_comp_dialog(){
-  var i, ci, mess="", i2;
+  var i, ci, mess="", style;
+  style="text-align: center; max-width: 300px; vertical-align: text-top;";
   ci=components.length;
   $("#comp_dialog").append("<form></form>");
   $("#comp_dialog form").append("<input id='add_comp' name='add_comp' type='button' value='Add Component'>");
@@ -727,22 +731,22 @@ function build_comp_dialog(){
     $("#comp_dialog form table tbody tr:last-child").append("No components have been added yet. Please add a component.")
   } else{
     $("#comp_dialog form table tbody").append("<tr></tr>");
-    $("#comp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>id</th>");
-    $("#comp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Name</th>");
-    $("#comp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Variable</th>");
-    $("#comp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Label</th>");
-    $("#comp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Nominal</th>");
-    $("#comp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'></th>");
-    $("#comp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'></th>");
+    $("#comp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>id</th>");
+    $("#comp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Name</th>");
+    $("#comp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Variable</th>");
+    $("#comp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Label</th>");
+    $("#comp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Nominal</th>");
+    $("#comp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'></th>");
+    $("#comp_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'></th>");
     for(i=0; i<ci; i++){
       $("#comp_dialog form table tbody").append("<tr></tr>");
-      $("#comp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+(i+1)+"</td>");
-      $("#comp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+components[i].data("name")+"</td>");
-      $("#comp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+components[i].data("variable")+"</td>");
-      $("#comp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+components[i].data("label")+"</td>");
-      $("#comp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(components[i].data("nominal"))+"</td>");
-      $("#comp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'><a href='' id='edit_comp_"+i+"''>Edit</a></td>");
-      $("#comp_dialog form table tbody tr:last-child").append("<td style='text-align: center;'><a href='' id='del_comp_"+i+"'>Delete</a></td>");
+      $("#comp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+(i+1)+"</td>");
+      $("#comp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("name")+"</td>");
+      $("#comp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("variable")+"</td>");
+      $("#comp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("label")+"</td>");
+      $("#comp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(components[i].data("nominal"))+"</td>");
+      $("#comp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'><a href='' id='edit_comp_"+i+"''>Edit</a></td>");
+      $("#comp_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'><a href='' id='del_comp_"+i+"'>Delete</a></td>");
       $("#edit_comp_"+i).click(function(){
         comp_edit=Number($(this).attr('id').slice(-1));
         edit_comp_dialog.dialog("open");
@@ -1137,93 +1141,97 @@ function build_del_comp_dialog(){
 
 
 function build_apply_ds_2_nom_dialog(){
-  var i, dsi;
+  var i, dsi, style;
+  style="text-align: center; max-width: 300px; vertical-align: text-top;";
   dsi=datasets.length;
   $("#apply_ds_2_nom_dialog").append("<form></form>");
   $("#apply_ds_2_nom_dialog form").append("<table></table>");
   $("#apply_ds_2_nom_dialog form table").append("<tbody></tbody>");
   $("#apply_ds_2_nom_dialog form table tbody").append("<tr></tr>");
-  $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'></th>");
-  $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>id</th>");
-  $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Name</th>");
-  $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Number</th>");
-  $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Mean</th>");
-  $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Stand. Dev.</th>");
+  $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'></th>");
+  $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>id</th>");
+  $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Name</th>");
+  $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Number</th>");
+  $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Mean</th>");
+  $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>StDev.</th>");
   for(i=0; i<dsi; i++){
     var n, mean, stdev;
     n=num_samples(datasets[i].values);
     mean=mu(datasets[i].values);
     stdev=sig(datasets[i].values, mean);
     $("#apply_ds_2_nom_dialog form table tbody").append("<tr></tr>");
-    $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<td style='text-align: center;'><input type='radio' name='ds' value='"+i+"'</td>");
-    $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+(i+1)+"</td>");
-    $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+datasets[i].name+"</td>");
-    $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+n+"</td>");
-    $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(mean)+"</td>");
-    $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(stdev)+"</td>");
+    $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<td style='text-align: center; vertical-align: text-top;'><input type='radio' name='ds' value='"+i+"'</td>");
+    $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+(i+1)+"</td>");
+    $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+datasets[i].name+"</td>");
+    $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+n+"</td>");
+    $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(mean)+"</td>");
+    $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(stdev)+"</td>");
   }
 }
 
 function build_apply_ds_2_rand_dialog(){
-  var i, dsi;
+  var i, dsi, style;
+  style="text-align: center; max-width: 300px; vertical-align: text-top;";
   dsi=datasets.length;
   $("#apply_ds_2_rand_dialog").append("<form></form>");
   $("#apply_ds_2_rand_dialog form").append("<table></table>");
   $("#apply_ds_2_rand_dialog form table").append("<tbody></tbody>");
   $("#apply_ds_2_rand_dialog form table tbody").append("<tr></tr>");
-  $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'></th>");
-  $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>id</th>");
-  $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Name</th>");
-  $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Number</th>");
-  $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Mean</th>");
-  $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Stand. Dev.</th>");
+  $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'></th>");
+  $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>id</th>");
+  $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Name</th>");
+  $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Number</th>");
+  $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Mean</th>");
+  $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>StDev.</th>");
   for(i=0; i<dsi; i++){
     var n, mean, stdev;
     n=num_samples(datasets[i].values);
     mean=mu(datasets[i].values);
     stdev=sig(datasets[i].values, mean);
     $("#apply_ds_2_rand_dialog form table tbody").append("<tr></tr>");
-    $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<td style='text-align: center;'><input type='radio' name='ds' value='"+i+"'></td>");
-    $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+(i+1)+"</td>");
-    $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+datasets[i].name+"</td>");
-    $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+n+"</td>");
-    $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(mean)+"</td>");
-    $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(stdev)+"</td>");
+    $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<td style='text-align: center; vertical-align: text-top;'><input type='radio' name='ds' value='"+i+"'></td>");
+    $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+(i+1)+"</td>");
+    $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+datasets[i].name+"</td>");
+    $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+n+"</td>");
+    $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(mean)+"</td>");
+    $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(stdev)+"</td>");
   }
 }
 
 function build_apply_src_2_sys_dialog(){
-  var i, si, ni;
+  var i, si, ni, style;
+  style="text-align: center; max-width: 300px; vertical-align: text-top;";
   si=sources.length;
   $("#apply_src_2_sys_dialog").append("<form></form>");
   $("#apply_src_2_sys_dialog form").append("<table></table>");
   $("#apply_src_2_sys_dialog form table").append("<tbody></tbody>");
   $("#apply_src_2_sys_dialog form table tbody").append("<tr></tr>");
-  $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'></th>");
-  $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>id</th>");
-  $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Name</th>");
-  $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Value</th>");
+  $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'></th>");
+  $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>id</th>");
+  $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Name</th>");
+  $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Value</th>");
   for(i=0; i<si; i++){
     $("#apply_src_2_sys_dialog form table tbody").append("<tr></tr>");
     if(inp_edit!=-1){
       if($.inArray(i+1, inputs[inp_edit].data("sys_src"))>=0){
-        $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<td style='text-align: center;'><input type='checkbox' class='src' name='src' checked></td>");
+        $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<td style='text-align: center; vertical-align: text-top;'><input type='checkbox' class='src' name='src' checked></td>");
       } else {
-        $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<td style='text-align: center;'><input type='checkbox' class='src' name='src'></td>");
+        $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<td style='text-align: center; vertical-align: text-top;'><input type='checkbox' class='src' name='src'></td>");
       }
     } else {
-      $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<td style='text-align: center;'><input type='checkbox' class='src' name='src'></td>");
+      $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<td style='text-align: center; vertical-align: text-top;'><input type='checkbox' class='src' name='src'></td>");
     }
-    $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+(i+1)+"</td>");
-    $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+sources[i].name+"</td>");
-    $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<td style='text-align: center;'>"+sources[i].value+"</td>");
+    $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+(i+1)+"</td>");
+    $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+sources[i].name+"</td>");
+    $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+sources[i].value+"</td>");
   }
 }
 
 
 
 function build_sum_ds_dialog(){
-  var i, dsi;
+  var i, dsi, style;
+  style="text-align: center; max-width: 300px; vertical-align: text-top;";
   dsi=datasets.length;
   $("#sum_ds_dialog").append("<table></table>");
   $("#sum_ds_dialog table").append("<tbody></tbody>");
@@ -1231,28 +1239,29 @@ function build_sum_ds_dialog(){
   if(dsi==0){
     $("#sum_ds_dialog table tbody tr:last-child").append("No datasets have been added yet.");
   } else {
-    $("#sum_ds_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>id</th>");
-    $("#sum_ds_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Name</th>");
-    $("#sum_ds_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Number</th>");
-    $("#sum_ds_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Mean</th>");
-    $("#sum_ds_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>StDev</th>");
+    $("#sum_ds_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>id</th>");
+    $("#sum_ds_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Name</th>");
+    $("#sum_ds_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Number</th>");
+    $("#sum_ds_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Mean</th>");
+    $("#sum_ds_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>StDev</th>");
     for(i=0; i<dsi; i++){
       var n, mean, stdev;
       n=num_samples(datasets[i].values);
       mean=mu(datasets[i].values);
       stdev=sig(datasets[i].values, mean);
       $("#sum_ds_dialog table tbody").append("<tr></tr>");
-      $("#sum_ds_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+(i+1)+"</td>");
-      $("#sum_ds_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+datasets[i].name+"</td>");
-      $("#sum_ds_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+n+"</td>");
-      $("#sum_ds_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(mean)+"</td>");
-      $("#sum_ds_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(stdev)+"</td>");
+      $("#sum_ds_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+(i+1)+"</td>");
+      $("#sum_ds_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+datasets[i].name+"</td>");
+      $("#sum_ds_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+n+"</td>");
+      $("#sum_ds_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(mean)+"</td>");
+      $("#sum_ds_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(stdev)+"</td>");
     }
   }
 }
 
 function build_sum_src_dialog(){
-  var i, srci;
+  var i, srci, style;
+  style="text-align: center; max-width: 300px; vertical-align: text-top;";
   srci=sources.length;
   $("#sum_src_dialog").append("<table></table>");
   $("#sum_src_dialog table").append("<tbody></tbody>");
@@ -1260,20 +1269,21 @@ function build_sum_src_dialog(){
   if(srci==0){
     $("#sum_src_dialog table tbody tr:last-child").append("No sources have been added yet.")
   } else {
-    $("#sum_src_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>id</th>");
-    $("#sum_src_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Name</th>");
-    $("#sum_src_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Value</th>");
+    $("#sum_src_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>id</th>");
+    $("#sum_src_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Name</th>");
+    $("#sum_src_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Value</th>");
     for(i=0; i<srci; i++){
       $("#sum_src_dialog table tbody").append("<tr></tr>");
-      $("#sum_src_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+(i+1)+"</td>");
-      $("#sum_src_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+sources[i].name+"</td>");
-      $("#sum_src_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+sources[i].value+"</td>");
+      $("#sum_src_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+(i+1)+"</td>");
+      $("#sum_src_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+sources[i].name+"</td>");
+      $("#sum_src_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+sources[i].value+"</td>");
     }
   }
 }
 
 function build_sum_inp_dialog(){
-  var i, ni, mess="", si, i2, ns;
+  var i, ni, mess="", si, i2, ns, style;
+  style="text-align: center; max-width: 300px; vertical-align: text-top;";
   ni=inputs.length;
   ns=ns_nc().ns;
   $("#sum_inp_dialog").append("<table></table>");
@@ -1282,52 +1292,53 @@ function build_sum_inp_dialog(){
   if(ni==0){
     $("#sum_inp_dialog table tbody tr:last-child").append("No inputs have been added yet.")
   } else{
-    $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>id</th>");
-    $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Name</th>");
-    $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Variable</th>");
-    $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Label</th>");
-    $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Nominal</th>");
-    $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Random</th>");
-    $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Systematic Src Id(s)</th>");
-    $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Systematic</th>");
+    $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>id</th>");
+    $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Name</th>");
+    $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Variable</th>");
+    $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Label</th>");
+    $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Nominal</th>");
+    $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Random</th>");
+    $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Systematic Src Id(s)</th>");
+    $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Systematic</th>");
     for(i=0; i<ni; i++){
       $("#sum_inp_dialog table tbody").append("<tr></tr>");
-      $("#sum_inp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+(i+1)+"</td>");
-      $("#sum_inp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+inputs[i].data("name")+"</td>");
-      $("#sum_inp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+inputs[i].data("variable")+"</td>");
-      $("#sum_inp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+inputs[i].data("label")+"</td>");
+      $("#sum_inp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+(i+1)+"</td>");
+      $("#sum_inp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+inputs[i].data("name")+"</td>");
+      $("#sum_inp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+inputs[i].data("variable")+"</td>");
+      $("#sum_inp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+inputs[i].data("label")+"</td>");
       if(inputs[i].data("nom_ds")>=0){
-        $("#sum_inp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(Number(inputs[i].data("nominal")))+" (ds "+(inputs[i].data("nom_ds")+1)+")</td>");
+        $("#sum_inp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(Number(inputs[i].data("nominal")))+" (ds "+(inputs[i].data("nom_ds")+1)+")</td>");
       } else {
-        $("#sum_inp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(Number(inputs[i].data("nominal")))+"</td>");
+        $("#sum_inp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(Number(inputs[i].data("nominal")))+"</td>");
       }
       if(inputs[i].data("rand_ds")>=0){
-        $("#sum_inp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(Number(inputs[i].data("random")))+" (ds "+(inputs[i].data("rand_ds")+1)+")</td>");
+        $("#sum_inp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(Number(inputs[i].data("random")))+" (ds "+(inputs[i].data("rand_ds")+1)+")</td>");
       } else{
-        $("#sum_inp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(Number(inputs[i].data("random")))+"</td>");
+        $("#sum_inp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(Number(inputs[i].data("random")))+"</td>");
       }
       if(inputs[i].data("sys_src").length==0){
-        $("#sum_inp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>0</td>");
+        $("#sum_inp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>0</td>");
       } else {
         si=inputs[i].data("sys_src").length;
         if(si==1){
-          $("#sum_inp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+(inputs[i].data("sys_src")[0]+1)+"</td>");
+          $("#sum_inp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+(inputs[i].data("sys_src")[0]+1)+"</td>");
         } else {
           mess="";
           for(i2=0; i2<si-1; i2++){
             mess+=(inputs[i].data("sys_src")[i2]+1)+", ";
           }
           mess+=" and "+(inputs[i].data("sys_src")[si-1]+1);
-          $("#sum_inp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+mess+"</td>");
+          $("#sum_inp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+mess+"</td>");
         }
       }
-      $("#sum_inp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+engFormat(ns[i])+"</td>");
+      $("#sum_inp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(ns[i])+"</td>");
     }
   }
 }
 
 function build_sum_comp_dialog(){
-  var i, ci;
+  var i, ci, style;
+  style="text-align: center; max-width: 300px; vertical-align: text-top;";
   ci=components.length;
   $("#sum_comp_dialog").append("<table></table>");
   $("#sum_comp_dialog table").append("<tbody></tbody>");
@@ -1335,26 +1346,27 @@ function build_sum_comp_dialog(){
   if(ci==0){
     $("#sum_comp_dialog table tbody tr:last-child").append("No components have been added yet.")
   } else{
-    $("#sum_comp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>id</th>");
-    $("#sum_comp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Name</th>");
-    $("#sum_comp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Variable</th>");
-    $("#sum_comp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Label</th>");
-    $("#sum_comp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Function</th>");
-    $("#sum_comp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Nominal</th>");
+    $("#sum_comp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>id</th>");
+    $("#sum_comp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Name</th>");
+    $("#sum_comp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Variable</th>");
+    $("#sum_comp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Label</th>");
+    $("#sum_comp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Function</th>");
+    $("#sum_comp_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Nominal</th>");
     for(i=0; i<ci; i++){
       $("#sum_comp_dialog table tbody").append("<tr></tr>");
-      $("#sum_comp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+(i+1)+"</td>");
-      $("#sum_comp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+components[i].data("name")+"</td>");
-      $("#sum_comp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+components[i].data("variable")+"</td>");
-      $("#sum_comp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+components[i].data("label")+"</td>");
-      $("#sum_comp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+components[i].data("fun")+"</td>");
-      $("#sum_comp_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+components[i].data("nominal")+"</td>");
+      $("#sum_comp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+(i+1)+"</td>");
+      $("#sum_comp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("name")+"</td>");
+      $("#sum_comp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("variable")+"</td>");
+      $("#sum_comp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("label")+"</td>");
+      $("#sum_comp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("fun")+"</td>");
+      $("#sum_comp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("nominal")+"</td>");
     }
   }
 }
 
 function build_sum_corr_dialog(){
-  var i, j, ni, ncs, mess="", si, i2, nc;
+  var i, j, ni, ncs, mess="", nc, style;
+  style="text-align: center; max-width: 300px; vertical-align: text-top;";
   ni=inputs.length;
   nc=ns_nc().nc;
   ncs=nc.length;
@@ -1364,17 +1376,17 @@ function build_sum_corr_dialog(){
   if(ni==0){
     $("#sum_corr_dialog table tbody tr:last-child").append("No inputs have been added yet.")
   } else{
-    $("#sum_corr_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>id</th>");
-    $("#sum_corr_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>Name</th>");
+    $("#sum_corr_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>id</th>");
+    $("#sum_corr_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Name</th>");
     for(i=0; i<ncs; i++){
-      $("#sum_corr_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-align: center; text-decoration: underline;'>"+(i+1)+"</th>");
+      $("#sum_corr_dialog table tbody tr:last-child").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>"+(i+1)+"</th>");
     }
     for(i=0; i<ni; i++){
       $("#sum_corr_dialog table tbody").append("<tr></tr>");
-      $("#sum_corr_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+(i+1)+"</td>");
-      $("#sum_corr_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+inputs[i].data("name")+"</td>");
+      $("#sum_corr_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+(i+1)+"</td>");
+      $("#sum_corr_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+inputs[i].data("name")+"</td>");
       for(j=0; j<ncs; j++){
-        $("#sum_corr_dialog table tbody tr:last-child").append("<td style='text-align: center;'>"+(nc[j][i])+"</td>");
+        $("#sum_corr_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+(nc[j][i])+"</td>");
       }
     }
   }
@@ -1395,13 +1407,13 @@ function build_sum_u_dialog(){
   $("#sum_u_dialog table tbody tr").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>% Total Uncertainty</th>");
   for(i=0; i<nc; i++){
     $("#sum_u_dialog table tbody").append("<tr></tr>");
-    $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+components[i].data("name")+"</td>");
-    $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+components[i].data("variable")+"</td>");
-    $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+components[i].data("label")+"</td>");
-    $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+components[i].data("fun")+"</td>");
-    $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+engFormat(components[i].data("nominal"))+"</td>");
-    $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+engFormat(U[i])+"</td>");
-    $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+engFormat((U[i]/Math.abs(components[i].data("nominal")))*100)+"</td>");
+    $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("name")+"</td>");
+    $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("variable")+"</td>");
+    $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("label")+"</td>");
+    $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("fun")+"</td>");
+    $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(components[i].data("nominal"))+"</td>");
+    $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(U[i])+"</td>");
+    $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat((U[i]/Math.abs(components[i].data("nominal")))*100)+"</td>");
   }
 }
 
@@ -1419,11 +1431,11 @@ function build_sum_umf_dialog(){
   }
   for(i=0; i<nc; i++){
     $("#sum_umf_dialog table tbody").append("<tr></tr>");
-    $("#sum_umf_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+(i+1)+"</td>");
-    $("#sum_umf_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+components[i].data("name")+"</td>");
-    $("#sum_umf_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+components[i].data("variable")+"</td>");
+    $("#sum_umf_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+(i+1)+"</td>");
+    $("#sum_umf_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("name")+"</td>");
+    $("#sum_umf_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("variable")+"</td>");
     for(j=0; j<ni; j++){
-      $("#sum_umf_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+engFormat(Math.abs(UMF[i][j]))+"</td>");
+      $("#sum_umf_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(Math.abs(UMF[i][j]))+"</td>");
     }
   }
 }
@@ -1442,11 +1454,11 @@ function build_sum_upc_dialog(){
   }
   for(i=0; i<nc; i++){
     $("#sum_upc_dialog table tbody").append("<tr></tr>");
-    $("#sum_upc_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+(i+1)+"</td>");
-    $("#sum_upc_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+components[i].data("name")+"</td>");
-    $("#sum_upc_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+components[i].data("variable")+"</td>");
+    $("#sum_upc_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+(i+1)+"</td>");
+    $("#sum_upc_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("name")+"</td>");
+    $("#sum_upc_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("variable")+"</td>");
     for(j=0; j<ni; j++){
-      $("#sum_upc_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+engFormat(100*UPC[i][j])+"</td>");
+      $("#sum_upc_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(100*UPC[i][j])+"</td>");
     }
   }
 }
