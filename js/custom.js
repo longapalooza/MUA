@@ -580,6 +580,7 @@ function build_ds_dialog(){
       event.preventDefault();
     });
   });
+  resize($("#ds_dialog"));
 }
 
 function build_src_dialog(){
@@ -618,6 +619,7 @@ function build_src_dialog(){
       });
     }
   }
+  resize($("#src_dialog"));
 }
 
 function build_inp_dialog(){
@@ -715,6 +717,7 @@ function build_inp_dialog(){
       });
     }
   }
+  resize($("#inp_dialog"));
 }
 
 function build_comp_dialog(){
@@ -783,6 +786,7 @@ function build_comp_dialog(){
       });
     }
   }
+  resize($("#comp_dialog"));
 }
 
 
@@ -1101,6 +1105,7 @@ function build_del_ds_dialog(){
     mess+=" If the dataset is deleted, the inputs will retain the nominal value, or random uncertainty value that the inputs currently have but will no longer be linked to the dataset.";
   }
   $("#del_ds_dialog").append("<p>"+mess+"</p>");
+  resize($("#del_ds"));
 }
 
 function build_del_src_dialog(){
@@ -1128,14 +1133,17 @@ function build_del_src_dialog(){
     mess+=" If the source is deleted, the inputs will no longer have the systematic uncertainty source which may result in the inputs having a systematic uncertainty value of zero.";
   }
   $("#del_src_dialog").append("<p>"+mess+"</p>");
+  resize($("#del_src"));
 }
 
 function build_del_inp_dialog(){
   $("#del_inp_dialog").append("<p>Are you sure you want to delete input "+(inp_del+1)+" ("+inputs[inp_del].data("name")+")?</p>");
+  resize($("#del_inp"));
 }
 
 function build_del_comp_dialog(){
   $("#del_comp_dialog").append("<p>Are you sure you want to delete component "+(comp_del+1)+" ("+components[comp_del].data("name")+")?</p>");
+  resize($("#del_comp"));
 }
 
 
@@ -1167,6 +1175,7 @@ function build_apply_ds_2_nom_dialog(){
     $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(mean)+"</td>");
     $("#apply_ds_2_nom_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(stdev)+"</td>");
   }
+  resize($("#apply_ds_2_nom_dialog"));
 }
 
 function build_apply_ds_2_rand_dialog(){
@@ -1196,6 +1205,7 @@ function build_apply_ds_2_rand_dialog(){
     $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(mean)+"</td>");
     $("#apply_ds_2_rand_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(stdev)+"</td>");
   }
+  resize($("#apply_ds_2_rand_dialog"));
 }
 
 function build_apply_src_2_sys_dialog(){
@@ -1225,6 +1235,7 @@ function build_apply_src_2_sys_dialog(){
     $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+sources[i].name+"</td>");
     $("#apply_src_2_sys_dialog form table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+sources[i].value+"</td>");
   }
+  resize($("#apply_src_2_sys_dialog"));
 }
 
 
@@ -1257,6 +1268,7 @@ function build_sum_ds_dialog(){
       $("#sum_ds_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(stdev)+"</td>");
     }
   }
+  resize($("#sum_ds_dialog"));
 }
 
 function build_sum_src_dialog(){
@@ -1279,6 +1291,7 @@ function build_sum_src_dialog(){
       $("#sum_src_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+sources[i].value+"</td>");
     }
   }
+  resize($("#sum_src_dialog"));
 }
 
 function build_sum_inp_dialog(){
@@ -1334,6 +1347,7 @@ function build_sum_inp_dialog(){
       $("#sum_inp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(ns[i])+"</td>");
     }
   }
+  resize($("#sum_inp_dialog"));
 }
 
 function build_sum_comp_dialog(){
@@ -1362,6 +1376,7 @@ function build_sum_comp_dialog(){
       $("#sum_comp_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+components[i].data("nominal")+"</td>");
     }
   }
+  resize($("#sum_comp_dialog"));
 }
 
 function build_sum_corr_dialog(){
@@ -1390,6 +1405,7 @@ function build_sum_corr_dialog(){
       }
     }
   }
+  resize($("#sum_corr_dialog"));
 }
 
 function build_sum_u_dialog(){
@@ -1415,6 +1431,7 @@ function build_sum_u_dialog(){
     $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(U[i])+"</td>");
     $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat((U[i]/Math.abs(components[i].data("nominal")))*100)+"</td>");
   }
+  resize($("#sum_u_dialog"));
 }
 
 function build_sum_umf_dialog(){
@@ -1438,6 +1455,7 @@ function build_sum_umf_dialog(){
       $("#sum_umf_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(Math.abs(UMF[i][j]))+"</td>");
     }
   }
+  resize($("#sum_umf_dialog"));
 }
 
 function build_sum_upc_dialog(){
@@ -1461,6 +1479,7 @@ function build_sum_upc_dialog(){
       $("#sum_upc_dialog table tbody tr:last-child").append("<td style='word-wrap: break-word; "+style+"'>"+engFormat(100*UPC[i][j])+"</td>");
     }
   }
+  resize($("#sum_upc_dialog"));
 }
 
 
@@ -1499,6 +1518,7 @@ function build_calc_u_dialog(){
     }
     calc_u_dialog.dialog("open");
   }
+  resize($("#calc_u_dialog"));
 }
 
 function build_calc_umf_dialog(){
@@ -1535,6 +1555,7 @@ function build_calc_umf_dialog(){
     }
     calc_umf_dialog.dialog("open");
   }
+  resize($("#calc_umf_dialog"));
 }
 
 function build_calc_upc_dialog(){
@@ -1571,6 +1592,7 @@ function build_calc_upc_dialog(){
     }
     calc_upc_dialog.dialog("open");
   }
+  resize($("#calc_upc_dialog"));
 }
 
 
@@ -3112,6 +3134,17 @@ function calc_UPC(){
 
 
 
+function resize(hdl){
+  if(hdl.width()>=$(window).width()){
+    hdl.dialog({width: $(window).width()*0.9})
+  } else {
+    hdl.dialog({width: 'auto'});
+  }
+  if(hdl.height()>=$(window).height()){
+    hdl.dialog({height: $(window).height()*0.9})
+  } else {
+    hdl.dialog({height: 'auto'});
+  }
 }
 
 
