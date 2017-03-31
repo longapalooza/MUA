@@ -3834,7 +3834,15 @@ function empty_toolbar(){
 
 function engFormat(num){
   if(num==0){
-    return 0;
+    return num;
+  } else if(num>0 && num<1){
+    return num.toExponential(3);
+  } else if(num>=1 && num<10) {
+    return Math.round(num*1000)/1000;
+  } else if(num>=10 && num<100){
+    return Math.round(num*100)/100;
+  } else if(num>=100 && num<1000){
+    return Math.round(num*10)/10;
   } else {
     return num.toExponential(3);
   }
