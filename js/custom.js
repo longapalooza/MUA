@@ -4,83 +4,83 @@ Raphael.fn.addcon = function(obj1, obj2){
 }
 
 Raphael.fn.addobj=function(attr){
-  // Set object fill color to #ffffff
+
   if(!attr.fill){attr.fill="#ffffff";}
-  // Set object stroke color to #000000
+
   if(!attr.stroke){attr.stroke="#000000";}
-  // Set object opacity to 1 (not translucent)
+
   if(!attr.opacity){attr.opacity=1;}
-  // For input objects
+
   if(attr.type=="ellipse"){
-    // Find number of inputs
+
     var is=inputs.length;
-    // Add input object to inputs array
+
     inputs.push(r.ellipse(attr.x+attr.w/2, attr.y+attr.h/2, attr.w/2, attr.h/2));
-    // Set input name attribute
+
     inputs[is].data("name", attr.name);
-    // Set input variable attribute
+
     inputs[is].data("variable", attr.variable);
-    // Set input label attribute
+
     inputs[is].data("label", attr.label);
-    // Set input nominal value attribute
+
     inputs[is].data("nominal", attr.nominal);
-    // Set input nominal value attribute
+
     inputs[is].data("nom_ds", Number(attr.nom_ds));
-    // Set input random uncertainty value attribute
+
     inputs[is].data("random", attr.random);
-    // Set input random uncertainty value attribute
+
     inputs[is].data("rand_ds", Number(attr.rand_ds));
-    // Set input systematic uncertainty value attribute
+
     inputs[is].data("sys_src", attr.sys_src);
-    // Set input fill, and stroke color, opacity, and hover over cursor
+
     inputs[is].attr({fill: attr.fill, stroke: attr.stroke, "fill-opacity": attr.opacity, cursor: "move"});
-    // Add drag method to input object
+
     inputs[is].drag(r.onmove, r.onstart, r.onend);
-    // Add hover method to input object
+
     inputs[is].hover(r.hoverIn, r.hoverOut);
-    // Add input label object to input labels array
+
     input_labels.push(r.text(attr.x+attr.w/2, attr.y+attr.h/2, attr.label));
-    // Set input label variable attribute
+
     input_labels[is].data("variable", attr.variable);
-    // Add hover metho to input label object
+
     input_labels[is].hover(r.hoverIn, r.hoverOut);
-    // Add dobule click method to input label object
+
     input_labels[is].dblclick(r.editobj);
-    // Set input label object cursor
+
     input_labels[is].attr({cursor: "default"});
-    // Change the inner HTML of label to allow HTML code and entities
+
     input_labels[is].node.getElementsByTagName("tspan")[0].innerHTML=svg_label(attr.label);
-  // For component objects
+
   } else if(attr.type=="rect"){
-    // Find number of components
+
     var cs=components.length;
-    // Add component object to components array
+
     components.push(r.rect(attr.x, attr.y, attr.w, attr.h));
-    // Set component name attribute
+
     components[cs].data("name", attr.name);
-    // Set component variable attribute
+
     components[cs].data("variable", attr.variable);
-    // Set component label attribute
+
     components[cs].data("label", attr.label);
-    // Set component function expression attribute
+
     components[cs].data("fun", attr.fun);
-    // Set component fill, and stroke color, opacity, and hover over cursor
+
     components[cs].attr({fill: attr.fill, stroke: attr.stroke, "fill-opacity": attr.opacity, cursor: "move"});
-    // Add drag method to component object
+
     components[cs].drag(r.onmove, r.onstart, r.onend);
-    // Add hover method to component object
+
     components[cs].hover(r.hoverIn, r.hoverOut);
-    // Add component label object to component labels array
+
     component_labels.push(r.text(attr.x+attr.w/2, attr.y+attr.h/2, attr.label));
-    // Set component labels variable attribute
+
     component_labels[cs].data("variable", attr.variable);
-    // Add hover method to component label object
+
     component_labels[cs].hover(r.hoverIn, r.hoverOut);
-    // Add double click method to component label object
+
     component_labels[cs].dblclick(r.editobj);
-    // Set component label object cursor
+
     component_labels[cs].attr({cursor: "default"});
-    // // Change the inner HTML of label to all HTML code and entities
+
     component_labels[cs].node.getElementsByTagName("tspan")[0].innerHTML=svg_label(attr.label);
   }
 }
@@ -167,91 +167,91 @@ Raphael.fn.connection = function (obj1, obj2) {
 }
 
 Raphael.fn.editobj = function(){
-  // Find the index of object
+
   var li=varID(inputs, this.data("variable"));
-  // If found, it's an input
+
   if(li!==false){
-    // Set input index
+
     inp_edit=li;
-    // Get input name
+
     var name=inputs[li].data("name");
-    // Get input variable
+
     var variable=inputs[li].data("variable");
-    // Get input label
+
     var label=inputs[li].data("label");
-    // Get input nominal value
+
     var nominal=inputs[li].data("nominal");
-    // Get input nominal value
+
     var nom_ds=inputs[li].data("nom_ds");
-    // Get input random uncertainty value
+
     var random=inputs[li].data("random");
-    // Get input random uncertainty value
+
     var rand_ds=inputs[li].data("rand_ds");
-    // Get input systematic uncertainty value
+
     var sys_src=inputs[li].data("sys_src");
-    // Run custom function
+
     edit_inp_dialog.dialog("open");
-    // Set edit input dialog input name field
+
     $("#edit_inp_name").val(name);
-    // Set edit input dialog input variable field
+
     $("#edit_inp_variable").val(variable);
-    // Set edit input dialog input label field
+
     $("#edit_inp_label").val(label);
-    // Set edit input dialog input nominal value field
+
     $("#edit_inp_nominal").val(nominal);
 
     ds_nom=Number(nom_ds);
-    // Set edit input dialog input random uncertainty value field
+
     $("#edit_inp_random").val(random);
 
     ds_rand=Number(rand_ds);
 
     src_sys=sys_src;
-  // object is a component
+
   } else{
-    // Find the index of the component
+
     li=varID(components, this.data("variable"));
-    // Set component index
+
     comp_edit=li;
-    // Get component name
+
     var name=components[li].data("name");
-    // Get component variable
+
     var variable=components[li].data("variable");
-    // Get component label
+
     var label=components[li].data("label");
-    // Get component function expression
+
     var fun=components[li].data("fun");
-    // Run custom function
+
     edit_comp_dialog.dialog("open");
-    // Set edit component dialog component name field
+
     $("#edit_comp_name").val(name);
-    // Set edit component dialog component variable field
+
     $("#edit_comp_variable").val(variable);
-    // Set edit component dialog component label field
+
     $("#edit_comp_label").val(label);
-    // Set edit component dialog component function expression field
+
     $("#edit_comp_fun").val(fun);
   }
 }
 
 Raphael.fn.hoverIn = function(){
-  // Decalare variables
+
   var tiptxt, i1, i2, id, nc=ns_nc().nc, ns=inputs.length;
-  // If object is not text
+
   if(this.type!='text'){
-    // Build tool tip string
+
     tiptxt="<table><tr><td>Name:</td><td>"+this.data("name")+"</td></tr>";
     tiptxt+="<tr><td>Variable:</td><td>"+this.data("variable")+"</td></tr>";
     tiptxt+="<tr><td>Label:</td><td>"+this.data("label")+"</td></tr>";
-    // if object is input
+
     if (this.type=="ellipse"){
       id=varID(inputs, this.data("variable"));
-      // add input info to tool tip string
+
       tiptxt+="<tr><td>Nominal:</td><td>"+engFormat(Number(this.data("nominal")))+"</td></tr>";
       tiptxt+="<tr><td>Random:</td><td>"+engFormat(Number(this.data("random")))+"</td></tr>";
-      // if correlation flag is set, display input correlations
+
       if(flags.cor){
-        // change input color if correlation exists
+
         ncs=nc.length;
         for(i1=0; i1<ncs; i1++){
           if(nc[i1][id]!=0){
@@ -263,47 +263,47 @@ Raphael.fn.hoverIn = function(){
           }
         }
       }
-    // if obejct is component
+
     } else if (this.type=="rect"){
-      // add component info to tool tip string
+
       tiptxt+="<tr><td>Function:</td><td>"+this.data("fun")+"</td></tr>";
       tiptxt+="<tr><td>Nominal:</td><td>"+engFormat(this.data("nominal"))+"</td></tr>";
-      // if component uncertainty flag is set, display component uncertainty value
+
       if(flags.U){
-        // add component uncertainty value to tool tip string
+
         id=varID(components, this.data("variable"));
         tiptxt+="<tr><td>Uncertainty:</td><td>"+engFormat(U[id])+"</td></tr>";
         tiptxt+="<tr><td>% Uncertainty:</td><td>"+(100*U[id]/Math.abs(Number(this.data("nominal")))).toFixed(2)+"%</td></tr>";
       }
     }
-    // finish building string
+
     tiptxt+="</table>";
-    // if tool tip flag is set, display tool tip
+
     if(flags.info){
-      // Set tool tip css
+
       $("#tip").css("display", "inline");
       $("#tip").css("left", event.clientX+20).css("top", event.clientY+20);
       $("#tip").append(tiptxt);
     }
-    // Change stroke, and fill color to denote hover over
+
     this.attr({stroke:"#999900", fill:"#FFFFE5"});
-    // If before dependencies flag is set, display dependencies
+
     if(flags.before){
-      // Run custom function
+
       before_obj(this.data("variable"));
     }
-    // if after dependencies flag is set, display dependencies
+
     if(flags.after){
-      // Run custom function
+
       after_obj(this.data("variable"));
     }
-  // if object is a label
+
   } else {
-    // find index of object that matches the label index
+
     id=varID(inputs, this.data("variable"));
-    // if found, it's a input
+
     if(id!==false){
-      // build tool tip string
+
       tiptxt="<table><tr><td>Name:</td><td>"+inputs[id].data("name")+"</td></tr>";
       tiptxt+="<tr><td>Variable:</td><td>"+inputs[id].data("variable")+"</td></tr>";
       tiptxt+="<tr><td>Label:</td><td>"+inputs[id].data("label")+"</td></tr>";
@@ -322,11 +322,11 @@ Raphael.fn.hoverIn = function(){
           }
         }
       }
-    // if not found, it's a component
+
     } else {
-      // find index of component that matches the label index
+
       id=varID(components, this.data("variable"));
-      // build tool tip string
+
       tiptxt="<table><tr><td>Name:</td><td>"+components[id].data("name")+"</td></tr>";
       tiptxt+="<tr><td>Variable:</td><td>"+components[id].data("variable")+"</td></tr>";
       tiptxt+="<tr><td>Label:</td><td>"+components[id].data("label")+"</td></tr>";
@@ -339,34 +339,34 @@ Raphael.fn.hoverIn = function(){
       components[id].attr({stroke:"#999900", fill:"#FFFFE5"});
     }
     tiptxt+="</table>";
-    // if tool tip flag is set, display tool tip
+
     if(flags.info){
-      // set tool tip css
+
       $("#tip").css("display", "inline");
       $("#tip").css("left", event.clientX+20).css("top", event.clientY+20);
       $("#tip").append(tiptxt);
     }
-    // If before dependencies flag is set, display dependencies
+
     if(flags.before){
-      // Run custom function
+
       before_obj(this.data("variable"));
     }
-    // If after dependencies flag is set, display dependencies
+
     if(flags.after){
-      // Run custom function
+
       after_obj(this.data("variable"));
     }
   }
 }
 
 Raphael.fn.hoverOut = function(){
-  // if object is not label
+
   if(this.type!='text'){
-    // Reset color
+
     this.attr({stroke:"#000000", fill:"#ffffff"});
-  // if object is label
+
   } else {
-    // Reset color
+
     var li=varID(inputs, this.data("variable"));
     if(li!==false){
       inputs[li].attr({stroke:"#000000", fill:"#ffffff"});
@@ -375,104 +375,104 @@ Raphael.fn.hoverOut = function(){
       components[li].attr({stroke:"#000000", fill:"#ffffff"});
     }
   }
-  // Run custom function
+
   reset_obj_color();
-  // Remove tool tip text
+
   $("#tip").empty();
-  // Remove tool tip css
+
   $("#tip").css("display", "none");
 }
 
 Raphael.fn.onend = function () {
-  // Declare variables
+
   var hw=$("#holder").width(), hh=$("#holder").height(), obb=this.getBBox();
   var att, ox, oy, li;
-  // if object is input
+
   if (this.type=="ellipse"){
-    // Get input index
+
     li=varID(inputs,this.data("variable"));
-    // Get input position
+
     ox=this.attr("cx");
     oy=this.attr("cy");
-    // Declare att with object position
+
     att={cx: ox, cy: oy};
-    // Change label position
+
     input_labels[li].attr({x: att.cx, y: att.cy});
     input_labels[li].node.getElementsByTagName("tspan")[0].innerHTML=svg_label(this.data("label"));
     input_labels[li].node.getElementsByTagName("tspan")[0].setAttribute("dy", "3.5");
-  // if object is component
+
   } else if (this.type == "rect"){
-    // get component index
+
     li=varID(components, this.data("variable"));
-    // Get component position
+
     ox=this.attr("x");
     oy=this.attr("y");
-    // Declare att with object position
+
     att={x: ox, y: oy};
-    // Change label position
+
     component_labels[li].attr({x: att.x+this.ow/2, y: att.y+this.oh/2});
     component_labels[li].node.getElementsByTagName("tspan")[0].innerHTML=svg_label(this.data("label"));
     component_labels[li].node.getElementsByTagName("tspan")[0].setAttribute("dy", "3.5");
   }
-  // change object position
+
   this.attr(att);
-  // for each connection connect to object
+
   for (i = connections.length; i--;) {
-    // update connection
+
     r.connection(connections[i]);
   }
 }
 
 Raphael.fn.onmove = function (dx, dy) {
-  // Declare variables
+
   var att, i, li;
-  // if object is input
+
   if (this.type=="ellipse") {
-    // get input index
+
     li=varID(inputs,this.data("variable"));
-    // get input position
+
     att={cx: this.ox + (dx)/zoom, cy: this.oy + (dy)/zoom};
-    // update label position
+
     input_labels[li].attr({x: this.ox + (dx)/zoom, y: this.oy + (dy)/zoom});
     input_labels[li].node.getElementsByTagName("tspan")[0].innerHTML=svg_label(this.data("label"));
     input_labels[li].node.getElementsByTagName("tspan")[0].setAttribute("dy", "3.5");
-  // if object is component
+
   } else if (this.type=="rect"){
-    // get component index
+
     li=varID(components,this.data("variable"));
-    // get component position
+
     att={x: this.ox + (dx)/zoom, y: this.oy + (dy)/zoom};
-    // update label position
+
     component_labels[li].attr({x: this.ox+this.ow/2 + (dx)/zoom, y: this.oy+this.oh/2 + (dy)/zoom});
     component_labels[li].node.getElementsByTagName("tspan")[0].innerHTML=svg_label(this.data("label"));
     component_labels[li].node.getElementsByTagName("tspan")[0].setAttribute("dy", "3.5");
   }
-  // update object position
+
   this.attr(att);
-  // for each connection connected to object
+
   for (i = connections.length; i--;) {
-    // update connection
+
     r.connection(connections[i]);
   }
-  // update tool tip posistion
+
   $("#tip").css("left", event.clientX+20).css("top", event.clientY+20);
-  // Safari browser fix
+
   //r.safari();
 }
 
 Raphael.fn.onstart = function () {
-  // if object is component
+
   if (this.type == "rect"){
-    // set object position attribute
+
     this.ox=this.attr("x");
     this.oy=this.attr("y");
-  // if object is input
+
   } else {
-    // set object position attribute
+
     this.ox=this.attr("cx");
     this.oy=this.attr("cy");
   }
-  // set object bounding box
+
   this.ow=this.getBBox().width;
   this.oh=this.getBBox().height;
 }
@@ -1128,71 +1128,10 @@ function build_del_src_dialog(){
 
 function build_del_inp_dialog(){
   $("#del_inp_dialog").append("<p>Are you sure you want to delete input "+(inp_del+1)+" ("+inputs[inp_del].data("name")+")?</p>");
-  del_inp_dialog.dialog({
-    title: "Confirmation",
-    buttons: {
-      Yes: function(){
-        inputs[inp_del].remove();
-        input_labels[inp_del].remove();
-        inputs.splice(inp_del,1);
-        input_labels.splice(inp_del,1);
-        flags.J=false;
-        flags.W=false;
-        flags.Nu=false;
-        flags.U=false;
-        $("#u_sum").remove();
-        flags.UMF=false;
-        $("#umf_sum").remove();
-        flags.UPC=false;
-        $("#upc_sum").remove();
-        del_inp_dialog.dialog("close");
-        inp_dialog.dialog("close");
-        $("#Inputs").click();
-      },
-      No: function(){
-        del_inp_dialog.dialog("close");
-      }
-    }
-  });
 }
 
 function build_del_comp_dialog(){
   $("#del_comp_dialog").append("<p>Are you sure you want to delete component "+(comp_del+1)+" ("+components[comp_del].data("name")+")?</p>");
-  del_comp_dialog.dialog({
-    title: "Confirmation",
-    buttons: {
-      Yes: function(){
-        var ncon=connections.length, temp_con=[];
-        for(i=0; i<ncon; i++){
-          if(connections[i].to.data("variable")==components[comp_del].data("variable")){
-            connections[i].line.remove();
-            connections[i].arr.remove();
-          } else {
-            temp_con.push(connections[i]);
-          }
-        }
-        connections=temp_con;
-        components[comp_del].remove();
-        component_labels[comp_del].remove();
-        components.splice(comp_del,1);
-        component_labels.splice(comp_del,1);
-        flags.J=false;
-        flags.W=false;
-        flags.U=false;
-        $("#u_sum").remove();
-        flags.UMF=false;
-        $("#umf_sum").remove();
-        flags.UPC=false;
-        $("#upc_sum").remove();
-        del_comp_dialog.dialog("close");
-        comp_dialog.dialog("close");
-        $("#Components").click();
-      },
-      No: function(){
-        del_comp_dialog.dialog("close");
-      }
-    }
-  });
 }
 
 
@@ -1472,6 +1411,7 @@ function build_sum_umf_dialog(){
   $("#sum_umf_dialog").append("<table></table>");
   $("#sum_umf_dialog table").append("<tbody></tbody>");
   $("#sum_umf_dialog table tbody").append("<tr></tr>");
+  $("#sum_umf_dialog table tbody tr").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>id</th>");
   $("#sum_umf_dialog table tbody tr").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Name</th>");
   $("#sum_umf_dialog table tbody tr").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Variable</th>");
   for(i=0; i<ni; i++){
@@ -1479,6 +1419,7 @@ function build_sum_umf_dialog(){
   }
   for(i=0; i<nc; i++){
     $("#sum_umf_dialog table tbody").append("<tr></tr>");
+    $("#sum_umf_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+(i+1)+"</td>");
     $("#sum_umf_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+components[i].data("name")+"</td>");
     $("#sum_umf_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+components[i].data("variable")+"</td>");
     for(j=0; j<ni; j++){
@@ -1493,6 +1434,7 @@ function build_sum_upc_dialog(){
   $("#sum_upc_dialog").append("<table></table>");
   $("#sum_upc_dialog table").append("<tbody></tbody>");
   $("#sum_upc_dialog table tbody").append("<tr></tr>");
+  $("#sum_upc_dialog table tbody tr").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>id</th>");
   $("#sum_upc_dialog table tbody tr").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Name</th>");
   $("#sum_upc_dialog table tbody tr").append("<th style='padding: 5px; text-decoration: underline; "+style+"'>Variable</th>");
   for(i=0; i<ni; i++){
@@ -1500,6 +1442,7 @@ function build_sum_upc_dialog(){
   }
   for(i=0; i<nc; i++){
     $("#sum_upc_dialog table tbody").append("<tr></tr>");
+    $("#sum_upc_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+(i+1)+"</td>");
     $("#sum_upc_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+components[i].data("name")+"</td>");
     $("#sum_upc_dialog table tbody tr:last-child").append("<td style='word-wrap:break-word; "+style+"'>"+components[i].data("variable")+"</td>");
     for(j=0; j<ni; j++){
@@ -1510,6 +1453,113 @@ function build_sum_upc_dialog(){
 
 
 
+function build_calc_u_dialog(){
+  if(inputs.length>0 && components.length>0){
+    if(!flags.U){calc_U()};
+    $("#calc_u_dialog").append("<p>Calculating the components' total uncertainty is complete.");
+    calc_u_dialog.dialog({
+      title: "Calculation complete",
+      buttons: {
+        "View Results": calc_u_action_view_results,
+        Ok: calc_u_action_ok
+      }
+    });
+    calc_u_dialog.dialog("open");
+  } else {
+    if(inputs.length>0){
+      $("#calc_u_dialog").append("<p>There are no components added to the system.</p>")
+      calc_u_dialog.dialog({
+        title: "Warning!",
+        buttons: {
+          "Add Components": calc_u_action_add_components,
+          Ok: calc_u_action_ok
+        }
+      });
+    } else {
+      $("#calc_u_dialog").append("<p>There are no inputs added to the system.</p>")
+      calc_u_dialog.dialog({
+        title: "Warning!",
+        buttons: {
+          "Add Inputs": calc_u_action_add_inputs,
+          Ok: calc_u_action_ok
+        }
+      });
+    }
+    calc_u_dialog.dialog("open");
+  }
+}
+
+function build_calc_umf_dialog(){
+  if(inputs.length>0 && components.length>0){
+    if(!flags.UMF){calc_UMF()};
+    $("#calc_umf_dialog").append("<p>Calculating the uncertainty magnification factor is complete.");
+    calc_umf_dialog.dialog({
+      title: "Calculation complete",
+      buttons: {
+        "View Results": calc_umf_action_view_results,
+        Ok: calc_umf_action_ok
+      }
+    });
+    calc_umf_dialog.dialog("open");
+  } else {
+    if(inputs.length>0){
+      $("#calc_umf_dialog").append("<p>There are no components added to the system.</p>")
+      calc_umf_dialog.dialog({
+        title: "Warning!",
+        buttons: {
+          "Add Components": calc_umf_action_add_components,
+          Ok: calc_umf_action_ok
+        }
+      });
+    } else {
+      $("#calc_umf_dialog").append("<p>There are no inputs added to the system.</p>")
+      calc_umf_dialog.dialog({
+        title: "Warning!",
+        buttons: {
+          "Add Inputs": calc_umf_action_add_inputs,
+          Ok: calc_umf_action_ok
+        }
+      });
+    }
+    calc_umf_dialog.dialog("open");
+  }
+}
+
+function build_calc_upc_dialog(){
+  if(inputs.length>0 && components.length>0){
+    if(!flags.UPC){calc_UPC()};
+    $("#calc_upc_dialog").append("<p>Calculating the uncertainty percent contribution is complete.");
+    calc_upc_dialog.dialog({
+      title: "Calculation complete",
+      buttons: {
+        "View Results": calc_upc_action_view_results,
+        Ok: calc_upc_action_ok
+      }
+    });
+    calc_upc_dialog.dialog("open");
+  } else {
+    if(inputs.length>0){
+      $("#calc_upc_dialog").append("<p>There are no components added to the system.</p>")
+      calc_upc_dialog.dialog({
+        title: "Warning!",
+        buttons: {
+          "Add Components": calc_upc_action_add_components,
+          Ok: calc_upc_action_ok
+        }
+      });
+    } else {
+      $("#calc_upc_dialog").append("<p>There are no inputs added to the system.</p>")
+      calc_upc_dialog.dialog({
+        title: "Warning!",
+        buttons: {
+          "Add Inputs": calc_upc_action_add_inputs,
+          Ok: calc_upc_action_ok
+        }
+      });
+    }
+    calc_upc_dialog.dialog("open");
+  }
+}
 
 
 
@@ -1639,6 +1689,1442 @@ function empty_apply_ds_2_rand_dialog(){
 function empty_apply_src_2_sys_dialog(){
   $("#apply_src_2_sys_dialog").empty();
 }
+
+
+
+function ds_action_ok(){
+  ds_dialog.dialog("close");
+}
+
+function src_action_ok(){
+  src_dialog.dialog("close");
+}
+
+function inp_action_ok(){
+  inp_dialog.dialog("close");
+}
+
+function comp_action_ok(){
+  comp_dialog.dialog("close");
+}
+
+
+
+function add_ds_action_add_dataset(){
+
+  var warn=[], warn_str, ws, i;
+
+  var name=$("#add_ds_name").val().trim();
+
+  if(name.length<=0){warn.push("name");}
+
+  if(!ds_valid){warn.push("data");}
+
+  if(warn.length==0){
+    datasets.push({name: name, values: ds_str_2_arr(data_str)});
+    data_str="";
+    ds_valid=false;
+    ds_dialog.dialog("close");
+    $("#Datasets").click();
+    add_ds_dialog.dialog("close");
+  } else {
+    ws=warn.length;
+    warn_str="The ";
+    if(ws==1){
+      warn_str=warn_str+warn[0];
+    } else if (ws==2){
+      warn_str=warn_str+warn[0]+" and "+warn[1];
+    } else{
+      warn_str=warn_str+warn[0];
+      for(i=1; i<ws-1; i++){
+        warn_str=warn_str+", "+warn[i];
+      }
+      warn_str=warn_str+", and "+warn[ws-1];
+    }
+    warn_str=warn_str+" of the dataset is not valid.";
+    $("body").append("<div id='warn' class='dialog' title='Fields Required'><p>"+warn_str+"</p></div>");
+    $(function(){
+      $("#warn").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $(this).dialog("close");
+            $("#warn").remove();
+          }
+        }
+      })
+    })
+  }
+}
+
+function add_ds_action_cancel(){
+  add_ds_dialog.dialog("close");
+}
+
+function add_src_action_add_source(){
+
+  var warn=[], warn_str, ws, i;
+
+  var num_regex=/^[0-9][.0-9]*$/;
+
+  var name=$("#add_src_name").val().trim();
+
+  var value=$("#add_src_value").val().trim();
+
+  if(name.length<=0){warn.push("name");}
+
+  if ((value.length<=0) || !(num_regex.test(value))){warn.push("value");}
+
+  if(warn.length==0){
+    sources.push({name: name, value: Number(value)});
+    src_dialog.dialog("close");
+    $("#Sources").click();
+    add_src_dialog.dialog("close");
+  } else {
+    ws=warn.length;
+    warn_str="The ";
+    if(ws==1){
+      warn_str=warn_str+warn[0];
+    } else if (ws==2){
+      warn_str=warn_str+warn[0]+" and "+warn[1];
+    } else{
+      warn_str=warn_str+warn[0];
+      for(i=1; i<ws-1; i++){
+        warn_str=warn_str+", "+warn[i];
+      }
+      warn_str=warn_str+", and "+warn[ws-1];
+    }
+    warn_str=warn_str+" of the source is not valid.";
+    $("body").append("<div id='warn' class='dialog' title='Fields Required'><p>"+warn_str+"</p></div>");
+    $(function(){
+      $("#warn").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $(this).dialog("close");
+            $("#warn").remove();
+          }
+        }
+      });
+    });
+  }
+}
+
+function add_src_action_cancel(){
+  add_src_dialog.dialog("close");
+}
+
+function add_inp_action_add_input(){
+
+  var warn=[], warn_str, ws, i;
+
+  var variable_regex=/^[a-zA-Z][a-zA-z0-9_]*$/;
+
+  var nom_regex=/^[0-9][.0-9]*$/;
+
+  var name=$("#add_inp_name").val().trim();
+
+  var variable=$("#add_inp_variable").val().trim();
+
+  var label=$("#add_inp_label").val().trim();
+
+  var nominal=$("#add_inp_nominal").val().trim();
+
+  var random=$("#add_inp_random").val().trim();
+
+  if (name.length<=0){warn.push("name");}
+
+  if ((variable.length<=0) || !variable_regex.test(variable)){warn.push("variable");}
+
+  if (label.length<=0){warn.push("label");}
+
+  if ((nominal.length<=0) || !(nom_regex.test(nominal))){warn.push("nominal value");}
+
+  if ((random.length<=0) || !(nom_regex.test(random))){warn.push("random uncertainty");}
+
+  if (warn.length==0){
+
+    if(valid_variable(inputs, components, variable)){
+
+      var hw=$("#holder").width(), hh=$("#holder").height(), ow=50, oh=50;
+
+      var os=get_text_size(label);
+
+      if(os[0]>ow){ow=Math.round(os[0])+10;}
+
+      if(os[1]>oh){oh=Math.round(os[1])+10;}
+
+      if(ow>oh){oh=ow;}
+
+      else {ow=oh;}
+
+      r.addobj({type:"ellipse", x:hw/2-ow/2, y:hh/2-oh/2, w:ow, h:oh, name:name, variable:variable, label:label, nominal:nominal, nom_ds:ds_nom, random:random, rand_ds:ds_rand, sys_src:src_sys});
+
+      calc_comp_nom();
+
+      $("#add_inp_name").val("");
+
+      $("#add_inp_variable").val("");
+
+      $("#add_inp_label").val("");
+
+      $("#add_inp_nominal").val("");
+
+      $("#add_inp_random").val("");
+
+      $("#add_inp_systematic").val("");
+
+      flags.J=false;
+
+      flags.W=false;
+
+      flags.NU=false;
+
+      flags.U=false;
+
+      $("#u_sum").remove();
+      flags.UMF=false;
+      $("#umf_sum").remove();
+      flags.UPC=false;
+      $("#upc_sum").remove();
+      add_inp_dialog.dialog("close");
+      inp_dialog.dialog("close");
+      ds_nom=-1;
+      ds_rand=-1;
+      src_sys=[];
+      $("#Inputs").click();
+    } else {
+      $("body").append("<div id='warn' class='dialog' title='Warning'><p>Input variable must be unique.</p></div>");
+      $(function(){
+        $("#warn").dialog({
+          modal: true,
+          buttons: {
+            Ok: function(){
+              $(this).dialog("close");
+              $("#warn").remove();
+            }
+          }
+        })
+      })
+    }
+  } else {
+    ws=warn.length;
+    warn_str="The ";
+    if(ws==1){
+      warn_str=warn_str+warn[0];
+    } else if (ws==2){
+      warn_str=warn_str+warn[0]+" and "+warn[1];
+    } else{
+      warn_str=warn_str+warn[0];
+      for(i=1; i<ws-1; i++){
+        warn_str=warn_str+", "+warn[i];
+      }
+      warn_str=warn_str+", and "+warn[ws-1];
+    }
+    warn_str=warn_str+" of the input is not valid.";
+    $("body").append("<div id='warn' class='dialog' title='Fields Required'><p>"+warn_str+"</p></div>");
+    $(function(){
+      $("#warn").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $(this).dialog("close");
+            $("#warn").remove();
+          }
+        }
+      });
+    });
+  }
+}
+
+function add_inp_action_cancel(){
+  ds_nom=-1;
+  ds_rand=-1;
+  src_sys=[];
+  add_inp_dialog.dialog("close");
+}
+
+function add_comp_action_add_component(){
+
+  var warn=[], warn_str, ws, i;
+
+  var variable_regex=/^[a-zA-Z][a-zA-z0-9_]*$/;
+
+  var name=$("#add_comp_name").val().trim();
+
+  var variable=$("#add_comp_variable").val().trim();
+
+  var label=$("#add_comp_label").val().trim();
+
+  var fun=$("#add_comp_fun").val().trim();
+
+  if (name.length<=0){warn.push("name");}
+
+  if (variable.length<=0 || !variable_regex.test(variable)){
+    warn.push("variable");
+  }
+
+  if (label.length<=0){warn.push("label");}
+
+  if (fun.length<=0 || get_dep(fun).length==0){warn.push("function");}
+
+  if (warn.length==0){
+
+    if(valid_variable(inputs, components, variable)){
+
+      var dep_var=get_dep(fun);
+
+      var inp_var=get_inp_var();
+
+      var comp_var=get_comp_var();
+
+      var dvs=dep_var.length;
+
+      var ivs=inp_var.length;
+
+      var cvs=comp_var.length;
+
+      var var_boolean=0;
+
+      if(inp_var){
+
+        for(i=0; i<dvs; i++){
+
+          if($.inArray(dep_var[i],inp_var)==-1 &&
+             $.inArray(dep_var[i],comp_var)==-1){
+
+            var_boolean+=1;
+          }
+        }
+
+        if(var_boolean==0){
+
+          var cs=components.length
+
+          var hw=$("#holder").width(), hh=$("#holder").height(),
+              ow=50, oh=50;
+
+          var os=get_text_size(label);
+
+          if(os[0]>ow){ow=Math.round(os[0])+10;}
+
+          if(os[1]>oh){oh=Math.round(os[1])+10;}
+
+          if(ow>oh){oh=ow;}
+
+          else {ow=oh;}
+
+          r.addobj({type:"rect", x:hw/2-ow/2, y:hh/2-oh/2, w:ow, h:oh,
+                    name:name, variable:variable, label:label, fun:fun});
+
+          for(i=0; i<ivs; i++){
+
+            if($.inArray(inp_var[i],dep_var)!=-1){
+
+              r.addcon(inputs[i],components[cs]);
+            }
+          }
+
+          for(i=0; i<cvs; i++){
+
+            if($.inArray(comp_var[i],dep_var)!=-1){
+
+              r.addcon(components[i],components[cs]);
+            }
+          }
+
+          calc_comp_nom();
+
+          $("#add_com_name").val("");
+
+          $("#add_comp_variable").val("");
+
+          $("#add_com_label").val("");
+
+          $("#add_com_fun").val("");
+
+          flags.J=false;
+
+          flags.W=false;
+
+          flags.U=false;
+
+          $("#u_sum").remove();
+
+          flags.UMF=false;
+
+          $("#umf_sum").remove();
+
+          flags.UPC=false;
+
+          $("#upc_sum").remove();
+
+          add_comp_dialog.dialog("close");
+          comp_dialog.dialog("close");
+          $("#Components").click();
+
+        } else {
+
+          $("body").append("<div id='warn' class='dialog' title='Warning'>\
+                            <p>The function contains input(s) that have not\
+                            been added yet. Would you like to add the input\
+                            now?</p></div>");
+
+          $(function(){
+
+            $("#warn").dialog({
+
+              modal: true,
+
+              buttons: {
+
+                "Add Input": function(){
+
+                  $(this).dialog("close");
+
+                  add_comp_dialog.dialog("close");
+
+                  add_inp_dialog.dialog("open");
+
+                  $("#warn").remove();
+                },
+
+                Ok: function(){
+
+                  $(this).dialog("close");
+
+                  $("#warn").remove();
+                }
+              }
+            })
+          })
+        }
+
+      } else {
+
+        $("body").append("<div id='warn' class='dialog' title='Warning'><p>\
+                          No inputs have been added yet.</p></div>");
+
+        $(function(){
+
+          $("#warn").dialog({
+
+            modal: true,
+
+            buttons: {
+
+              "Add Input": function(){
+
+                $(this).dialog("close");
+
+                add_comp_dialog.dialog("close");
+
+                add_inp_dialog.dialog("open");
+
+                $("#warn").remove();
+              },
+
+              Ok: function(){
+
+                $(this).dialog("close");
+
+                $("#warn").remove();
+              }
+            }
+          })
+        })
+      }
+
+    } else {
+
+      $("body").append("<div id='warn' class='dialog' title='Warning'><p>\
+                        Component variable must be unique.</p></div>");
+
+      $(function(){
+
+        $("#warn").dialog({
+
+          modal: true,
+
+          buttons: {
+
+            Ok: function(){
+
+              $(this).dialog("close");
+
+              $("#warn").remove();
+            }
+          }
+        })
+      })
+    }
+
+  } else {
+
+    ws=warn.length;
+
+    warn_str="The ";
+
+    if(ws==1){
+
+      warn_str+=warn[0];
+
+    } else{
+
+      warn_str+=warn[0];
+
+      for(i=1; i<ws-1; i++){
+
+        warn_str+=", "+warn[i];
+      }
+
+      warn_str+=", and "+warn[ws-1];
+    }
+
+    warn_str+=" of the component is not valid.";
+
+    $("body").append("<div id='warn' class='dialog' title='Fields Required'\
+                      ><p>"+warn_str+"</p></div>");
+
+    $(function(){
+
+      $("#warn").dialog({
+
+        modal: true,
+
+        buttons: {
+
+          Ok: function(){
+
+            $(this).dialog("close");
+
+            $("#warn").remove();
+          }
+        }
+      });
+    });
+  }
+}
+
+function add_comp_action_cancel(){
+  add_comp_dialog.dialog("close");
+}
+
+
+
+function edit_ds_action_edit_dataset(){
+
+  var warn=[], warn_str, ws, i;
+
+  var name=$("#edit_ds_name").val().trim();
+
+  if(name.length<=0){warn.push("name");}
+
+  if(!ds_valid){warn.push("data");}
+  if(warn.length==0){
+    var i, ni, di, dep=[], mess="";
+    ni=inputs.length;
+    for(i=0; i<ni; i++){
+      if(ds_edit==inputs[i].data("nom_ds") || ds_edit==inputs[i].data("rand_ds")){
+        dep.push(i);
+      }
+    }
+    if(dep.length>0){
+      di=dep.length;
+      mess="This will modify value for input";
+      if(di==1){
+        mess=mess+" "+(dep[0]+1)+" ("+inputs[dep[0]].data("name")+").";
+      } else {
+        mess=mess+"s ";
+        for(i=0; i<di-1; i++){
+          mess=mess+(dep[i]+1)+", ";
+        }
+        mess=mess+"and "+(dep[di-1]+1)+" (";
+        for(i=0; i<di-1; i++){
+          mess=mess+inputs[dep[i]].data("name")+", ";
+        }
+        mess=mess+"and "+inputs[dep[di-1]].data("name")+").";
+      }
+      mess=mess+" Are you sure?";
+      $("body").append("<div id='warn' class='dialog' title='Are you sure?'><p>"+mess+"</p></div>");
+      $(function(){
+        $("#warn").dialog({
+          modal: true,
+          buttons: {
+            Yes: function(){
+              datasets[ds_edit].name=name;
+              datasets[ds_edit].values=ds_str_2_arr(data_str);
+              data_str="";
+              ds_valid=false;
+              var num, mean, stdev, r;
+              num=num_samples(datasets[ds_edit].values);
+              mean=mu(datasets[ds_edit].values);
+              stdev=sig(datasets[ds_edit].values, mean);
+              r=t_dist(num)*sig(datasets[ds_edit].values, mean)/Math.pow(num,1/2);
+              for(i=0; i<di; i++){
+                if(ds_edit==inputs[dep[i]].data("nom_ds")){
+                  inputs[dep[i]].data("nominal", mean);
+                }
+                if(ds_edit==inputs[dep[i]].data("rand_ds")){
+                  inputs[dep[i]].data("random", r);
+                }
+              }
+              ds_dialog.dialog("close");
+              $(this).dialog("close");
+              $("#warn").remove();
+              edit_ds_dialog.dialog("close");
+              $("#Datasets").click();
+            },
+            Cancel: function(){
+              $(this).dialog("close");
+              $("#warn").remove();
+            }
+          }
+        })
+      })
+    } else {
+      datasets[ds_edit].name=name;
+      datasets[ds_edit].values=ds_str_2_arr(data_str);
+      data_str="";
+      ds_valid=false;
+      ds_dialog.dialog("close");
+      $("#Datasets").click();
+      edit_ds_dialog.dialog("close");
+    }
+  } else {
+    ws=warn.length;
+    warn_str="The ";
+    if(ws==1){
+      warn_str=warn_str+warn[0];
+    } else if (ws==2){
+      warn_str=warn_str+warn[0]+" and "+warn[1];
+    } else{
+      warn_str=warn_str+warn[0];
+      for(i=1; i<ws-1; i++){
+        warn_str=warn_str+", "+warn[i];
+      }
+      warn_str=warn_str+", and "+warn[ws-1];
+    }
+    warn_str=warn_str+" of the dataset is not valid.";
+    $("body").append("<div id='warn' class='dialog' title='Fields Required'><p>"+warn_str+"</p></div>");
+    $(function(){
+      $("#warn").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $(this).dialog("close");
+            $("#warn").remove();
+          }
+        }
+      })
+    })
+  }
+}
+
+function edit_ds_action_cancel(){
+  edit_ds_dialog.dialog("close");
+}
+
+function edit_src_action_edit_source(){
+
+  var warn=[], warn_str, ws, i;
+
+  var name=$("#edit_src_name").val().trim();
+
+  var value=$("#edit_src_value").val().trim();
+
+  if(name.length<=0){warn.push("name");}
+
+  if(value.length<=0){warn.push("value");}
+
+  if(warn.length==0){
+    var i, ni, di, dep=[], mess="";
+    ni=inputs.length;
+    for(i=0; i<ni; i++){
+      if(inputs[i].data("sys_src").indexOf(src_edit)){
+        dep.push(i);
+      }
+    }
+    if(dep.length>0){
+      di=dep.length;
+      mess="This will modify value for input";
+      if(di==1){
+        mess=mess+" "+(dep[0]+1)+" ("+inputs[dep[0]].data("name")+").";
+      } else {
+        mess=mess+"s ";
+        for(i=0; i<di-1; i++){
+          mess=mess+(dep[i]+1)+", ";
+        }
+        mess=mess+"and "+(dep[di-1]+1)+" (";
+        for(i=0; i<di-1; i++){
+          mess=mess+inputs[dep[i]].data("name")+", ";
+        }
+        mess=mess+"and "+inputs[dep[di-1]].data("name")+").";
+      }
+      mess=mess+" Are you sure?";
+      $("body").append("<div id='warn' class='dialog' title='Are you sure?'><p>"+mess+"</p></div>");
+      $(function(){
+        $("#warn").dialog({
+          modal: true,
+          buttons: {
+            Yes: function(){
+              sources[src_edit].name=name;
+              sources[src_edit].value=value;
+              src_dialog.dialog("close");
+              $(this).dialog("close");
+              $("#warn").remove();
+              edit_src_dialog.dialog("close");
+              $("#Sources").click();
+            },
+            Cancel: function(){
+              $(this).dialog("close");
+              $("#warn").remove();
+            }
+          }
+        })
+      })
+    } else {
+      sources[src_edit].name=name;
+      sources[src_edit].value=value;
+      src_dialog.dialog("close");
+      $("#Sources").click();
+      edit_src_dialog.dialog("close");
+    }
+  } else {
+    ws=warn.length;
+    warn_str="The ";
+    if(ws==1){
+      warn_str=warn_str+warn[0];
+    } else if (ws==2){
+      warn_str=warn_str+warn[0]+" and "+warn[1];
+    } else{
+      warn_str=warn_str+warn[0];
+      for(i=1; i<ws-1; i++){
+        warn_str=warn_str+", "+warn[i];
+      }
+      warn_str=warn_str+", and "+warn[ws-1];
+    }
+    warn_str=warn_str+" of the source is not valid.";
+    $("body").append("<div id='warn' class='dialog' title='Fields Required'><p>"+warn_str+"</p></div>");
+    $(function(){
+      $("#warn").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $(this).dialog("close");
+            $("#warn").remove();
+          }
+        }
+      })
+    })
+  }
+}
+
+function edit_src_action_cancel(){
+  edit_src_dialog.dialog("close");
+}
+
+function edit_inp_action_edit_input(){
+
+  var warn=[], warn_str, ws, i, iof, cs=components.length;
+
+  var variable_regex=/^[a-zA-Z][a-zA-z0-9_]*$/;
+
+  var nom_regex=/^[0-9][.0-9]*$/;
+
+  var name=$("#edit_inp_name").val().trim();
+
+  var variable=$("#edit_inp_variable").val().trim();
+
+  var label=$("#edit_inp_label").val().trim();
+
+  var nominal=$("#edit_inp_nominal").val().trim();
+
+  var random=$("#edit_inp_random").val().trim();
+
+  if (name.length<=0){warn.push("name");}
+
+  if ((variable.length<=0) || !variable_regex.test(variable)){warn.push("variable");}
+
+  if (label.length<=0){warn.push("label");}
+
+  if ((nominal.length<=0) || !(nom_regex.test(nominal))){warn.push("nominal value");}
+
+  if ((random.length<=0) || !(nom_regex.test(random))){warn.push("random uncertainty");}
+
+  if (warn.length==0){
+
+    if(valid_variable(inputs, components, variable) || variable==inputs[inp_edit].data("variable")){
+
+      var ow=50, oh=50, os=get_text_size(label);
+
+      if(os[0]>ow){ow=Math.round(os[0])+10;}
+      if(os[1]>oh){oh=Math.round(os[1])+10;}
+      if(ow>oh){oh=ow;}
+      else {ow=oh;}
+
+      inputs[inp_edit].attr({rx:ow/2, ry:oh/2});
+
+      inputs[inp_edit].data("name", name);
+
+      if(inputs[inp_edit].data("variable")!=variable){
+        for(i=0; i<cs; i++){
+          components[i].data("fun",replace_var_expr(inputs[inp_edit].data("variable"), variable, components[i].data("fun")));
+        }
+      }
+
+      inputs[inp_edit].data("variable", variable);
+
+      inputs[inp_edit].data("label", label);
+
+      inputs[inp_edit].data("nominal", nominal);
+
+      inputs[inp_edit].data("nom_ds", Number(ds_nom));
+
+      inputs[inp_edit].data("random", random);
+
+      inputs[inp_edit].data("rand_ds", Number(ds_rand));
+
+      inputs[inp_edit].data("sys_src", src_sys);
+
+      input_labels[inp_edit].attr({width:ow, height:oh});
+
+      input_labels[inp_edit].data("variable", variable);
+
+      input_labels[inp_edit].node.getElementsByTagName("tspan")[0].innerHTML=svg_label(label);
+
+      calc_comp_nom();
+
+      flags.J=false;
+
+      flags.W=false;
+
+      flags.Nu=false;
+
+      flags.U=false;
+
+      $("#u_sum").remove();
+
+      flags.UMF=false;
+
+      $("#umf_sum").remove();
+
+      flags.UPC=false;
+
+      $("#upc_sum").remove();
+
+      edit_inp_dialog.dialog("close");
+
+      edit_inp_dialog.dialog("close");
+      inp_dialog.dialog("close");
+      ds_nom=-1;
+      ds_rand=-1;
+      inp_edit=-1;
+      src_sys=[];
+      $("#Inputs").click();
+    } else {
+      $("body").append("<div id='warn' class='dialog' title='Warning'><p>Input variable must be unique.</p></div>");
+      $(function(){
+        $("#warn").dialog({
+          modal: true,
+          buttons: {
+            Ok: function(){
+              $(this).dialog("close");
+              $("#warn").remove();
+            }
+          }
+        })
+      })
+    }
+  } else {
+    ws=warn.length;
+    warn_str="The ";
+    if(ws==1){
+      warn_str=warn_str+warn[0];
+    } else if (ws==2){
+      warn_str=warn_str+warn[0]+" and "+warn[1];
+    } else{
+      warn_str=warn_str+warn[0];
+      for(i=1; i<ws-1; i++){
+        warn_str=warn_str+", "+warn[i];
+      }
+      warn_str=warn_str+", and "+warn[ws-1];
+    }
+    warn_str=warn_str+" of the input is not valid.";
+    $("body").append("<div id='warn' class='dialog' title='Fields Required'><p>"+warn_str+"</p></div>");
+    $(function(){
+      $("#warn").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $(this).dialog("close");
+            $("#warn").remove();
+          }
+        }
+      })
+    })
+  }
+}
+
+function edit_inp_action_cancel(){
+  edit_inp_dialog.dialog("close");
+}
+
+function edit_comp_action_edit_component(){
+
+  var warn=[], warn_str, ws, i, cs=components.length;
+
+  var variable_regex=/^[a-zA-Z][a-zA-z0-9_]*$/;
+
+  var name=$("#edit_comp_name").val().trim();
+
+  var variable=$("#edit_comp_variable").val().trim();
+
+  var label=$("#edit_comp_label").val().trim();
+
+  var fun=$("#edit_comp_fun").val().trim();
+
+  if (name.length<=0){warn.push("name");}
+
+  if ((variable.length<=0) || !variable_regex.test(variable)){warn.push("variable");}
+
+  if (label.length<=0){warn.push("label");}
+
+  if (fun.length<=0 || get_dep(fun).length==0){warn.push("function");}
+
+  if (warn.length==0){
+
+    if(valid_variable(inputs, components, variable) || variable==components[comp_edit].data("variable")){
+
+      var ow=50, oh=50, os=get_text_size(label);
+
+      if(os[0]>ow){ow=Math.round(os[0])+10;}
+      if(os[1]>oh){oh=Math.round(os[1])+10;}
+      if(ow>oh){oh=ow;}
+      else {ow=oh;}
+
+      var ox=components[comp_edit].attr("x")+components[comp_edit].attr("width")/2-ow/2;
+      var oy=components[comp_edit].attr("y")+components[comp_edit].attr("height")/2-oh/2;
+
+      components[comp_edit].attr({x:ox, y:oy, width:ow, height:oh});
+
+      components[comp_edit].data("name", name);
+
+      if(components[comp_edit].data("variable")!=variable){
+
+        for(i=0; i<cs; i++){
+          components[i].data("fun",replace_var_expr(components[comp_edit].data("variable"), variable, components[i].data("fun")));
+        }
+      }
+
+      components[comp_edit].data("variable", variable);
+
+      components[comp_edit].data("label", label);
+
+      components[comp_edit].data("fun", fun);
+
+      component_labels[comp_edit].attr({x:components[comp_edit].attr("x")+ow/2, y:components[comp_edit].attr("y")+oh/2});
+
+      component_labels[comp_edit].data("variable", variable);
+
+      component_labels[comp_edit].node.getElementsByTagName("tspan")[0].innerHTML=svg_label(label);
+      component_labels[comp_edit].node.getElementsByTagName("tspan")[0].setAttribute("dy", "3.5");
+
+      var dep_var=get_dep(fun);
+
+      var inp_var=get_inp_var();
+
+      var comp_var=get_comp_var();
+
+      var dvs=dep_var.length;
+
+      var ivs=inp_var.length;
+
+      var cvs=comp_var.length;
+
+      var cs=connections.length;
+      var nc=[];
+
+      for(i=0; i<cs; i++){
+        if(connections[i].to.data("variable")==variable){
+          connections[i].line.remove();
+          connections[i].arr.remove();
+        } else {
+          nc.push(connections[i]);
+        }
+      }
+      connections=nc;
+
+      for(i=0; i<ivs; i++){
+        if($.inArray(inp_var[i],dep_var)!=-1){
+          r.addcon(inputs[i],components[comp_edit]);
+        }
+      }
+
+      for(i=0; i<cvs; i++){
+        if($.inArray(comp_var[i],dep_var)!=-1){
+          r.addcon(components[i],components[comp_edit]);
+        }
+      }
+
+      calc_comp_nom();
+      comp_edit=-1;
+
+      flags.J=false;
+
+      flags.W=false;
+
+      flags.U=false;
+
+      $("#u_sum").remove();
+
+      flags.UMF=false;
+
+      $("#umf_sum").remove();
+
+      flags.UPC=false;
+
+      $("#upc_sum").remove();
+
+      edit_comp_dialog.dialog("close");
+      comp_dialog.dialog("close");
+      $("#Components").click();
+
+    } else {
+
+      $("body").append("<div id='warn' class='dialog' title='Warning'><p>Component variable must be unique.</p></div>");
+      $(function(){
+        $("#warn").dialog({
+          modal: true,
+          buttons: {
+            Ok: function(){
+              $(this).dialog("close");
+              $("#warn").remove();
+            }
+          }
+        })
+      })
+    }
+
+  } else {
+
+    ws=warn.length;
+    warn_str="The ";
+    if(ws==1){
+      warn_str=warn_str+warn[0];
+    } else if (ws==2){
+      warn_str=warn_str+warn[0]+" and "+warn[1];
+    } else{
+      warn_str=warn_str+warn[0];
+      for(i=1; i<ws-1; i++){
+        warn_str=warn_str+", "+warn[i];
+      }
+      warn_str=warn_str+", and "+warn[ws-1];
+    }
+    warn_str=warn_str+" of the component is not valid."
+    $("body").append("<div id='warn' class='dialog' title='Fields Required'><p>"+warn_str+"</p></div>");
+    $(function(){
+      $("#warn").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $(this).dialog("close");
+            $("#warn").remove();
+          }
+        }
+      })
+    })
+  }
+}
+
+function edit_comp_action_cancel(){
+  edit_comp_dialog.dialog("close");
+}
+
+
+
+function del_ds_action_ok(){
+  var i, ns=inputs.length;
+  datasets.splice(ds_del, 1);
+  for(i=0; i<ns; i++){
+    if(inputs[i].data("nom_ds")==ds_del){
+      inputs[i].data("nom_ds", -1);
+    }
+    if(inputs[i].data("rand_ds")==ds_del){
+      inputs[i].data("rand_ds", -1);
+    }
+    if(inputs[i].data("nom_ds")>ds_del){
+      inputs[i].data("nom_ds", inputs[i].data("nom_ds")-1);
+    }
+    if(inputs[i].data("rand_ds")>ds_del){
+      inputs[i].data("rand_ds", inputs[i].data("rand_ds")-1);
+    }
+  }
+  ds_del=-1;
+  del_ds_dialog.dialog("close");
+  ds_dialog.dialog("close");
+  $("#Datasets").click();
+}
+
+function del_ds_action_cancel(){
+  ds_del=-1;
+  del_ds_dialog.dialog("close");
+}
+
+function del_src_action_ok(){
+  var i, j, ss, ta=[], ns=inputs.length;
+  sources.splice(src_del, 1);
+  for(i=0; i<ns; i++){
+    ss=inputs[i].data("sys_src").length;
+    for(j=0; j<ss; j++){
+      if(inputs[i].data("sys_src")[j]==src_del){
+        ta=inputs[i].data("sys_src");
+        ta.splice(j, 1);
+        inputs[i].data("sys_src", ta);
+        ta=[];
+        ss--;
+      }
+    }
+    ss=inputs[i].data("sys_src").length;
+    for(j=0; j<ss; j++){
+      if(inputs[i].data("sys_src")[j]>src_del){
+        ta=inputs[i].data("sys_src");
+        ta[j]=ta[j]-1;
+        inputs[i].data("sys_src", ta);
+        ta=[];
+      }
+    }
+  }
+  src_del=-1;
+  del_src_dialog.dialog("close");
+  src_dialog.dialog("close");
+  $("#Sources").click();
+}
+
+function del_src_action_cancel(){
+  src_del=-1;
+  del_src_dialog.dialog("close");
+}
+
+function del_inp_action_yes(){
+  inputs[inp_del].remove();
+  input_labels[inp_del].remove();
+  inputs.splice(inp_del,1);
+  input_labels.splice(inp_del,1);
+  flags.J=false;
+  flags.W=false;
+  flags.Nu=false;
+  flags.U=false;
+  $("#u_sum").remove();
+  flags.UMF=false;
+  $("#umf_sum").remove();
+  flags.UPC=false;
+  $("#upc_sum").remove();
+  del_inp_dialog.dialog("close");
+  inp_dialog.dialog("close");
+  $("#Inputs").click();
+}
+
+function del_inp_action_no(){
+  del_inp_dialog.dialog("close");
+}
+
+function del_comp_action_yes(){
+  var ncon=connections.length, temp_con=[];
+  for(i=0; i<ncon; i++){
+    if(connections[i].to.data("variable")==components[comp_del].data("variable")){
+      connections[i].line.remove();
+      connections[i].arr.remove();
+    } else {
+      temp_con.push(connections[i]);
+    }
+  }
+  connections=temp_con;
+  components[comp_del].remove();
+  component_labels[comp_del].remove();
+  components.splice(comp_del,1);
+  component_labels.splice(comp_del,1);
+  flags.J=false;
+  flags.W=false;
+  flags.U=false;
+  $("#u_sum").remove();
+  flags.UMF=false;
+  $("#umf_sum").remove();
+  flags.UPC=false;
+  $("#upc_sum").remove();
+  del_comp_dialog.dialog("close");
+  comp_dialog.dialog("close");
+  $("#Components").click();
+}
+
+function del_comp_action_no(){
+  del_comp_dialog.dialog("close");
+}
+
+
+
+function sum_ds_action_export_csv(){
+  saveCSV(ds2CSV(),'datasets.csv');
+}
+
+function sum_ds_action_ok(){
+  sum_ds_dialog.dialog("close");
+}
+
+function sum_src_action_export_csv(){
+  saveCSV(src2CSV(),'sources.csv');
+}
+
+function sum_src_action_ok(){
+  sum_src_dialog.dialog("close");
+}
+
+function sum_inp_action_export_csv(){
+  saveCSV(inp2CSV(),'inputs.csv');
+}
+
+function sum_inp_action_ok(){
+  sum_inp_dialog.dialog("close");
+}
+
+function sum_comp_action_export_csv(){
+  saveCSV(comp2CSV(),'components.csv');
+}
+
+function sum_comp_action_ok(){
+  sum_comp_dialog.dialog("close");
+}
+
+function sum_corr_action_export_csv(){
+  saveCSV(corr2CSV(),'correlations.csv');
+}
+
+function sum_corr_action_ok(){
+  sum_corr_dialog.dialog("close");
+}
+
+function sum_u_action_export_csv(){
+  saveCSV(U2CSV(),'totu.csv');
+}
+
+function sum_u_action_ok(){
+  sum_u_dialog.dialog("close");
+}
+
+function sum_umf_action_export_csv(){
+  saveCSV(UMF2CSV(),'umf.csv');
+}
+
+function sum_umf_action_ok(){
+  sum_umf_dialog.dialog("close");
+}
+
+function sum_upc_action_export_csv(){
+  saveCSV(UPC2CSV(),'upc.csv');
+}
+
+function sum_upc_action_ok(){
+  sum_upc_dialog.dialog("close");
+}
+
+
+
+function apply_ds_2_nom_action_ok(){
+  ds_nom=$("input[name=ds]:checked").val();
+  if(typeof ds_nom=="undefined"){
+    $("body").append("<div id='warn' class='dialog' title='No Dataset Select'><p>No dataset selected. Please select a dataset before proceeding.</p></div>");
+    $(function(){
+      $("#warn").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $(this).dialog("close");
+            $("#warn").remove();
+          }
+        }
+      })
+    })
+  } else {
+    $("#add_inp_nominal").val(mu(datasets[ds_nom].values));
+    $("#edit_inp_nominal").val(mu(datasets[ds_nom].values));
+    apply_ds_2_nom_dialog.dialog("close");
+  }
+}
+
+function apply_ds_2_nom_action_cancel(){
+  ds_nom=-1;
+  apply_ds_2_nom_dialog.dialog("close");
+}
+
+function apply_ds_2_rand_action_ok(){
+  var n, mean;
+  ds_rand=$("input[name=ds]:checked").val();
+  if(typeof ds_rand=="undefined"){
+    $("body").append("<div id='warn' class='dialog' title='No Dataset Select'><p>No dataset selected. Please select a dataset before proceeding.</p></div>");
+    $(function(){
+      $("#warn").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $(this).dialog("close");
+            $("#warn").remove();
+          }
+        }
+      })
+    })
+  } else {
+    n=num_samples(datasets[ds_rand].values);
+    mean=mu(datasets[ds_rand].values);
+    $("#add_inp_random").val(t_dist(n)*sig(datasets[ds_rand].values, mean)/Math.pow(n,1/2));
+    $("#edit_inp_random").val(t_dist(n)*sig(datasets[ds_rand].values, mean)/Math.pow(n,1/2));
+    apply_ds_2_rand_dialog.dialog("close");
+  }
+}
+
+function apply_ds_2_rand_action_cancel(){
+  ds_rand=-1;
+  apply_ds_2_rand_dialog.dialog("close");
+}
+
+function apply_src_2_sys_action_ok(){
+  var i, n, mess="", src_select=[];
+  $(".src").each(function(i){
+    if(this.checked){
+      src_select.push(i);
+    }
+  });
+  src_sys=src_select;
+  n=src_sys.length;
+  if(n==0){
+    $("#src_select").text("No sources have been selected. If no source(s) are selected, a value of zero will be used.");
+  } else if(n==1){
+    $("#src_select").text("Source id "+src_sys[0]+" selected.");
+  } else {
+    mess="";
+    for(i=0; i<n-1; i++){
+      mess+=src_sys[i]+", ";
+    }
+    mess+=" and "+src_sys[n-1];
+    $("#src_select").text("Source ids "+mess+" selected.");
+  }
+  apply_src_2_sys_dialog.dialog("close");
+}
+
+function apply_src_2_sys_action_cancel(){
+  apply_src_2_sys_dialog.dialog("close");
+}
+
+
+
+function exit_action_yes(){
+  $("body").empty();
+  $("body").append("<div style='position:absolute; height:95%; width:95%; display:table'><h1 style='display:table-cell; vertical-align:middle; text-align:center;'>See you later!</h1></div>");
+  $("#exit_dialog").dialog("close");
+}
+
+function exit_action_no(){
+  $("#exit_dialog").dialog("close");
+}
+
+function new_action_yes(){
+  $("#new_dialog").dialog("close");
+  location.reload();
+}
+
+function new_action_no(){
+  $("#new_dialog").dialog("close");
+}
+
+function save_action_save_as(){
+  var filename=$("#save_filename").val().trim();
+  if(filename.length>0){
+    save_data(export_canvas(),filename+'.ujs');
+    save_dialog.dialog("close");
+  } else {
+    $("body").append("<div id='warn' class='dialog' title='Warning'><p>Filename is required.</p></div>");
+    $(function(){
+      $("#warn").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $(this).dialog("close");
+            $("#warn").remove();
+          }
+        }
+      })
+    })
+  }
+}
+
+function save_action_cancel(){
+  save_dialog.dialog("close")
+}
+
+
+
+function calc_u_action_view_results(){
+  $("#sum_u").click();
+  calc_u_dialog.dialog("close");
+}
+
+function calc_u_action_add_components(){
+  $("#Components").click();
+  calc_u_dialog.dialog("close");
+}
+
+function calc_u_action_add_inputs(){
+  $("#Inputs").click();
+  calc_u_dialog.dialog("close");
+}
+
+function calc_u_action_ok(){
+  calc_u_dialog.dialog("close");
+}
+
+function calc_umf_action_view_results(){
+  $("#sum_umf").click();
+  calc_umf_dialog.dialog("close");
+}
+
+function calc_umf_action_add_components(){
+  $("#Components").click();
+  calc_umf_dialog.dialog("close");
+}
+
+function calc_umf_action_add_inputs(){
+  $("#Inputs").click();
+  calc_umf_dialog.dialog("close");
+}
+
+function calc_umf_action_ok(){
+  calc_umf_dialog.dialog("close");
+}
+
+function calc_upc_action_view_results(){
+  $("#sum_upc").click();
+  calc_upc_dialog.dialog("close");
+}
+
+function calc_upc_action_add_components(){
+  $("#Components").click();
+  calc_upc_dialog.dialog("close");
+}
+
+function calc_upc_action_add_inputs(){
+  $("#Inputs").click();
+  calc_upc_dialog.dialog("close");
+}
+
+function calc_upc_action_ok(){
+  calc_upc_dialog.dialog("close");
+}
+
+
+
+
+
+
+
 
 
 
@@ -1992,30 +3478,29 @@ function svg_label(label){
 }
 
 function save_data(data, filename){
-  // Create a tag
+
   var a=document.createElement("a");
-  // Add it to html body
+
   document.body.appendChild(a);
-  // set a tag id
+
   a.id='file_download';
-  // set a tag style
+
   a.style="display: none";
-  //return function(data, fileName){
-    // turn data into JSON
+
   var json=JSON.stringify(data);
-    // BLOB JSON
+
   var blob=new Blob([json], {type: "octet/stream"});
-    // create url for BLOB
+
   var url=window.URL.createObjectURL(blob);
-    // set a tag href
+
   a.href=url;
-    // set a tag download to filename
+
   a.download=filename;
-    // click a tag
+
   a.click();
-    // remove a tag url
+
   window.URL.revokeObjectURL(url);
-    // remove a tag
+
   $("#file_download").remove();
 };
 
@@ -2050,33 +3535,33 @@ function before_obj(variable){
 }
 
 function build_canvas(sys){
-  // if inputs exists, get inputs, else set empty array
+
   var inp=('inp' in sys)?sys.inp:[];
-  // if component exists, get components, else set empty array
+
   var comp=('comp' in sys)?sys.comp:[];
-  // if correlation exists, get correlations, else set empty array
+
   var ds=('ds' in sys)?sys.ds:[];
 
   var src=('src' in sys)?sys.src:[];
-  // if Jacobian matrix exists, get Jacobian, else set empty array
+
   J=('J' in sys)?sys.J:[];
-  // if W matrix exists, get W, else set empty array
+
   W=('W' in sys)?sys.W:[];
-  // if Nu matrix exists, get Nu, else set empty array
+
   Nu=('Nu' in sys)?sys.Nu:[];
-  // if U matrix exists, get U, else set empty array
+
   U=('U' in sys)?sys.U:[];
-  // if UMF matrix exists, get UMF, else set empty array
+
   UMF=('UMF' in sys)?sys.UMF:[];
-  // if UPC matrix exists, get UPC, else set empty array
+
   UPC=('UPC' in sys)?sys.UPC:[];
-  // if flags array exists, get flags, else set everything false
+
   flags=('flags' in sys)?sys.flags:{info:false, before:false, after:false, cor:false, J:false, W:false, Nu:false, U:false, UMF:false, UPC:false};
-  // get length of inputs, components, and correlations
+
   var is=inp.length, cs=comp.length, dss=ds.length, ss=src.length;
-  // Declare counters
+
   var i1, i2;
-  // for each input, build input objects
+
   for(i1=0; i1<is; i1++){
     var ox=inp[i1].ox;
     var oy=inp[i1].oy;
@@ -2092,7 +3577,7 @@ function build_canvas(sys){
     var sys_src=inp[i1].sys_src;
     r.addobj({type:"ellipse", x:ox, y:oy, w:ow, h:oh, name:name, variable:variable, label:label, nominal:nominal, nom_ds:nom_ds, random:random, rand_ds:rand_ds, sys_src:sys_src});
   }
-  // for each component, build component objects
+
   for(i1=0; i1<cs; i1++){
     var ox=comp[i1].ox;
     var oy=comp[i1].oy;
@@ -2130,13 +3615,13 @@ function build_canvas(sys){
     var value=src[i1].value;
     sources.push({name: name, value: value});
   }
-  // Run custom function
+
   calc_comp_nom();
-  // Get viewbox size
+
   viewbox=sys.viewbox;
-  // Get zoom size
+
   zoom=sys.zoom;
-  // Set viewbox size
+
   r.setViewBox.apply(r, viewbox);
 }
 
@@ -2157,25 +3642,25 @@ function build_save_dialog(){
 }
 
 function build_toolbar(){
-  // If tool tip flag is set
+
   if(flags.info){
     $("#toolbar").append("<input type='checkbox' id='tb_tip' checked><label class='small_button' for='tb_tip'>Toggle Element Info</label>");
   } else {
     $("#toolbar").append("<input type='checkbox' id='tb_tip'><label class='small_button' for='tb_tip'>Toggle Element Info</label>");
   }
-  // if before dependencies flag is set
+
   if(flags.before){
     $("#toolbar").append("<input type='checkbox' id='tb_before' checked><label class='small_button' for='tb_before'>Toggle Dependencies View (Green)</label>");
   } else {
     $("#toolbar").append("<input type='checkbox' id='tb_before'><label class='small_button' for='tb_before'>Toggle Dependencies View (Green)</label>");
   }
-  // if after dependencies flag is set
+
   if(flags.after){
     $("#toolbar").append("<input type='checkbox' id='tb_after' checked><label class='small_button' for='tb_after'>Toggle Dependencies View (Red)</label>");
   } else {
     $("#toolbar").append("<input type='checkbox' id='tb_after'><label class='small_button' for='tb_after'>Toggle Dependencies View (Red)</label>");
   }
-  // if correlation flag is set
+
   if(flags.cor){
     $("#toolbar").append("<input type='checkbox' id='tb_cor' checked><label class='small_button' for='tb_cor'>Toggle Correlation View (Blue)</label>");
   } else {
@@ -2297,17 +3782,17 @@ function build_toolbar(){
 }
 
 function calc_comp_nom(){
-  // Declar variables
+
   var i, is=inputs.length, cs=components.length;
   var noms=[], p=math.parser();
-  // for each input
+
   for(i=0; i<is; i++){
-    // assign variable to input value
+
     p.eval(inputs[i].data("variable")+"="+inputs[i].data("nominal"));
   }
-  // for each component
+
   for(i=0; i<cs; i++){
-    // set component nominal value to assigned component variable to component function expression
+
     components[i].data("nominal",p.eval(components[i].data("variable")+"="+components[i].data("fun")));
   }
 }
@@ -2365,7 +3850,6 @@ function calc_Nu(){
   if(!flags.Nu){
     if(inputs.length>0 && components.length>0){
       var rn=dataToArray(inputs, "random");
-      var sn=dataToArray(inputs, "systematic");
       var i1, i2, ns=inputs.length;
       var Ns, Nr, Nc;
       var nsc=ns_nc();
@@ -2378,7 +3862,12 @@ function calc_Nu(){
       Ns=math.multiply(Ns,math.transpose(Ns));
       Nr=math.diag(math.matrix(rn));
       Nr=math.multiply(Nr,math.transpose(Nr));
-      Nu=math.add(Nr,Ns).valueOf();
+      Nu=math.add(Nr,Ns);
+      if(math.size(Nu).valueOf().length==0){
+        Nu=[Nu.valueOf()];
+      } else {
+        Nu=Nu.valueOf();
+      }
       flags.Nu=true;
     }
   }
@@ -2503,10 +3992,10 @@ function export_canvas(){
 }
 
 function get_dep(expr){
-  // Constants to ignore
+
   var constants=['e','E','i','Infinity','LN2','LN10','LOG2E','LOG10E','phi',
                  'pi','PI','SQRT1_2','SQRT2','tau','version'];
-  // Uses Math.js to get dependent variables
+
   var node=math.parse(expr);
   var dep_var=[];
   node.filter(function(node){
@@ -2551,10 +4040,10 @@ function get_text_size(txt){
 }
 
 function replace_var_expr(var_from, var_to, expr){
-  // Constants to ignore
+
   var constants=['e','E','i','Infinity','LN2','LN10','LOG2E','LOG10E','phi',
                  'pi','PI','SQRT1_2','SQRT2','tau','version'];
-  // Uses Math.js to replace variables
+
   var node=math.parse(expr);
   var dep_var=[];
   node.filter(function(n){
