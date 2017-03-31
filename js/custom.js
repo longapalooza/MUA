@@ -1597,10 +1597,23 @@ function build_calc_upc_dialog(){
 
 
 
+function build_exit_dialog(){
+  $("#exit_dialog").append("<p>All unsaved work will be lose. Do you want to continue?</p>");
+  resize($("#exit_dialog"));
 }
 
+function build_new_dialog(){
+  $("#new_dialog").append("<p>All unsaved work will be lose. Do you want to continue?</p>");
+  resize($("#new_dialog"));
 }
 
+function build_save_dialog(){
+  $("#save_dialog").append("<p>Filename:</p>");
+  $("#save_dialog").append("<form></form>");
+  $("#save_dialog form").append("<input id='save_filename'>");
+  $("#save_dialog form input").attr("type", "text");
+  $("#save_dialog form input").attr("class", "text ui-widget-content ui-corner-all");
+  resize($("#save_dialog"));
 }
 
 
@@ -3537,22 +3550,6 @@ function build_canvas(sys){
   zoom=sys.zoom;
 
   r.setViewBox.apply(r, viewbox);
-}
-
-function build_exit_dialog(){
-  $("#exit_dialog").append("<p>All unsaved work will be lose. Do you want to continue?</p>");
-}
-
-function build_new_dialog(){
-  $("#new_dialog").append("<p>All unsaved work will be lose. Do you want to continue?</p>");
-}
-
-function build_save_dialog(){
-  $("#save_dialog").append("<p>Filename:</p>");
-  $("#save_dialog").append("<form></form>");
-  $("#save_dialog form").append("<input id='save_filename'>");
-  $("#save_dialog form input").attr("type", "text");
-  $("#save_dialog form input").attr("class", "text ui-widget-content ui-corner-all");
 }
 
 function build_toolbar(){
