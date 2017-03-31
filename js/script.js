@@ -29,9 +29,7 @@ var ds_dialog=$("#ds_dialog").dialog({
   height: 'auto',
   resizable: false,
   open: build_ds_dialog,
-  buttons: {
-    Ok: ds_action_ok
-  },
+  buttons: {Ok: ds_action_ok},
   close: empty_dialog
 });
 
@@ -42,9 +40,7 @@ var src_dialog=$("#src_dialog").dialog({
   height: 'auto',
   resizable: false,
   open: build_src_dialog,
-  buttons: {
-    Ok: src_action_ok
-  },
+  buttons: {Ok: src_action_ok},
   close: empty_dialog
 });
 
@@ -55,10 +51,7 @@ var inp_dialog=$("#inp_dialog").dialog({
   height: 'auto',
   resizable: false,
   open: build_inp_dialog,
-
-  buttons: {
-    Ok: inp_action_ok
-  },
+  buttons: {Ok: inp_action_ok},
   close: empty_dialog
 });
 
@@ -69,9 +62,7 @@ var comp_dialog=$("#comp_dialog").dialog({
   height: 'auto',
   resizable: false,
   open: build_comp_dialog,
-  buttons: {
-    Ok: comp_action_ok
-  },
+  buttons: {Ok: comp_action_ok},
   close: empty_dialog
 });
 
