@@ -1619,11 +1619,7 @@ function build_save_dialog(){
 
 
 function empty_dialog(){
-  if($(this).attr("id")=="edit_inp_dialog"){
-    inp_edit=-1;
-    ds_nom=-1;
-    ds_rand=-1;
-  }
+  if($(this).attr("id")=="edit_inp_dialog"){inp_edit=-1;}
   if($(this).attr("id")=="del_inp_dialog"){inp_del=-1;}
   if($(this).attr("id")=="edit_comp_dialog"){comp_edit=-1;}
   if($(this).attr("id")=="del_comp_dialog"){comp_del=-1;}
