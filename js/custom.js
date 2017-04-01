@@ -1491,8 +1491,8 @@ function build_calc_u_dialog(){
     calc_u_dialog.dialog({
       title: "Calculation complete",
       buttons: {
-        "View Results": calc_u_action_view_results,
-        Ok: calc_u_action_ok
+        "View Results": calc_u_button_view_results,
+        Ok: calc_u_button_ok
       }
     });
     calc_u_dialog.dialog("open");
@@ -1502,8 +1502,8 @@ function build_calc_u_dialog(){
       calc_u_dialog.dialog({
         title: "Warning!",
         buttons: {
-          "Add Components": calc_u_action_add_components,
-          Ok: calc_u_action_ok
+          "Add Components": calc_u_button_add_components,
+          Ok: calc_u_button_ok
         }
       });
     } else {
@@ -1511,8 +1511,8 @@ function build_calc_u_dialog(){
       calc_u_dialog.dialog({
         title: "Warning!",
         buttons: {
-          "Add Inputs": calc_u_action_add_inputs,
-          Ok: calc_u_action_ok
+          "Add Inputs": calc_u_button_add_inputs,
+          Ok: calc_u_button_ok
         }
       });
     }
@@ -1528,8 +1528,8 @@ function build_calc_umf_dialog(){
     calc_umf_dialog.dialog({
       title: "Calculation complete",
       buttons: {
-        "View Results": calc_umf_action_view_results,
-        Ok: calc_umf_action_ok
+        "View Results": calc_umf_button_view_results,
+        Ok: calc_umf_button_ok
       }
     });
     calc_umf_dialog.dialog("open");
@@ -1539,8 +1539,8 @@ function build_calc_umf_dialog(){
       calc_umf_dialog.dialog({
         title: "Warning!",
         buttons: {
-          "Add Components": calc_umf_action_add_components,
-          Ok: calc_umf_action_ok
+          "Add Components": calc_umf_button_add_components,
+          Ok: calc_umf_button_ok
         }
       });
     } else {
@@ -1548,8 +1548,8 @@ function build_calc_umf_dialog(){
       calc_umf_dialog.dialog({
         title: "Warning!",
         buttons: {
-          "Add Inputs": calc_umf_action_add_inputs,
-          Ok: calc_umf_action_ok
+          "Add Inputs": calc_umf_button_add_inputs,
+          Ok: calc_umf_button_ok
         }
       });
     }
@@ -1565,8 +1565,8 @@ function build_calc_upc_dialog(){
     calc_upc_dialog.dialog({
       title: "Calculation complete",
       buttons: {
-        "View Results": calc_upc_action_view_results,
-        Ok: calc_upc_action_ok
+        "View Results": calc_upc_button_view_results,
+        Ok: calc_upc_button_ok
       }
     });
     calc_upc_dialog.dialog("open");
@@ -1576,8 +1576,8 @@ function build_calc_upc_dialog(){
       calc_upc_dialog.dialog({
         title: "Warning!",
         buttons: {
-          "Add Components": calc_upc_action_add_components,
-          Ok: calc_upc_action_ok
+          "Add Components": calc_upc_button_add_components,
+          Ok: calc_upc_button_ok
         }
       });
     } else {
@@ -1585,8 +1585,8 @@ function build_calc_upc_dialog(){
       calc_upc_dialog.dialog({
         title: "Warning!",
         buttons: {
-          "Add Inputs": calc_upc_action_add_inputs,
-          Ok: calc_upc_action_ok
+          "Add Inputs": calc_upc_button_add_inputs,
+          Ok: calc_upc_button_ok
         }
       });
     }
@@ -1634,19 +1634,19 @@ function empty_dialog(){
 
 
 
-function ds_action_ok(){
+function ds_button_ok(){
   ds_dialog.dialog("close");
 }
 
-function src_action_ok(){
+function src_button_ok(){
   src_dialog.dialog("close");
 }
 
-function inp_action_ok(){
+function inp_button_ok(){
   inp_dialog.dialog("close");
 }
 
-function comp_action_ok(){
+function comp_button_ok(){
   comp_dialog.dialog("close");
 }
 
@@ -1699,11 +1699,11 @@ function add_ds_action_add_dataset(){
   }
 }
 
-function add_ds_action_cancel(){
+function add_ds_button_cancel(){
   add_ds_dialog.dialog("close");
 }
 
-function add_src_action_add_source(){
+function add_src_button_add_source(){
 
   var warn=[], warn_str, ws, i;
 
@@ -1752,11 +1752,11 @@ function add_src_action_add_source(){
   }
 }
 
-function add_src_action_cancel(){
+function add_src_button_cancel(){
   add_src_dialog.dialog("close");
 }
 
-function add_inp_action_add_input(){
+function add_inp_button_add_input(){
 
   var warn=[], warn_str, ws, i;
 
@@ -1879,14 +1879,14 @@ function add_inp_action_add_input(){
   }
 }
 
-function add_inp_action_cancel(){
+function add_inp_button_cancel(){
   ds_nom=-1;
   ds_rand=-1;
   src_sys=[];
   add_inp_dialog.dialog("close");
 }
 
-function add_comp_action_add_component(){
+function add_comp_button_add_component(){
 
   var warn=[], warn_str, ws, i;
 
@@ -2148,13 +2148,12 @@ function add_comp_action_add_component(){
   }
 }
 
-function add_comp_action_cancel(){
+function add_comp_button_cancel(){
   add_comp_dialog.dialog("close");
 }
 
 
-
-function edit_ds_action_edit_dataset(){
+function edit_ds_button_edit_dataset(){
 
   var warn=[], warn_str, ws, i;
 
@@ -2263,11 +2262,11 @@ function edit_ds_action_edit_dataset(){
   }
 }
 
-function edit_ds_action_cancel(){
+function edit_ds_button_cancel(){
   edit_ds_dialog.dialog("close");
 }
 
-function edit_src_action_edit_source(){
+function edit_src_button_edit_source(){
 
   var warn=[], warn_str, ws, i;
 
@@ -2362,11 +2361,11 @@ function edit_src_action_edit_source(){
   }
 }
 
-function edit_src_action_cancel(){
+function edit_src_button_cancel(){
   edit_src_dialog.dialog("close");
 }
 
-function edit_inp_action_edit_input(){
+function edit_inp_button_edit_input(){
 
   var warn=[], warn_str, ws, i, iof, cs=components.length;
 
@@ -2508,11 +2507,11 @@ function edit_inp_action_edit_input(){
   }
 }
 
-function edit_inp_action_cancel(){
+function edit_inp_button_cancel(){
   edit_inp_dialog.dialog("close");
 }
 
-function edit_comp_action_edit_component(){
+function edit_comp_button_edit_component(){
 
   var warn=[], warn_str, ws, i, cs=components.length;
 
@@ -2679,13 +2678,12 @@ function edit_comp_action_edit_component(){
   }
 }
 
-function edit_comp_action_cancel(){
+function edit_comp_button_cancel(){
   edit_comp_dialog.dialog("close");
 }
 
 
-
-function del_ds_action_ok(){
+function del_ds_button_ok(){
   var i, ns=inputs.length;
   datasets.splice(ds_del, 1);
   for(i=0; i<ns; i++){
@@ -2708,12 +2706,12 @@ function del_ds_action_ok(){
   $("#Datasets").click();
 }
 
-function del_ds_action_cancel(){
+function del_ds_button_cancel(){
   ds_del=-1;
   del_ds_dialog.dialog("close");
 }
 
-function del_src_action_ok(){
+function del_src_button_ok(){
   var i, j, ss, ta=[], ns=inputs.length;
   sources.splice(src_del, 1);
   for(i=0; i<ns; i++){
@@ -2743,12 +2741,12 @@ function del_src_action_ok(){
   $("#Sources").click();
 }
 
-function del_src_action_cancel(){
+function del_src_button_cancel(){
   src_del=-1;
   del_src_dialog.dialog("close");
 }
 
-function del_inp_action_yes(){
+function del_inp_button_yes(){
   inputs[inp_del].remove();
   input_labels[inp_del].remove();
   inputs.splice(inp_del,1);
@@ -2767,11 +2765,11 @@ function del_inp_action_yes(){
   $("#Inputs").click();
 }
 
-function del_inp_action_no(){
+function del_inp_button_no(){
   del_inp_dialog.dialog("close");
 }
 
-function del_comp_action_yes(){
+function del_comp_button_yes(){
   var ncon=connections.length, temp_con=[];
   for(i=0; i<ncon; i++){
     if(connections[i].to.data("variable")==components[comp_del].data("variable")){
@@ -2799,80 +2797,79 @@ function del_comp_action_yes(){
   $("#Components").click();
 }
 
-function del_comp_action_no(){
+function del_comp_button_no(){
   del_comp_dialog.dialog("close");
 }
 
 
-
-function sum_ds_action_export_csv(){
+function sum_ds_button_export_csv(){
   saveCSV(ds2CSV(),'datasets.csv');
 }
 
-function sum_ds_action_ok(){
+function sum_ds_button_ok(){
   sum_ds_dialog.dialog("close");
 }
 
-function sum_src_action_export_csv(){
+function sum_src_button_export_csv(){
   saveCSV(src2CSV(),'sources.csv');
 }
 
-function sum_src_action_ok(){
+function sum_src_button_ok(){
   sum_src_dialog.dialog("close");
 }
 
-function sum_inp_action_export_csv(){
+function sum_inp_button_export_csv(){
   saveCSV(inp2CSV(),'inputs.csv');
 }
 
-function sum_inp_action_ok(){
+function sum_inp_button_ok(){
   sum_inp_dialog.dialog("close");
 }
 
-function sum_comp_action_export_csv(){
+function sum_comp_button_export_csv(){
   saveCSV(comp2CSV(),'components.csv');
 }
 
-function sum_comp_action_ok(){
+function sum_comp_button_ok(){
   sum_comp_dialog.dialog("close");
 }
 
-function sum_corr_action_export_csv(){
+function sum_corr_button_export_csv(){
   saveCSV(corr2CSV(),'correlations.csv');
 }
 
-function sum_corr_action_ok(){
+function sum_corr_button_ok(){
   sum_corr_dialog.dialog("close");
 }
 
-function sum_u_action_export_csv(){
+function sum_u_button_export_csv(){
   saveCSV(U2CSV(),'totu.csv');
 }
 
-function sum_u_action_ok(){
+function sum_u_button_ok(){
   sum_u_dialog.dialog("close");
 }
 
-function sum_umf_action_export_csv(){
+function sum_umf_button_export_csv(){
   saveCSV(UMF2CSV(),'umf.csv');
 }
 
-function sum_umf_action_ok(){
+function sum_umf_button_ok(){
   sum_umf_dialog.dialog("close");
 }
 
-function sum_upc_action_export_csv(){
+function sum_upc_button_export_csv(){
   saveCSV(UPC2CSV(),'upc.csv');
 }
 
-function sum_upc_action_ok(){
+function sum_upc_button_ok(){
   sum_upc_dialog.dialog("close");
 }
 
 
 
-function apply_ds_2_nom_action_ok(){
   ds_nom=$("input[name=ds]:checked").val();
+function apply_ds_2_nom_button_ok(){
   if(typeof ds_nom=="undefined"){
     $("body").append("<div id='warn' class='dialog' title='No Dataset Select'><p>No dataset selected. Please select a dataset before proceeding.</p></div>");
     $(function(){
@@ -2893,12 +2890,12 @@ function apply_ds_2_nom_action_ok(){
   }
 }
 
-function apply_ds_2_nom_action_cancel(){
+function apply_ds_2_nom_button_cancel(){
   ds_nom=-1;
   apply_ds_2_nom_dialog.dialog("close");
 }
 
-function apply_ds_2_rand_action_ok(){
+function apply_ds_2_rand_button_ok(){
   var n, mean;
   ds_rand=$("input[name=ds]:checked").val();
   if(typeof ds_rand=="undefined"){
@@ -2923,12 +2920,12 @@ function apply_ds_2_rand_action_ok(){
   }
 }
 
-function apply_ds_2_rand_action_cancel(){
+function apply_ds_2_rand_button_cancel(){
   ds_rand=-1;
   apply_ds_2_rand_dialog.dialog("close");
 }
 
-function apply_src_2_sys_action_ok(){
+function apply_src_2_sys_button_ok(){
   var i, n, mess="", src_select=[];
   $(".src").each(function(i){
     if(this.checked){
@@ -2952,7 +2949,7 @@ function apply_src_2_sys_action_ok(){
   apply_src_2_sys_dialog.dialog("close");
 }
 
-function apply_src_2_sys_action_cancel(){
+function apply_src_2_sys_button_cancel(){
   apply_src_2_sys_dialog.dialog("close");
 }
 
@@ -3009,55 +3006,55 @@ function calc_u_action_view_results(){
   calc_u_dialog.dialog("close");
 }
 
-function calc_u_action_add_components(){
+function calc_u_button_add_components(){
   $("#Components").click();
   calc_u_dialog.dialog("close");
 }
 
-function calc_u_action_add_inputs(){
+function calc_u_button_add_inputs(){
   $("#Inputs").click();
   calc_u_dialog.dialog("close");
 }
 
-function calc_u_action_ok(){
+function calc_u_button_ok(){
   calc_u_dialog.dialog("close");
 }
 
-function calc_umf_action_view_results(){
+function calc_umf_button_view_results(){
   $("#sum_umf").click();
   calc_umf_dialog.dialog("close");
 }
 
-function calc_umf_action_add_components(){
+function calc_umf_button_add_components(){
   $("#Components").click();
   calc_umf_dialog.dialog("close");
 }
 
-function calc_umf_action_add_inputs(){
+function calc_umf_button_add_inputs(){
   $("#Inputs").click();
   calc_umf_dialog.dialog("close");
 }
 
-function calc_umf_action_ok(){
+function calc_umf_button_ok(){
   calc_umf_dialog.dialog("close");
 }
 
-function calc_upc_action_view_results(){
+function calc_upc_button_view_results(){
   $("#sum_upc").click();
   calc_upc_dialog.dialog("close");
 }
 
-function calc_upc_action_add_components(){
+function calc_upc_button_add_components(){
   $("#Components").click();
   calc_upc_dialog.dialog("close");
 }
 
-function calc_upc_action_add_inputs(){
+function calc_upc_button_add_inputs(){
   $("#Inputs").click();
   calc_upc_dialog.dialog("close");
 }
 
-function calc_upc_action_ok(){
+function calc_upc_button_ok(){
   calc_upc_dialog.dialog("close");
 }
 
