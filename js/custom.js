@@ -1105,7 +1105,7 @@ function build_del_ds_dialog(){
     mess+=" If the dataset is deleted, the inputs will retain the nominal value, or random uncertainty value that the inputs currently have but will no longer be linked to the dataset.";
   }
   $("#del_ds_dialog").append("<p>"+mess+"</p>");
-  resize($("#del_ds"));
+  resize($("#del_ds_dialog"));
 }
 
 function build_del_src_dialog(){
@@ -1133,17 +1133,17 @@ function build_del_src_dialog(){
     mess+=" If the source is deleted, the inputs will no longer have the systematic uncertainty source which may result in the inputs having a systematic uncertainty value of zero.";
   }
   $("#del_src_dialog").append("<p>"+mess+"</p>");
-  resize($("#del_src"));
+  resize($("#del_src_dialog"));
 }
 
 function build_del_inp_dialog(){
   $("#del_inp_dialog").append("<p>Are you sure you want to delete input "+(inp_del+1)+" ("+inputs[inp_del].data("name")+")?</p>");
-  resize($("#del_inp"));
+  resize($("#del_inp_dialog"));
 }
 
 function build_del_comp_dialog(){
   $("#del_comp_dialog").append("<p>Are you sure you want to delete component "+(comp_del+1)+" ("+components[comp_del].data("name")+")?</p>");
-  resize($("#del_comp"));
+  resize($("#del_comp_dialog"));
 }
 
 

@@ -670,7 +670,32 @@ window.onload=function(){
   window.addEventListener("resize", function() {
     wheel({wheelDelta: 120, clientX: 0, clientY: 0});
     wheel({wheelDelta: -120, clientX: 0, clientY: 0});
-  })
+    resize($("#ds_dialog"));
+    resize($("#src_dialog"));
+    resize($("#inp_dialog"));
+    resize($("#comp_dialog"));
+    resize($("#del_ds_dialog"));
+    resize($("#del_src_dialog"));
+    resize($("#del_inp_dialog"));
+    resize($("#del_comp_dialog"));
+    resize($("#apply_ds_2_nom_dialog"));
+    resize($("#apply_ds_2_rand_dialog"));
+    resize($("#apply_src_2_sys_dialog"));
+    resize($("#sum_ds_dialog"));
+    resize($("#sum_src_dialog"));
+    resize($("#sum_inp_dialog"));
+    resize($("#sum_comp_dialog"));
+    resize($("#sum_corr_dialog"));
+    resize($("#sum_u_dialog"));
+    resize($("#sum_umf_dialog"));
+    resize($("#sum_upc_dialog"));
+    resize($("#calc_u_dialog"));
+    resize($("#calc_umf_dialog"));
+    resize($("#calc_upc_dialog"));
+    resize($("#new_dialog"));
+    resize($("#save_dialog"));
+    resize($("#exit_dialog"));
+  });
   window.addEventListener('DOMMouseScroll', wheel, false);
   window.onmousewheel=document.onmousewheel=wheel;
 };
