@@ -2862,9 +2862,8 @@ function sum_upc_button_ok(){
 }
 
 
-
-  ds_nom=$("input[name=ds]:checked").val();
 function apply_ds_2_nom_button_ok(){
+  ds_nom=Number($("input[name=ds]:checked").val());
   if(typeof ds_nom=="undefined"){
     $("body").append("<div id='warn' class='dialog' title='No Dataset Select'><p>No dataset selected. Please select a dataset before proceeding.</p></div>");
     $(function(){
@@ -2892,7 +2891,7 @@ function apply_ds_2_nom_button_cancel(){
 
 function apply_ds_2_rand_button_ok(){
   var n, mean;
-  ds_rand=$("input[name=ds]:checked").val();
+  ds_rand=Number($("input[name=ds]:checked").val());
   if(typeof ds_rand=="undefined"){
     $("body").append("<div id='warn' class='dialog' title='No Dataset Select'><p>No dataset selected. Please select a dataset before proceeding.</p></div>");
     $(function(){
