@@ -1647,8 +1647,7 @@ function comp_button_ok(){
 }
 
 
-
-function add_ds_action_add_dataset(){
+function add_ds_button_add_dataset(){
 
   var warn=[], warn_str, ws, i;
 
