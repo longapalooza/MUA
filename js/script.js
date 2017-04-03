@@ -1,4 +1,3 @@
-
 var inputs=[], components=[], input_labels=[], component_labels=[],
     connections=[], datasets=[], sources=[], src_sys=[], J=[], Nu=[], U=[],
     UMF=[], UPC=[], W=[], zoom=1, startX, startY, dX, dY, mousedown=false,
@@ -8,11 +7,14 @@ var inputs=[], components=[], input_labels=[], component_labels=[],
 
 var flags={info:false, before:false, after:false, cor:false, J:false, Nu:false,
     U:false, UMF:false, UPC:false, W:false};
-
+// create the Raphaeljs paper and set the viewbox to all zooming
 var r=Raphael("holder", "100%", "100%");
 var viewbox=[0, 0, $("#holder").width(), $("#holder").height()];
 r.setViewBox(0, 0, $("#holder").width(), $("#holder").height());
 
+//****************************** Action Dialogs ******************************//
+
+// ds_dialog is the dialog handle for the dataset dialog
 var ds_dialog=$("#ds_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -24,6 +26,7 @@ var ds_dialog=$("#ds_dialog").dialog({
   close: empty_dialog
 });
 
+// src_dialog is the dialog handle for the source dialog
 var src_dialog=$("#src_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -35,6 +38,7 @@ var src_dialog=$("#src_dialog").dialog({
   close: empty_dialog
 });
 
+// inp_dialog is the dialog handle for the input dialog
 var inp_dialog=$("#inp_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -46,6 +50,7 @@ var inp_dialog=$("#inp_dialog").dialog({
   close: empty_dialog
 });
 
+// comp_dialog is the dialog handle for the component dialog
 var comp_dialog=$("#comp_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -57,8 +62,9 @@ var comp_dialog=$("#comp_dialog").dialog({
   close: empty_dialog
 });
 
+//******************************* Add Dialogs ********************************//
 
-
+// add_ds_dialog is the dialog handle for the add dataset dialog
 var add_ds_dialog=$("#add_ds_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -73,6 +79,7 @@ var add_ds_dialog=$("#add_ds_dialog").dialog({
   close: empty_dialog
 });
 
+// add_src_dialog is the dialog handle for the add source dialog
 var add_src_dialog=$("#add_src_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -87,6 +94,7 @@ var add_src_dialog=$("#add_src_dialog").dialog({
   close: empty_dialog
 });
 
+// add_inp_dialog is the dialog handle for the add input dialog
 var add_inp_dialog=$("#add_inp_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -101,6 +109,7 @@ var add_inp_dialog=$("#add_inp_dialog").dialog({
   close: empty_dialog
 });
 
+// add_comp_dialog is the dialog handle for the add component dialog
 var add_comp_dialog=$("#add_comp_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -115,8 +124,9 @@ var add_comp_dialog=$("#add_comp_dialog").dialog({
   close: empty_dialog
 });
 
+//******************************* Edit Dialogs *******************************//
 
-
+// edit_ds_dialog is the dialog handle for the edit dataset dialog
 var edit_ds_dialog=$("#edit_ds_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -131,6 +141,7 @@ var edit_ds_dialog=$("#edit_ds_dialog").dialog({
   close: empty_dialog
 });
 
+// edit_src_dialog is the dialog handle for the edit source dialog
 var edit_src_dialog=$("#edit_src_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -145,6 +156,7 @@ var edit_src_dialog=$("#edit_src_dialog").dialog({
   close: empty_dialog
 });
 
+// edit_inp_dialog is the dialog handle for the edit input dialog
 var edit_inp_dialog=$("#edit_inp_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -159,6 +171,7 @@ var edit_inp_dialog=$("#edit_inp_dialog").dialog({
   close: empty_dialog
 });
 
+// edit_comp_dialog is the dialog handle for the edit component dialog
 var edit_comp_dialog=$("#edit_comp_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -173,8 +186,9 @@ var edit_comp_dialog=$("#edit_comp_dialog").dialog({
   close: empty_dialog
 });
 
+//****************************** Delete Dialogs ******************************//
 
-
+// del_ds_dialog is the dialog handle for the delete dataset dialog
 var del_ds_dialog=$("#del_ds_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -189,6 +203,7 @@ var del_ds_dialog=$("#del_ds_dialog").dialog({
   close: empty_dialog
 });
 
+// del_src_dialog is the dialog handle for the delete source dialog
 var del_src_dialog=$("#del_src_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -203,6 +218,7 @@ var del_src_dialog=$("#del_src_dialog").dialog({
   close: empty_dialog
 });
 
+// del_inp_dialog is the dialog handle for the delete input dialog
 var del_inp_dialog=$("#del_inp_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -218,6 +234,7 @@ var del_inp_dialog=$("#del_inp_dialog").dialog({
   close: empty_dialog
 });
 
+// del_comp_dialog is the dialog handle for the delete component dialog
 var del_comp_dialog=$("#del_comp_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -233,8 +250,9 @@ var del_comp_dialog=$("#del_comp_dialog").dialog({
   close: empty_dialog
 });
 
+//***************************** Summary Dialogs ******************************//
 
-
+// sum_ds_dialog is the dialog handle for the dataset summary dialog
 var sum_ds_dialog=$("#sum_ds_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -249,6 +267,7 @@ var sum_ds_dialog=$("#sum_ds_dialog").dialog({
   close: empty_dialog
 });
 
+// sum_src_dialog is the dialog handle for the source summary dialog
 var sum_src_dialog=$("#sum_src_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -263,6 +282,7 @@ var sum_src_dialog=$("#sum_src_dialog").dialog({
   close: empty_dialog
 });
 
+// sum_inp_dialog is the dialog handle for the input summary dialog
 var sum_inp_dialog=$("#sum_inp_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -277,6 +297,7 @@ var sum_inp_dialog=$("#sum_inp_dialog").dialog({
   close: empty_dialog
 });
 
+// sum_comp_dialog is the dialog handle for the component summary dialog
 var sum_comp_dialog=$("#sum_comp_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -291,6 +312,7 @@ var sum_comp_dialog=$("#sum_comp_dialog").dialog({
   close: empty_dialog
 });
 
+// sum_corr_dialog is the dialog handle for the correlation summary dialog
 var sum_corr_dialog=$("#sum_corr_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -305,6 +327,8 @@ var sum_corr_dialog=$("#sum_corr_dialog").dialog({
   close: empty_dialog
 });
 
+// sum_u_dialog is the dialog handle for the component total uncertainty
+// summary dialog
 var sum_u_dialog=$("#sum_u_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -316,8 +340,10 @@ var sum_u_dialog=$("#sum_u_dialog").dialog({
     Ok: sum_u_button_ok
   },
   close: empty_dialog
-})
+});
 
+// sum_umf_dialog is the dialog handle for the uncertainty magnification factor
+// summary dialog
 var sum_umf_dialog=$("#sum_umf_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -329,8 +355,10 @@ var sum_umf_dialog=$("#sum_umf_dialog").dialog({
     Ok: sum_umf_button_ok
   },
   close: empty_dialog
-})
+});
 
+// sum_upc_dialog is the dialog handle for the uncertainty percent contribution
+// summary dialog
 var sum_upc_dialog=$("#sum_upc_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -342,10 +370,12 @@ var sum_upc_dialog=$("#sum_upc_dialog").dialog({
     Ok: sum_upc_button_ok
   },
   close: empty_dialog
-})
+});
 
+//****************************** Apply Dialogs *******************************//
 
-
+// apply_ds_2_nom_dialog is the dialog handle for applying a dataset to a input
+// nominal value dialog
 var apply_ds_2_nom_dialog=$("#apply_ds_2_nom_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -360,6 +390,8 @@ var apply_ds_2_nom_dialog=$("#apply_ds_2_nom_dialog").dialog({
   close: empty_dialog
 });
 
+// apply_ds_2_rand_dialog is the dialog handle for applying a dataset to a input
+// random uncertainty value dialog
 var apply_ds_2_rand_dialog=$("#apply_ds_2_rand_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -371,10 +403,11 @@ var apply_ds_2_rand_dialog=$("#apply_ds_2_rand_dialog").dialog({
     Ok: apply_ds_2_rand_button_ok,
     Cancel: apply_ds_2_rand_button_cancel
   },
-
   close: empty_dialog
 });
 
+// apply_src_2_sys_dialog is the dialog handle for applying a source to a input
+// systematic uncertainty source dialog
 var apply_src_2_sys_dialog=$("#apply_src_2_sys_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -389,8 +422,10 @@ var apply_src_2_sys_dialog=$("#apply_src_2_sys_dialog").dialog({
   close: empty_dialog
 });
 
+//**************************** Calculate Dialogs *****************************//
 
-
+// calc_u_dialog is the dialog handle for the calculating component total
+// uncertainty dialog
 var calc_u_dialog=$("#calc_u_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -401,6 +436,8 @@ var calc_u_dialog=$("#calc_u_dialog").dialog({
   close: empty_dialog
 });
 
+// calc_umf_dialog is the dialog handle for the calculating uncertainty
+// magnification factor dialog
 var calc_umf_dialog=$("#calc_umf_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -411,6 +448,8 @@ var calc_umf_dialog=$("#calc_umf_dialog").dialog({
   close: empty_dialog
 });
 
+// calc_upc_dialog is the dialog handle for the calculating uncertainty percent
+// contribution dialog
 var calc_upc_dialog=$("#calc_upc_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -419,10 +458,11 @@ var calc_upc_dialog=$("#calc_upc_dialog").dialog({
   resizable: false,
   open: build_calc_upc_dialog,
   close: empty_dialog
-})
+});
 
+//******************************* File Dialogs *******************************//
 
-
+// exit_dialog is the dialog handle for the exit dialog
 var exit_dialog=$("#exit_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -437,6 +477,7 @@ var exit_dialog=$("#exit_dialog").dialog({
   close: empty_dialog
 });
 
+// new_dialog is the dialog handle for the new dialog
 var new_dialog=$("#new_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -449,8 +490,9 @@ var new_dialog=$("#new_dialog").dialog({
     No: new_button_no
   },
   close: empty_dialog
-})
+});
 
+// save_dialog is the dialog handle for the save dialog
 var save_dialog=$("#save_dialog").dialog({
   autoOpen: false,
   modal: true,
@@ -463,19 +505,23 @@ var save_dialog=$("#save_dialog").dialog({
     Cancel: save_button_cancel
   },
   close: empty_dialog
-})
+});
 
+// once the page loads
 window.onload=function(){
 
+  // build the toolbar
   build_toolbar();
 
+//*************************** Action Click Events ****************************//
 
-
+  // click event for dataset action
   $("#Datasets").click(function(){
     ds_dialog.dialog("open");
     event.preventDefault();
   });
 
+  // click event for source action
   $("#Sources").click(function(){
     src_dialog.dialog("open");
     $("#add_src").click(function(){
@@ -484,6 +530,7 @@ window.onload=function(){
     event.preventDefault();
   });
 
+  // click event for input action
   $("#Inputs").click(function(){
     inp_dialog.dialog("open");
     $("#add_inp").click(function(){
@@ -492,6 +539,7 @@ window.onload=function(){
     event.preventDefault();
   });
 
+  // click event for component action
   $("#Components").click(function(){
     comp_dialog.dialog("open");
     $("#add_comp").click(function(){
@@ -500,167 +548,208 @@ window.onload=function(){
     event.preventDefault();
   });
 
+//*************************** Summary Click Events ***************************//
 
-
+  // click event for dataset summary
   $("#sum_ds").click(function(){
     sum_ds_dialog.dialog("open");
     event.preventDefault();
   });
 
+  // click event for source summary
   $("#sum_src").click(function(){
     sum_src_dialog.dialog("open");
     event.preventDefault();
   });
 
+  // click event for input summary
   $("#sum_inp").click(function(){
     sum_inp_dialog.dialog("open");
     event.preventDefault();
   });
 
+  // click event for component summary
   $("#sum_comp").click(function(){
     sum_comp_dialog.dialog("open");
     event.preventDefault();
   });
 
+  // click event for correlation summary
   $("#sum_corr").click(function(){
     sum_corr_dialog.dialog("open");
     event.preventDefault();
   });
 
+//************************** Calculate Click Events **************************//
 
-
+  // click event for calculate component total uncertainty
   $("#calc_u").click(function(){
     calc_u_dialog.dialog("open");
     event.preventDefault();
   });
 
+  // click event for calculate uncertainty magnification factor
   $("#calc_umf").click(function(){
     calc_umf_dialog.dialog("open");
     event.preventDefault();
   });
 
+  // click event for calculate uncertainty percent contribution
   $("#calc_upc").click(function(){
     calc_upc_dialog.dialog("open");
     event.preventDefault();
-  })
+  });
 
+//**************************** File Click Events *****************************//
 
-
+  // click event for exit
   $("#exit").click(function(){
     exit_dialog.dialog("open");
     event.preventDefault();
-  })
+  });
 
-  $("#holder").mousedown(function(event){
-    if (r.getElementByPoint(event.pageX, event.pageY )!=null) {return;}
-    mousedown=true;
-    startX=event.pageX;
-    startY=event.pageY;
-  })
-
-  $("#holder").mousemove(function(event){
-    if (mousedown==false) {return;}
-    dX=(startX-event.pageX)*(viewbox[2]/$("#holder").width());
-    dY=(startY-event.pageY)*(viewbox[3]/$("#holder").height());
-    r.setViewBox(viewbox[0]+dX, viewbox[1]+dY, viewbox[2], viewbox[3]);
-  })
-
-  $("#holder").mouseup(function(){
-    if (mousedown==false) return;
-    viewbox[0]+=dX;
-    viewbox[1]+=dY;
-    mousedown=false;
-  })
-
+  // click event for new
   $("#new").click(function(){
     new_dialog.dialog("open");
     event.preventDefault();
-  })
+  });
 
+  // click event for open
   $("#open").click(function(){
-    $("body").append("<input id='file_open' type='file' accept='.ujs' style='display:none;'>");
+    // add input tag to body
+    $("body").append("<input id='file_open' type='file' accept='.ujs' style=\
+      'display:none;'>");
+    // trigger click of input tag
     $("#file_open").trigger('click');
-    document.getElementById('file_open').addEventListener('change', function(event){
+    // get file when ready
+    document.getElementById('file_open').addEventListener('change',
+      function(event){
+      // process file
       var files=event.target.files;
       var file=files[0];
       var reader=new FileReader();
       reader.onload=function(){
+        // build system from file
         build_canvas(JSON.parse(this.result));
+        // set previous zoom and view
         wheel({wheelDelta: 120, clientX: 0, clientY: 0});
         wheel({wheelDelta: -120, clientX: 0, clientY: 0});
+        // remove file open input tag
         $("#file_open").remove();
-        $("#u_sum").remove();
-        $("#umf_sum").remove();
-        $("#upc_sum").remove();
+        // remove summaries
+        $("#sum_u").remove();
+        $("#sum_umf").remove();
+        $("#sum_upc").remove();
       }
+      // empty canvas before file processed
       empty_canvas();
+      // read file as text
       reader.readAsText(file);
+      // remove file open input tag
       $("#file_open").remove();
     }, false);
     event.preventDefault();
-  })
+  });
 
+  // click event for save
   $("#save").click(function(){
     save_dialog.dialog("open");
     event.preventDefault();
-  })
+  });
 
+//******************************* Mouse Events *******************************//
+
+  // mousedown event
+  $("#holder").mousedown(function(event){
+    // if mousedown not on canvas, return null
+    if(r.getElementByPoint(event.pageX, event.pageY)!=null){return;}
+    // set mousedown to true
+    mousedown=true;
+    // set start x and y
+    startX=event.pageX;
+    startY=event.pageY;
+  });
+
+  // mousemove event
+  $("#holder").mousemove(function(event){
+    // if mousedown is not set, return null
+    if(!mousedown){return;}
+    // get how much moved in the x and y direction
+    dX=(startX-event.pageX)*(viewbox[2]/$("#holder").width());
+    dY=(startY-event.pageY)*(viewbox[3]/$("#holder").height());
+    // set viewbox to change by amount moved
+    r.setViewBox(viewbox[0]+dX, viewbox[1]+dY, viewbox[2], viewbox[3]);
+  });
+
+  // mouseup event
+  $("#holder").mouseup(function(){
+    // if mousedown is not set, return null
+    if(!mousedown){return};
+    // change viewbox x and y by amount moved
+    viewbox[0]+=dX;
+    viewbox[1]+=dY;
+    // set mousedown to false
+    mousedown=false;
+  });
+
+//************************** Toolbar Toggle Events ***************************//
+
+  // toggle toolbar click event
   $("#toggle_toolbar").click(function(){
+    // if toolbar is hidden on click
     if($("#toggle_toolbar").html()=="View Toolbar"){
+      // build toolbar and show hide toolbar
       build_toolbar();
       $("#toggle_toolbar").html("Hide Toolbar");
+    // if toolbar is not hidden on click
     } else {
+      // remove toolbar and show view toolbar
       empty_toolbar();
       $("#toggle_toolbar").html("View Toolbar");
     }
     event.preventDefault();
-  })
+  });
 
+  // toggle element info view click event
   $("#toggle_tip").click(function(){
-    if($("#toggle_tip").html()=="View Element Info"){
-      $("#tb_tip").click();
-    } else {
-      $("#tb_tip").click();
-    }
+    $("#tb_tip").click();
     event.preventDefault();
-  })
+  });
 
+  // toggle backward dependencies view click event
   $("#toggle_before").click(function(){
-    if($("#toggle_before").html()=="View Dependency View (Green)"){
-      $("#tb_before").click();
-    } else {
-      $("#tb_before").click();
-    }
+    $("#tb_before").click();
     event.preventDefault();
-  })
+  });
 
+  // toggle forward dependencies view click event
   $("#toggle_after").click(function(){
-    if($("#toggle_after").html()=="View Dependency View (Red)"){
-      $("#tb_after").click();
-    } else {
-      $("#tb_after").click();
-    }
+    $("#tb_after").click();
     event.preventDefault();
-  })
+  });
 
+  // toggle correlation view click event
   $("#toggle_correlation").click(function(){
-    if($("#toggle_correlation").html()=="View Correlation View (Blue)"){
-      $("#tb_cor").click();
-    } else {
-      $("#tb_cor").click();
-    }
+    $("#tb_cor").click();
     event.preventDefault();
-  })
+  });
 
-  $(document).keypress(function(event) {
-      if(event.which == 13) {
-          event.preventDefault();
-      }
-  })
+//***************************** Keypress Events ******************************//
 
+  // keypress event
+  $(document).keypress(function(event){
+    // enter key is pressed, preventDefault
+    if(event.which==13){event.preventDefault();}
+  });
+
+//****************************** Window Events *******************************//
+
+  // window resize event
   window.addEventListener("resize", function() {
+    // reset wheel values
     wheel({wheelDelta: 120, clientX: 0, clientY: 0});
     wheel({wheelDelta: -120, clientX: 0, clientY: 0});
+    // resize any open dialogs
     resize($("#ds_dialog"));
     resize($("#src_dialog"));
     resize($("#inp_dialog"));
