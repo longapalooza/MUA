@@ -1,26 +1,17 @@
 
 var inputs=[], components=[], input_labels=[], component_labels=[],
-    connections=[], J=[], Nu=[], U=[], UMF=[], UPC=[], W=[], zoom=1, startX,
-    startY, dX, dY, mousedown=false;
-
-var datasets=[], sources=[], data_str, ds_valid=false, ds_edit, src_edit,
-    inp_edit=-1, comp_edit=-1, ds_nom=-1, ds_rand=-1, src_sys=[], ds_del=-1,
-    src_del=-1, inp_del=-1, comp_del=-1;
+    connections=[], datasets=[], sources=[], src_sys=[], J=[], Nu=[], U=[],
+    UMF=[], UPC=[], W=[], zoom=1, startX, startY, dX, dY, mousedown=false,
+    data_str, ds_valid=false, ds_edit=-1, src_edit=-1, inp_edit=-1,
+    comp_edit=-1, ds_nom=-1, ds_rand=-1, ds_del=-1, src_del=-1, inp_del=-1,
+    comp_del=-1;
 
 var flags={info:false, before:false, after:false, cor:false, J:false, Nu:false,
     U:false, UMF:false, UPC:false, W:false};
 
 var r=Raphael("holder", "100%", "100%");
-
 var viewbox=[0, 0, $("#holder").width(), $("#holder").height()];
-
 r.setViewBox(0, 0, $("#holder").width(), $("#holder").height());
-
-
-
-
-
-
 
 var ds_dialog=$("#ds_dialog").dialog({
   autoOpen: false,
