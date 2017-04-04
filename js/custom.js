@@ -775,7 +775,7 @@ function build_inp_dialog(){
     $("#inp_dialog form table tbody tr:last-child").append("No inputs have been\
     added yet. Please add an input.");
   // if inputs have been added
-  } else{
+  } else {
     // add column headers for input info
     $("#inp_dialog form table tbody tr:last-child").append("<th style='padding:\
       5px; text-decoration: underline; "+style+"'>id</th>");
@@ -830,7 +830,7 @@ function build_inp_dialog(){
           ")</td>");
       // if random uncertainty value does not come from dataset, simply add
       // random uncertainty value
-      } else{
+      } else {
         $("#inp_dialog form table tbody tr:last-child").append("<td style=\
           'word-wrap: break-word; "+style+"'>"+engFormat(Number(
           inputs[i1].data("random")))+"</td>");
@@ -2925,7 +2925,6 @@ function add_inp_button_add_input(){
       } else {
         ow=oh;
       }
-      console.log(src_sys);
       // add input to canvas
       r.addobj({type:"ellipse", x:hw/2-ow/2, y:hh/2-oh/2, w:ow, h:oh, name:name,
         variable:variable, label:label, nominal:nominal, nom_ds:ds_nom,
@@ -2957,7 +2956,7 @@ function add_inp_button_add_input(){
     // if variable is not valid, warn
     } else {
       $("body").append("<div id='warn' class='dialog' title='Warning'><p>Input\
-        variable must be unique.</p></div>");
+        variable must be unique or not a built in constant.</p></div>");
       $(function(){
         $("#warn").dialog({
           modal: true,
@@ -3150,7 +3149,8 @@ function add_comp_button_add_component(){
     // if variable is not valid
     } else {
       $("body").append("<div id='warn' class='dialog' title='Warning'><p>\
-        Component variable must be unique.</p></div>");
+        Component variable must be unique or not a built in constant.</p>\
+        </div>");
       $(function(){
         $("#warn").dialog({
           modal: true,
@@ -3525,7 +3525,7 @@ function edit_inp_button_edit_input(){
     // if variable is not valid, warn
     } else {
       $("body").append("<div id='warn' class='dialog' title='Warning'><p>Input \
-        variable must be unique.</p></div>");
+        variable must be unique or not a built in constant.</p></div>");
       $(function(){
         $("#warn").dialog({
           modal: true,
@@ -3689,7 +3689,8 @@ function edit_comp_button_edit_component(){
     // if variable is not valid, warn
     } else {
       $("body").append("<div id='warn' class='dialog' title='Warning'><p>\
-        Component variable must be unique.</p></div>");
+        Component variable must be unique or not a built in constant.</p>\
+        </div>");
       $(function(){
         $("#warn").dialog({
           modal: true,
@@ -5227,7 +5228,11 @@ function replace_var_expr(var_from, var_to, expr){
 
 // valid_variable checks if variable is not already used
 function valid_variable(inputs, components, variable){
-  var i, il=inputs.length, cl=components.length;
+  var i, il=inputs.length, cl=components.length, conl;
+  // constants that not should be used
+  var constants=['e','E','i','Infinity','LN2','LN10','LOG2E','LOG10E','phi',
+                 'pi','PI','SQRT1_2','SQRT2','tau','version'];
+  conl=constants.length;
   // for each input, check if variable has been used
   for(i=0; i<il; i++){
     if(inputs[i].data("variable")==variable){return false;}
@@ -5235,6 +5240,10 @@ function valid_variable(inputs, components, variable){
   // for each component, check if variable has been used
   for(i=0; i<cl; i++){
     if(components[i].data("variable")==variable){return false;}
+  }
+  // for each constant, check if variable is the same
+  for(i=0; i<conl; i++){
+    if(constants[i]==variable){return false;}
   }
   return true;
 }
