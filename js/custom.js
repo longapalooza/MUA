@@ -945,6 +945,8 @@ function build_comp_dialog(){
     $("#comp_dialog form table tbody tr:last-child").append("<th style=\
       'padding: 5px; text-decoration: underline; "+style+"'>Label</th>");
     $("#comp_dialog form table tbody tr:last-child").append("<th style=\
+      'padding: 5px; text-decoration: underline; "+style+"'>Function</th>");
+    $("#comp_dialog form table tbody tr:last-child").append("<th style=\
       'padding: 5px; text-decoration: underline; "+style+"'>Nominal</th>");
     $("#comp_dialog form table tbody tr:last-child").append("<th style=\
       'padding: 5px; text-decoration: underline; "+style+"'></th>");
@@ -964,6 +966,9 @@ function build_comp_dialog(){
         "</td>");
       $("#comp_dialog form table tbody tr:last-child").append("<td style=\
         'word-wrap: break-word; "+style+"'>"+components[i1].data("label")+
+        "</td>");
+      $("#comp_dialog form table tbody tr:last-child").append("<td style=\
+        'word-wrap: break-word; "+style+"'>"+components[i1].data("fun")+
         "</td>");
       $("#comp_dialog form table tbody tr:last-child").append("<td style=\
         'word-wrap: break-word; "+style+"'>"+engFormat(
@@ -1933,8 +1938,8 @@ function build_sum_comp_dialog(){
       $("#sum_comp_dialog table tbody tr:last-child").append("<td style=\
         'word-wrap: break-word; "+style+"'>"+components[i].data("fun")+"</td>");
       $("#sum_comp_dialog table tbody tr:last-child").append("<td style=\
-        'word-wrap: break-word; "+style+"'>"+components[i].data("nominal")+
-        "</td>");
+        'word-wrap: break-word; "+style+"'>"+engFormat(
+        components[i].data("nominal"))+"</td>");
     }
   }
   // resize dialog to fit content
