@@ -4450,7 +4450,7 @@ function ns_nc(){
       // if 2D array of systematic uncertainty sources is nonzero
       if(nsm[i2][i1]!=0){count++;}
       // if two values of 2D array are nonzero, end for loop
-      if(count>1){i2=srcl;}
+      if(count>1){i2=il;}
     }
     // if only one nonzero, value is uncorrelated source
     if(count==1){
