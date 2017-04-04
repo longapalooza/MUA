@@ -230,7 +230,7 @@ Raphael.fn.editobj=function(){
 
 // hoverIn is the hover in method for objects, sets colors
 Raphael.fn.hoverIn=function(){
-  var tiptxt, i1, i2, id, nc=ns_nc().nc, nl=inputs.length;
+  var tiptxt, i1, i2, id, nc=ns_nc().nc, il=inputs.length;
   // if the object is not a label
   if(this.type!='text'){
     // build element info text
@@ -256,7 +256,7 @@ Raphael.fn.hoverIn=function(){
           // input
           if(nc[i1][id]!=0){
             // loop throgh all inputs
-            for(i2=0; i2<nl; i2++){
+            for(i2=0; i2<il; i2++){
               // if value from the correlation matrix is nonzero
               if(nc[i1][i2]!=0){
                 // set input color to blue
@@ -325,7 +325,7 @@ Raphael.fn.hoverIn=function(){
           // input
           if(nc[i1][id]!=0){
             // loop throgh all inputs
-            for(i2=0; i2<ns; i2++){
+            for(i2=0; i2<il; i2++){
               // if value from the correlation matrix is nonzero
               if(nc[i1][i2]!=0 && i2!=id){
                 // set input color to blue
@@ -686,7 +686,7 @@ function build_ds_dialog(){
 
 // build_src_dialog builds the dialog content for the source dialog
 function build_src_dialog(){
-  var i, srcl=source.length, style;
+  var i, srcl=sources.length, style;
   // define common css style
   style="text-align: center; max-width: 300px; vertical-align: text-top;";
   // add form tags
@@ -2669,11 +2669,21 @@ function empty_dialog(){
   if($(this).attr("id")=="del_ds_dialog"){ds_del=-1;}
   if($(this).attr("id")=="edit_src_dialog"){src_edit=-1;}
   if($(this).attr("id")=="del_src_dialog"){src_del=-1;}
-  if($(this).attr("id")=="edit_inp_dialog"){inp_edit=-1;}
+  if($(this).attr("id")=="add_inp_dialog"){
+    ds_nom=-1;
+    ds_rand=-1;
+    src_sys=[];
+  }
+  if($(this).attr("id")=="edit_inp_dialog"){
+    inp_edit=-1;
+    ds_nom=-1;
+    ds_rand=-1;
+    src_sys=[];
+  }
   if($(this).attr("id")=="del_inp_dialog"){inp_del=-1;}
-  if($(this).attr("id")=="apply_ds_2_nom_dialog"){ds_nom=-1;}
-  if($(this).attr("id")=="apply_ds_2_rand_dialog"){ds_rand=-1;}
-  if($(this).attr("id")=="apply_src_2_sys_dialog"){src_sys=[];}
+  //if($(this).attr("id")=="apply_ds_2_nom_dialog"){ds_nom=-1;}
+  //if($(this).attr("id")=="apply_ds_2_rand_dialog"){ds_rand=-1;}
+  //if($(this).attr("id")=="apply_src_2_sys_dialog"){src_sys=[];}
   if($(this).attr("id")=="edit_comp_dialog"){comp_edit=-1;}
   if($(this).attr("id")=="del_comp_dialog"){comp_del=-1;}
   $(this).empty();
@@ -2915,6 +2925,7 @@ function add_inp_button_add_input(){
       } else {
         ow=oh;
       }
+      console.log(src_sys);
       // add input to canvas
       r.addobj({type:"ellipse", x:hw/2-ow/2, y:hh/2-oh/2, w:ow, h:oh, name:name,
         variable:variable, label:label, nominal:nominal, nom_ds:ds_nom,
@@ -4438,7 +4449,7 @@ function ns_nc(){
       // if 2D array of systematic uncertainty sources is nonzero
       if(nsm[i2][i1]!=0){count++;}
       // if two values of 2D array are nonzero, end for loop
-      if(count>1){i2=ns;}
+      if(count>1){i2=srcl;}
     }
     // if only one nonzero, value is uncorrelated source
     if(count==1){
@@ -4456,7 +4467,7 @@ function ns_nc(){
     // for each input
     for(i2=0; i2<il; i2++){
       // if 2D array of systematic uncertainty sources is nonzero
-      if(nsm[i2][i1]!=0){counter++;}
+      if(nsm[i2][i1]!=0){count++;}
     }
     // if two values of 2D array are non zero, value is correlated source
     if(count>1){
@@ -4465,9 +4476,9 @@ function ns_nc(){
       cl=c.length;
       for(i2=0; i2<il; i2++){
         if(nsm[i2][i1]!=0){
-          c[cs-1].push(nsm[i2][i1]);
+          c[cl-1].push(nsm[i2][i1]);
         } else {
-          c[cs-1].push(0);
+          c[cl-1].push(0);
         }
       }
     }
