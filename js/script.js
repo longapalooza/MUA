@@ -685,9 +685,9 @@ window.onload=function(){
   $("#holder").mouseup(function(){
     // if mousedown is not set, return null
     if(!mousedown){return};
-    // change viewbox x and y by amount moved
-    viewbox[0]+=dX;
-    viewbox[1]+=dY;
+    // if dX and dY are numbers, change viewbox x and y by amount moved
+    if(!isNaN(dX)){viewbox[0]+=dX;}
+    if(!isNaN(dY)){viewbox[1]+=dY;}
     // set mousedown to false
     mousedown=false;
   });
@@ -745,7 +745,7 @@ window.onload=function(){
 //****************************** Window Events *******************************//
 
   // window resize event
-  window.addEventListener("resize", function() {
+  window.addEventListener("resize", function(){
     // reset wheel values
     wheel({wheelDelta: 120, clientX: 0, clientY: 0});
     wheel({wheelDelta: -120, clientX: 0, clientY: 0});
