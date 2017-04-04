@@ -1723,10 +1723,22 @@ function build_sum_ds_dialog(){
   $("#sum_ds_dialog").append("<table></table>");
   $("#sum_ds_dialog table").append("<tbody></tbody>");
   $("#sum_ds_dialog table tbody").append("<tr></tr>");
-  // if no datasets have been added yet, state no datasets added yet
+  // if no datasets have been added yet, warn no datasets added yet
   if(dsl==0){
-    $("#sum_ds_dialog table tbody tr:last-child").append("No datasets have been\
-      added yet.");
+    $("body").append("<div id='warn' class='dialog' title='Dataset \
+      Summary'><p>No datasets have been added yet.</p></div>");
+    $(function(){
+      $("#warn").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $(this).dialog("close");
+            $("#warn").remove();
+          }
+        }
+      });
+    });
+    sum_ds_dialog.dialog("close");
   // if datasets have been added
   } else {
     // add column headers for datasets info
@@ -1773,10 +1785,22 @@ function build_sum_src_dialog(){
   $("#sum_src_dialog").append("<table></table>");
   $("#sum_src_dialog table").append("<tbody></tbody>");
   $("#sum_src_dialog table tbody").append("<tr></tr>");
-  // if no sources have been added yet, state no sources added yet
+  // if no sources have been added yet, warn no sources added yet
   if(srcl==0){
-    $("#sum_src_dialog table tbody tr:last-child").append("No sources have been\
-      added yet.");
+    $("body").append("<div id='warn' class='dialog' title='Source \
+      Summary'><p>No sources have been added yet.</p></div>");
+    $(function(){
+      $("#warn").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $(this).dialog("close");
+            $("#warn").remove();
+          }
+        }
+      });
+    });
+    sum_src_dialog.dialog("close");
   // if sources have been added
   } else {
     // add column headers for sources info
@@ -1811,10 +1835,22 @@ function build_sum_inp_dialog(){
   $("#sum_inp_dialog").append("<table></table>");
   $("#sum_inp_dialog table").append("<tbody></tbody>");
   $("#sum_inp_dialog table tbody").append("<tr></tr>");
-  // if no inputs have been added yet, state no inputs added yet
+  // if no inputs have been added yet, warn no inputs added yet
   if(nl==0){
-    $("#sum_inp_dialog table tbody tr:last-child").append("No inputs have been\
-      added yet.");
+    $("body").append("<div id='warn' class='dialog' title='Input \
+      Summary'><p>No inputs have been added yet.</p></div>");
+    $(function(){
+      $("#warn").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $(this).dialog("close");
+            $("#warn").remove();
+          }
+        }
+      });
+    });
+    sum_inp_dialog.dialog("close");
   // if inputs have been added
   } else {
     // add column headers for inputs info
@@ -1902,10 +1938,24 @@ function build_sum_comp_dialog(){
   $("#sum_comp_dialog").append("<table></table>");
   $("#sum_comp_dialog table").append("<tbody></tbody>");
   $("#sum_comp_dialog table tbody").append("<tr></tr>");
-  // if no components have been added yet, state no components added yet
+  // if no components have been added yet, warn no components added yet
   if(cl==0){
     $("#sum_comp_dialog table tbody tr:last-child").append("No components have\
       been added yet.");
+    $("body").append("<div id='warn' class='dialog' title='Component \
+      Summary'><p>No components have been added yet.</p></div>");
+    $(function(){
+      $("#warn").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $(this).dialog("close");
+            $("#warn").remove();
+          }
+        }
+      });
+    });
+    sum_comp_dialog.dialog("close");
   // if components have been added
   } else {
     // add column headers for components info
@@ -1955,11 +2005,41 @@ function build_sum_corr_dialog(){
   $("#sum_corr_dialog").append("<table></table>");
   $("#sum_corr_dialog table").append("<tbody></tbody>");
   $("#sum_corr_dialog table tbody").append("<tr></tr>");
-  // if no inputs have been added yet, state no inputs added yet
+  // if no inputs have been added yet, warn no inputs added yet
   if(nl==0){
-    $("#sum_corr_dialog table tbody tr:last-child").append("No inputs have been\
-      added yet.");
-  // if inputs have been added
+    $("body").append("<div id='warn' class='dialog' title='Correlation \
+      Summary'><p>No inputs have been added yet.</p></div>");
+    $(function(){
+      $("#warn").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $(this).dialog("close");
+            $("#warn").remove();
+          }
+        }
+      });
+    });
+    sum_corr_dialog.dialog("close");
+  // if no correlations exist, warn no correlations exist
+  } else if(ncs==0){
+    $("#sum_corr_dialog table tbody tr:last-child").append("No correlations\
+      exit.");
+    $("body").append("<div id='warn' class='dialog' title='Correlation \
+      Summary'><p>No correlations exist.</p></div>");
+    $(function(){
+      $("#warn").dialog({
+        modal: true,
+        buttons: {
+          Ok: function(){
+            $(this).dialog("close");
+            $("#warn").remove();
+          }
+        }
+      });
+    });
+    sum_corr_dialog.dialog("close");
+  // if inputs have been added and correlations exist
   } else {
     // add column headers for correlations info
     $("#sum_corr_dialog table tbody tr:last-child").append("<th style='padding:\
