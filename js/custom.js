@@ -210,7 +210,7 @@ Raphael.fn.editobj=function(){
     ds_rand=rand_ds;
     src_sys=sys_src;
   // if object does not have input id, it's a component
-  } else{
+  } else {
     // set comp_edit to component id
     comp_edit=varID(components, this.data("variable"));
     // get component data
@@ -1830,7 +1830,7 @@ function build_sum_inp_dialog(){
     $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding:\
       5px; text-decoration: underline; "+style+"'>Systematic</th>");
     // for each input
-    for(i=0; i<nl; i++){
+    for(i1=0; i1<nl; i1++){
       // add input values
       $("#sum_inp_dialog table tbody").append("<tr></tr>");
       $("#sum_inp_dialog table tbody tr:last-child").append("<td style=\
