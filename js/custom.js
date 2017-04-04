@@ -2057,7 +2057,7 @@ function build_sum_umf_dialog(){
   // for each input, add input variable
   for(i1=0; i1<nl; i1++){
     $("#sum_umf_dialog table tbody tr").append("<th style='padding: 5px; \
-      text-decoration: underline; "+style+"'>"+inputs[i].data("variable")+
+      text-decoration: underline; "+style+"'>"+inputs[i1].data("variable")+
       "</th>");
   }
   // for each component, add component values
