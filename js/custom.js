@@ -4582,7 +4582,7 @@ function calc_Nu(){
       Nc=nsc.nc;
       // if correlations exist, augment systematic and correlation together
       if(Nc.length>0){
-        Nc=math.matrix(Nc);
+        Nc=math.transpose(math.matrix(Nc));
         Ns=math.concat(Ns,Nc);
       }
       // calculate the input total uncertainty
