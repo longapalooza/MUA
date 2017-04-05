@@ -1,3 +1,11 @@
+/*
+@@
+@@ Copyright (C) 2015, Mississippi State University.
+@@ All rights reserved.
+@@ This code is licensed under a modified BSD 3-Clause license. 
+@@ See the LICENSE file for details.
+@@
+*/
 //****************************************************************************//
 //                                                                            //
 //                            Raphaeljs Functions                             //
