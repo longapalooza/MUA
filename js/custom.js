@@ -4699,18 +4699,23 @@ function calc_UPC(){
   if(!flags.UPC){
     // if there are inputs and components
     if(inputs.length>0 && components.length>0){
-      // calculate the Jacobian, W, and input and component total uncertainty
-      // matrices
-      calc_J();
+      // calculate the W, and input total uncertainty matrices
       calc_W();
       calc_Nu();
-      calc_U();
       var Wmat=math.matrix(W);
       var Numat=math.matrix(Nu);
-      var Umat=math.diag(math.matrix(U));
-      // calculate the uncertainty percent contribution
-      UPC=math.multiply(math.multiply(math.inv(math.square(Umat)),Wmat),Numat)
-        .valueOf();
+      var Umat=math.multiply(Wmat, math.diag(Numat));
+      Numat=math.diag(math.diag(Numat));
+      // if there is only one component
+      if(components.length==1){
+        // calculate the uncertainty percent contribution when Umat is a scalar
+        UPC=math.multiply(math.inv(Umat), math.multiply(Wmat, Numat)).valueOf();
+      // when there is not one component
+      } else {
+        // calcualte the uncertainty percent contribution when Umat is a matrix
+        UPC=math.multiply(math.inv(math.diag(Umat)), math.multiply(Wmat, Numat))
+          .valueOf();
+      }
       flags.UPC=true;
     }
   }
