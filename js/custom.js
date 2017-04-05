@@ -1836,7 +1836,7 @@ function build_sum_inp_dialog(){
   $("#sum_inp_dialog table").append("<tbody></tbody>");
   $("#sum_inp_dialog table tbody").append("<tr></tr>");
   // if no inputs have been added yet, warn no inputs added yet
-  if(nl==0){
+  if(il==0){
     $("body").append("<div id='warn' class='dialog' title='Input \
       Summary'><p>No inputs have been added yet.</p></div>");
     $(function(){
@@ -4728,7 +4728,7 @@ function calc_UPC(){
   $("#sum_upc").click(function(){
     sum_upc_dialog.dialog("open");
     event.preventDefault();
-  })
+  });
   return true;
 }
 
@@ -4955,7 +4955,7 @@ function UMF2CSV(){
     // add component variable to output string
     str+=(i1+1)+","+components[i1].data("variable");
     // for each input, add component UMF value to output string
-    for(i2=0; i2<is; i2++){str+=","+Math.abs(UMF[i1][i2]);}
+    for(i2=0; i2<il; i2++){str+=","+Math.abs(UMF[i1][i2]);}
     str+="\r\n";
   }
   return str;
