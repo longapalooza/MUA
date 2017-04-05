@@ -335,6 +335,7 @@ var sum_u_dialog=$("#sum_u_dialog").dialog({
   width: 'auto',
   height: 'auto',
   resizable: false,
+  open: build_sum_u_dialog,
   buttons: {
     "Export CSV": sum_u_button_export_csv,
     Ok: sum_u_button_ok
@@ -350,6 +351,7 @@ var sum_umf_dialog=$("#sum_umf_dialog").dialog({
   width: 'auto',
   height: 'auto',
   resizable: false,
+  open: build_sum_umf_dialog,
   buttons: {
     "Export CSV": sum_umf_button_export_csv,
     Ok: sum_umf_button_ok
@@ -365,6 +367,7 @@ var sum_upc_dialog=$("#sum_upc_dialog").dialog({
   width: 'auto',
   height: 'auto',
   resizable: false,
+  open: build_sum_upc_dialog,
   buttons: {
     "Export CSV": sum_upc_button_export_csv,
     Ok: sum_upc_button_ok

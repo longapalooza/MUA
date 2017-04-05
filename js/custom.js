@@ -4655,7 +4655,6 @@ function calc_U(){
   }
   // add click event to component total uncertainty summary link
   $("#sum_u").click(function(){
-    build_sum_u_dialog();
     sum_u_dialog.dialog("open");
     event.preventDefault();
   });
@@ -4688,7 +4687,6 @@ function calc_UMF(){
   }
   // add click event to uncertainty magnification factor summary link
   $("#sum_umf").click(function(){
-    build_sum_umf_dialog();
     sum_umf_dialog.dialog("open");
     event.preventDefault();
   });
@@ -4723,7 +4721,6 @@ function calc_UPC(){
   }
   // add click event to uncertainty percent contribution summary link
   $("#sum_upc").click(function(){
-    build_sum_upc_dialog();
     sum_upc_dialog.dialog("open");
     event.preventDefault();
   })
