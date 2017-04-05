@@ -1,3 +1,11 @@
+/*
+@@
+@@ Copyright (C) 2015, Mississippi State University.
+@@ All rights reserved.
+@@ This code is licensed under a modified BSD 3-Clause license. 
+@@ See the LICENSE file for details.
+@@
+*/
 var inputs=[], components=[], input_labels=[], component_labels=[],
     connections=[], datasets=[], sources=[], src_sys=[], J=[], Nu=[], U=[],
     UMF=[], UPC=[], W=[], zoom=1, startX, startY, dX, dY, mousedown=false,
