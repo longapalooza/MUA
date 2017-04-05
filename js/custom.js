@@ -757,7 +757,7 @@ function build_src_dialog(){
 
 // build_inp_dialog builds the dialog content for the input dialog
 function build_inp_dialog(){
-  var i1, i2, nl=inputs.length, mess="", sl, ns=ns_nc().ns, style;
+  var i1, i2, il=inputs.length, mess="", sl, ns=ns_nc().ns, style;
   // define common css style
   style="text-align: center; max-width: 300px; vertical-align: text-top;";
   // add form tags
@@ -770,7 +770,7 @@ function build_inp_dialog(){
   $("#inp_dialog form table").append("<tbody></tbody>");
   $("#inp_dialog form table tbody").append("<tr></tr>");
   // if no inputs added yet
-  if(nl==0){
+  if(il==0){
     // state no inputs have been added yet
     $("#inp_dialog form table tbody tr:last-child").append("No inputs have been\
     added yet. Please add an input.");
@@ -798,7 +798,7 @@ function build_inp_dialog(){
     $("#inp_dialog form table tbody tr:last-child").append("<th style='padding:\
       5px; text-decoration: underline; "+style+"'></th>");
     // for each input that has been added
-    for(i1=0; i1<nl; i1++){
+    for(i1=0; i1<il; i1++){
       // add input information to dialog
       $("#inp_dialog form table tbody").append("<tr></tr>");
       $("#inp_dialog form table tbody tr:last-child").append("<td style=\
@@ -1469,12 +1469,12 @@ function build_edit_comp_dialog(){
 
 // build_del_ds_dialog builds the dialog content for the delete dataset dialog
 function build_del_ds_dialog(){
-  var i1, i2, dep=[], dl, nl=inputs.length, mess="";
+  var i1, i2, dep=[], dl, il=inputs.length, mess="";
   // start to build the 'are you sure message'
   mess="Are you sure you want to delete dataset "+(ds_del+1)+" ("+
     datasets[ds_del].name+")?";
   // check to see which inputs are dependent on dataset
-  for(i1=0; i1<nl; i1++){
+  for(i1=0; i1<il; i1++){
     if(ds_del==inputs[i1].data("nom_ds") || ds_del==inputs[i1].data("rand_ds")){
       dep.push(i);
     }
@@ -1506,12 +1506,12 @@ function build_del_ds_dialog(){
 
 // build_del_src_dialog builds the dialog content for the delete source dialog
 function build_del_src_dialog(){
-  var i1, i2, dep=[], dl, nl=inputs.length, mess="";
+  var i1, i2, dep=[], dl, il=inputs.length, mess="";
   // start to build the 'are you sure message'
   mess="Are you sure you want to delete source "+(src_del+1)+" ("+
     sources[src_del].name+")?";
   // check to see which inputs are dependent on source
-  for(i1=0; i1<nl; i1++){
+  for(i1=0; i1<il; i1++){
     if($.inArray(src_del, inputs[i1].data("sys_src"))>=0){dep.push(i);}
   }
   // if one input dependent on source, warn and describe what will happen
@@ -1828,7 +1828,7 @@ function build_sum_src_dialog(){
 
 // build_sum_inp_dialog builds content for the input summary dialog
 function build_sum_inp_dialog(){
-  var i1, i2, nl=inputs.length, mess="", srcl, ns=ns_nc().ns, style;
+  var i1, i2, il=inputs.length, mess="", srcl, ns=ns_nc().ns, style;
   // define common css styles
   style="text-align: center; max-width: 300px; vertical-align: text-top;";
   // add table, tbody, and first row tags
@@ -1871,7 +1871,7 @@ function build_sum_inp_dialog(){
     $("#sum_inp_dialog table tbody tr:last-child").append("<th style='padding:\
       5px; text-decoration: underline; "+style+"'>Systematic</th>");
     // for each input
-    for(i1=0; i1<nl; i1++){
+    for(i1=0; i1<il; i1++){
       // add input values
       $("#sum_inp_dialog table tbody").append("<tr></tr>");
       $("#sum_inp_dialog table tbody tr:last-child").append("<td style=\
@@ -1998,7 +1998,7 @@ function build_sum_comp_dialog(){
 
 // build_sum_corr_dialog builds content for the correlation summary dialog
 function build_sum_corr_dialog(){
-  var i1, i2, nl=inputs.length, mess="", nc=ns_nc().nc, ncs=nc.length, style;
+  var i1, i2, il=inputs.length, nc=ns_nc().nc, ncs=nc.length, style;
   // define common css styles
   style="text-align: center; max-width: 300px; vertical-align: text-top;";
   // add table, tbody, and first row tags
@@ -2006,7 +2006,7 @@ function build_sum_corr_dialog(){
   $("#sum_corr_dialog table").append("<tbody></tbody>");
   $("#sum_corr_dialog table tbody").append("<tr></tr>");
   // if no inputs have been added yet, warn no inputs added yet
-  if(nl==0){
+  if(il==0){
     $("body").append("<div id='warn' class='dialog' title='Correlation \
       Summary'><p>No inputs have been added yet.</p></div>");
     $(function(){
@@ -2051,7 +2051,7 @@ function build_sum_corr_dialog(){
         'padding: 5px; text-decoration: underline; "+style+"'>"+(i1+1)+"</th>");
     }
     // for each input, add correlation values
-    for(i1=0; i1<nl; i1++){
+    for(i1=0; i1<il; i1++){
       $("#sum_corr_dialog table tbody").append("<tr></tr>");
       $("#sum_corr_dialog table tbody tr:last-child").append("<td style=\
         'word-wrap: break-word; "+style+"'>"+(i1+1)+"</td>");
@@ -2120,7 +2120,7 @@ function build_sum_u_dialog(){
 // build_sum_umf_dialog builds content for the uncertainty magnification
 // factor summary dialog
 function build_sum_umf_dialog(){
-  var i1, i2, nl=inputs.length, cl=components.length, style;
+  var i1, i2, il=inputs.length, cl=components.length, style;
   // define common css styles
   style="text-align: center; max-width: 300px; vertical-align: text-top;"
   // add table, tbody, and first row tags
@@ -2135,7 +2135,7 @@ function build_sum_umf_dialog(){
   $("#sum_umf_dialog table tbody tr").append("<th style='padding: 5px; \
     text-decoration: underline; "+style+"'>Variable</th>");
   // for each input, add input variable
-  for(i1=0; i1<nl; i1++){
+  for(i1=0; i1<il; i1++){
     $("#sum_umf_dialog table tbody tr").append("<th style='padding: 5px; \
       text-decoration: underline; "+style+"'>"+inputs[i1].data("variable")+
       "</th>");
@@ -2150,7 +2150,7 @@ function build_sum_umf_dialog(){
     $("#sum_umf_dialog table tbody tr:last-child").append("<td style=\
       'word-wrap: break-word; "+style+"'>"+components[i1].data("variable")+
       "</td>");
-    for(i2=0; i2<nl; i2++){
+    for(i2=0; i2<il; i2++){
       $("#sum_umf_dialog table tbody tr:last-child").append("<td style=\
         'word-wrap: break-word; "+style+"'>"+engFormat(Math.abs(UMF[i1][i2]))+
         "</td>");
@@ -2163,7 +2163,7 @@ function build_sum_umf_dialog(){
 // build_sum_upc_dialog builds content for the uncertainty percent
 // contribution summary dialog
 function build_sum_upc_dialog(){
-  var i1, i2, nl=inputs.length, cl=components.length, style;
+  var i1, i2, il=inputs.length, cl=components.length, style;
   // define common css styles
   style="text-align: center; max-width: 300px; vertical-align: text-top;"
   // add table, tbody, and first row tags
@@ -2178,7 +2178,7 @@ function build_sum_upc_dialog(){
   $("#sum_upc_dialog table tbody tr").append("<th style='padding: 5px; \
     text-decoration: underline; "+style+"'>Variable</th>");
   // for each input, add input variable
-  for(i1=0; i1<nl; i1++){
+  for(i1=0; i1<il; i1++){
     $("#sum_upc_dialog table tbody tr").append("<th style='padding: 5px; \
       text-decoration: underline; "+style+"'>"+inputs[i1].data("variable")+
       "</th>");
@@ -2193,7 +2193,7 @@ function build_sum_upc_dialog(){
     $("#sum_upc_dialog table tbody tr:last-child").append("<td style=\
       'word-wrap: break-word; "+style+"'>"+components[i1].data("variable")+
       "</td>");
-    for(i2=0; i2<nl; i2++){
+    for(i2=0; i2<il; i2++){
       $("#sum_upc_dialog table tbody tr:last-child").append("<td style=\
         'word-wrap: break-word; "+style+"'>"+engFormat(100*UPC[i1][i2])+
         "</td>");
@@ -3748,11 +3748,11 @@ function edit_comp_button_cancel(){
 
 // del_ds_button_ok performs the ok button action of the delete dataset dialog
 function del_ds_button_ok(){
-  var i, nl=inputs.length;
+  var i, il=inputs.length;
   // remove the particular dataset out of datasets array
   datasets.splice(ds_del, 1);
   // for each input, check if uses dataset
-  for(i=0; i<nl; i++){
+  for(i=0; i<il; i++){
     // if uses for nominal or random value, remove
     if(inputs[i].data("nom_ds")==ds_del){inputs[i].data("nom_ds", -1);}
     if(inputs[i].data("rand_ds")==ds_del){inputs[i].data("rand_ds", -1);}
