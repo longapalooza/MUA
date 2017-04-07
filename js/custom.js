@@ -733,7 +733,8 @@ function build_src_dialog(){
       $("#src_dialog form table tbody tr:last-child").append("<td style=\
         'word-wrap: break-word; "+style+"'>"+sources[i].name+"</td>");
       $("#src_dialog form table tbody tr:last-child").append("<td style=\
-        'word-wrap: break-word; "+style+"'>"+sources[i].value+"</td>");
+        'word-wrap: break-word; "+style+"'>"+engFormat(sources[i].value)+
+        "</td>");
       // add edit and delete source link
       $("#src_dialog form table tbody tr:last-child").append("<td style=\
         'word-wrap: break-word; "+style+"'><a href='' id='edit_src_"+i+"''>Edit\
