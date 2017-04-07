@@ -3359,7 +3359,7 @@ function edit_src_button_edit_source(){
     il=inputs.length;
     // for each input, check if input is dependent on source
     for(i=0; i<il; i++){
-      if(inputs[i].data("sys_src").indexOf(src_edit)){dep.push(i);}
+      if(inputs[i].data("sys_src").indexOf(src_edit)>=0){dep.push(i);}
     }
     // inputs are dependent, warn about dependency
     if(dep.length>0){
