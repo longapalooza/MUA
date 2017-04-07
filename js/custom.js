@@ -2,7 +2,7 @@
 @@
 @@ Copyright (C) 2015, Mississippi State University.
 @@ All rights reserved.
-@@ This code is licensed under a modified BSD 3-Clause license. 
+@@ This code is licensed under a modified BSD 3-Clause license.
 @@ See the LICENSE file for details.
 @@
 */
@@ -1827,7 +1827,8 @@ function build_sum_src_dialog(){
       $("#sum_src_dialog table tbody tr:last-child").append("<td style=\
         'word-wrap: break-word; "+style+"'>"+sources[i].name+"</td>");
       $("#sum_src_dialog table tbody tr:last-child").append("<td style=\
-        'word-wrap: break-word; "+style+"'>"+sources[i].value+"</td>");
+        'word-wrap: break-word; "+style+"'>"+engFormat(sources[i].value)+
+        "</td>");
     }
   }
   // resize dialog to fit content
