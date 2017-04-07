@@ -586,7 +586,7 @@ function build_ds_dialog(){
       // add edit dataset click event
       $("#edit_ds_"+i).click(function(){
         // get id of dataset clicked
-        ds_edit=Number($(this).attr('id').slice(-1));
+        ds_edit=Number($(this).attr('id').split("_")[2]);
         // open edit dataset dialog
         edit_ds_dialog.dialog("open");
         // add edit dataset data click event
@@ -635,7 +635,7 @@ function build_ds_dialog(){
       // add delete dataset click event
       $("#del_ds_"+i).click(function(){
         // get id of dataset clicked
-        ds_del=Number($(this).attr('id').slice(-1));
+        ds_del=Number($(this).attr('id').split("_")[2]);
         // open delete dataset dialog
         del_ds_dialog.dialog("open");
         event.preventDefault();
@@ -744,7 +744,8 @@ function build_src_dialog(){
       // add edit source click event
       $("#edit_src_"+i).click(function(){
         // get id of source clicked
-        src_edit=Number($(this).attr('id').slice(-1));
+        src_edit=Number($(this).attr('id').split("_")[2]);
+        console.log(src_edit);
         // open edit source dialog
         edit_src_dialog.dialog("open");
         event.preventDefault();
@@ -752,7 +753,7 @@ function build_src_dialog(){
       // add delete source click event
       $("#del_src_"+i).click(function(){
         // get id of source clicked
-        src_del=Number($(this).attr('id').slice(-1));
+        src_del=Number($(this).attr('id').split("_")[2]);
         // open delete source dialog
         del_src_dialog.dialog("open");
         event.preventDefault();
@@ -880,7 +881,7 @@ function build_inp_dialog(){
       // add edit input click event
       $("#edit_inp_"+i1).click(function(){
         // get id of input clicked
-        inp_edit=Number($(this).attr('id').slice(-1));
+        inp_edit=Number($(this).attr('id').split("_")[2]);
         // open edit input dialog
         edit_inp_dialog.dialog("open");
         event.preventDefault();
@@ -889,7 +890,7 @@ function build_inp_dialog(){
       $("#del_inp_"+i1).click(function(){
         var i3, boo=false, cl=components.length;
         // get id of input clicked
-        inp_del=Number($(this).attr('id').slice(-1));
+        inp_del=Number($(this).attr('id').split("_")[2]);
         // check if input is a dependency
         for(i3=0; i3<cl; i3++){
           if($.inArray(inputs[inp_del].data("variable"),
@@ -991,7 +992,7 @@ function build_comp_dialog(){
       // add edit component click event
       $("#edit_comp_"+i1).click(function(){
         // get id of component clicked
-        comp_edit=Number($(this).attr('id').slice(-1));
+        comp_edit=Number($(this).attr('id').split("_")[2]);
         // open edit component dialog
         edit_comp_dialog.dialog("open");
         event.preventDefault();
@@ -1000,7 +1001,7 @@ function build_comp_dialog(){
       $("#del_comp_"+i1).click(function(){
         // check if component is dependency
         var i2, boo=false, cl=components.length;
-        comp_del=Number($(this).attr('id').slice(-1));
+        comp_del=Number($(this).attr('id').split("_")[2]);
         for(i2=0; i2<cl; i2++){
           if($.inArray(components[comp_del].data("variable"),
             get_dep(components[i2].data("fun")))>=0){
