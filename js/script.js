@@ -2,7 +2,7 @@
 @@
 @@ Copyright (C) 2015, Mississippi State University.
 @@ All rights reserved.
-@@ This code is licensed under a modified BSD 3-Clause license. 
+@@ This code is licensed under a modified BSD 3-Clause license.
 @@ See the LICENSE file for details.
 @@
 */
@@ -640,6 +640,8 @@ window.onload=function(){
       var file=files[0];
       var reader=new FileReader();
       reader.onload=function(){
+        // empty the current canvas
+        empty_canvas();
         // build system from file
         build_canvas(JSON.parse(this.result));
         // set previous zoom and view
@@ -652,8 +654,6 @@ window.onload=function(){
         $("#sum_umf").remove();
         $("#sum_upc").remove();
       }
-      // empty canvas before file processed
-      empty_canvas();
       // read file as text
       reader.readAsText(file);
       // remove file open input tag
