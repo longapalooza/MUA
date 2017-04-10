@@ -1921,7 +1921,7 @@ function build_sum_inp_dialog(){
         srcl=inputs[i1].data("sys_src").length;
         if(srcl==1){
           $("#sum_inp_dialog table tbody tr:last-child").append("<td style=\
-            'word-wrap: break-word; "+style+"'>"+(inputs[i1].data("sys_src")[0]+
+            'word-wrap: break-word; "+style+"'>"+inputs[i1].data("sys_src")[0]+
             "</td>");
         } else {
           mess="";
