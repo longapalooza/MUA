@@ -1922,12 +1922,13 @@ function build_sum_inp_dialog(){
         if(srcl==1){
           $("#sum_inp_dialog table tbody tr:last-child").append("<td style=\
             'word-wrap: break-word; "+style+"'>"+(inputs[i1].data("sys_src")[0]+
-            1)+"</td>");
+            "</td>");
         } else {
           mess="";
           for(i2=0; i2<srcl-1; i2++){
-            mess+=(inputs[i1].data("sys_src")[i2]+1)+", ";}
-          mess+=" and "+(inputs[i1].data("sys_src")[srcl-1]+1);
+            mess+=inputs[i1].data("sys_src")[i2]+", ";
+          }
+          mess+=" and "+inputs[i1].data("sys_src")[srcl-1];
           $("#sum_inp_dialog table tbody tr:last-child").append("<td style=\
             'word-wrap: break-word; "+style+"'>"+mess+"</td>");
         }
