@@ -2070,7 +2070,7 @@ function build_sum_corr_dialog(){
         'word-wrap: break-word; "+style+"'>"+inputs[i1].data("name")+"</td>");
       for(i2=0; i2<ncs; i2++){
         $("#sum_corr_dialog table tbody tr:last-child").append("<td style=\
-          'word-wrap: break-word; "+style+"'>"+(nc[i2][i1])+"</td>");
+          'word-wrap: break-word; "+style+"'>"+engFormat(nc[i2][i1])+"</td>");
       }
     }
   }
@@ -2090,6 +2090,8 @@ function build_sum_u_dialog(){
   $("#sum_u_dialog table tbody").append("<tr></tr>");
   // add column headers for component total uncertainty info
   $("#sum_u_dialog table tbody tr").append("<th style='padding: 5px; \
+    text-decoration: underline; "+style+"'>id</th>");
+  $("#sum_u_dialog table tbody tr").append("<th style='padding: 5px; \
     text-decoration: underline; "+style+"'>Name</th>");
   $("#sum_u_dialog table tbody tr").append("<th style='padding: 5px; \
     text-decoration: underline; "+style+"'>Variable</th>");
@@ -2107,6 +2109,8 @@ function build_sum_u_dialog(){
   for(i=0; i<cl; i++){
     // add component values
     $("#sum_u_dialog table tbody").append("<tr></tr>");
+    $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap: \
+      break-word; "+style+"'>"+(i+1)+"</td>");
     $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap: \
       break-word; "+style+"'>"+components[i].data("name")+"</td>");
     $("#sum_u_dialog table tbody tr:last-child").append("<td style='word-wrap: \
