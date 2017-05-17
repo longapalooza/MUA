@@ -4902,7 +4902,7 @@ function inp2CSV(){
       str+="0";
     // if systematic is linked to source(s), state source(s)
     } else {
-      ss=inputs[i1].data("sys_src").length;
+      srcl=inputs[i1].data("sys_src").length;
       for(i2=0; i2<srcl-1; i2++){str+=(inputs[i1].data("sys_src")[i2]+1)+" ";}
       str+=(inputs[i1].data("sys_src")[srcl-1]+1);
     }
