@@ -4903,8 +4903,8 @@ function inp2CSV(){
     // if systematic is linked to source(s), state source(s)
     } else {
       srcl=inputs[i1].data("sys_src").length;
-      for(i2=0; i2<srcl-1; i2++){str+=(inputs[i1].data("sys_src")[i2]+1)+" ";}
-      str+=(inputs[i1].data("sys_src")[srcl-1]+1);
+      for(i2=0; i2<srcl-1; i2++){str+=inputs[i1].data("sys_src")[i2]+" ";}
+      str+=inputs[i1].data("sys_src")[srcl-1];
     }
     // add carriage return and newline
     str+='\r\n';
