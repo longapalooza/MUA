@@ -527,106 +527,106 @@ window.onload=function(){
 //*************************** Action Click Events ****************************//
 
   // click event for dataset action
-  $("#Datasets").click(function(){
+  $("#Datasets").click(function(e){
     ds_dialog.dialog("open");
-    event.preventDefault();
+    e.preventDefault();
   });
 
   // click event for source action
-  $("#Sources").click(function(){
+  $("#Sources").click(function(e){
     src_dialog.dialog("open");
     $("#add_src").click(function(){
       add_src_dialog.dialog("open");
     });
-    event.preventDefault();
+    e.preventDefault();
   });
 
   // click event for input action
-  $("#Inputs").click(function(){
+  $("#Inputs").click(function(e){
     inp_dialog.dialog("open");
     $("#add_inp").click(function(){
       add_inp_dialog.dialog("open");
     });
-    event.preventDefault();
+    e.preventDefault();
   });
 
   // click event for component action
-  $("#Components").click(function(){
+  $("#Components").click(function(e){
     comp_dialog.dialog("open");
     $("#add_comp").click(function(){
       add_comp_dialog.dialog("open");
     });
-    event.preventDefault();
+    e.preventDefault();
   });
 
 //*************************** Summary Click Events ***************************//
 
   // click event for dataset summary
-  $("#sum_ds").click(function(){
+  $("#sum_ds").click(function(e){
     sum_ds_dialog.dialog("open");
-    event.preventDefault();
+    e.preventDefault();
   });
 
   // click event for source summary
-  $("#sum_src").click(function(){
+  $("#sum_src").click(function(e){
     sum_src_dialog.dialog("open");
-    event.preventDefault();
+    e.preventDefault();
   });
 
   // click event for input summary
-  $("#sum_inp").click(function(){
+  $("#sum_inp").click(function(e){
     sum_inp_dialog.dialog("open");
-    event.preventDefault();
+    e.preventDefault();
   });
 
   // click event for component summary
-  $("#sum_comp").click(function(){
+  $("#sum_comp").click(function(e){
     sum_comp_dialog.dialog("open");
-    event.preventDefault();
+    e.preventDefault();
   });
 
   // click event for correlation summary
-  $("#sum_corr").click(function(){
+  $("#sum_corr").click(function(e){
     sum_corr_dialog.dialog("open");
-    event.preventDefault();
+    e.preventDefault();
   });
 
 //************************** Calculate Click Events **************************//
 
   // click event for calculate component total uncertainty
-  $("#calc_u").click(function(){
+  $("#calc_u").click(function(e){
     calc_u_dialog.dialog("open");
-    event.preventDefault();
+    e.preventDefault();
   });
 
   // click event for calculate uncertainty magnification factor
-  $("#calc_umf").click(function(){
+  $("#calc_umf").click(function(e){
     calc_umf_dialog.dialog("open");
-    event.preventDefault();
+    e.preventDefault();
   });
 
   // click event for calculate uncertainty percent contribution
-  $("#calc_upc").click(function(){
+  $("#calc_upc").click(function(e){
     calc_upc_dialog.dialog("open");
-    event.preventDefault();
+    e.preventDefault();
   });
 
 //**************************** File Click Events *****************************//
 
   // click event for exit
-  $("#exit").click(function(){
+  $("#exit").click(function(e){
     exit_dialog.dialog("open");
-    event.preventDefault();
+    e.preventDefault();
   });
 
   // click event for new
-  $("#new").click(function(){
+  $("#new").click(function(e){
     new_dialog.dialog("open");
-    event.preventDefault();
+    e.preventDefault();
   });
 
   // click event for open
-  $("#open").click(function(){
+  $("#open").click(function(e){
     // add input tag to body
     $("body").append("<input id='file_open' type='file' accept='.ujs' style=\
       'display:none;'>");
@@ -659,35 +659,35 @@ window.onload=function(){
       // remove file open input tag
       $("#file_open").remove();
     }, false);
-    event.preventDefault();
+    e.preventDefault();
   });
 
   // click event for save
-  $("#save").click(function(){
+  $("#save").click(function(e){
     save_dialog.dialog("open");
-    event.preventDefault();
+    e.preventDefault();
   });
 
 //******************************* Mouse Events *******************************//
 
   // mousedown event
-  $("#holder").mousedown(function(event){
+  $("#holder").mousedown(function(e){
     // if mousedown not on canvas, return null
-    if(r.getElementByPoint(event.pageX, event.pageY)!=null){return;}
+    if(r.getElementByPoint(e.pageX, e.pageY)!=null){return;}
     // set mousedown to true
     mousedown=true;
     // set start x and y
-    startX=event.pageX;
-    startY=event.pageY;
+    startX=e.pageX;
+    startY=e.pageY;
   });
 
   // mousemove event
-  $("#holder").mousemove(function(event){
+  $("#holder").mousemove(function(e){
     // if mousedown is not set, return null
     if(!mousedown){return;}
     // get how much moved in the x and y direction
-    dX=(startX-event.pageX)*(viewbox[2]/$("#holder").width());
-    dY=(startY-event.pageY)*(viewbox[3]/$("#holder").height());
+    dX=(startX-e.pageX)*(viewbox[2]/$("#holder").width());
+    dY=(startY-e.pageY)*(viewbox[3]/$("#holder").height());
     // set viewbox to change by amount moved
     r.setViewBox(viewbox[0]+dX, viewbox[1]+dY, viewbox[2], viewbox[3]);
   });
@@ -706,7 +706,7 @@ window.onload=function(){
 //************************** Toolbar Toggle Events ***************************//
 
   // toggle toolbar click event
-  $("#toggle_toolbar").click(function(){
+  $("#toggle_toolbar").click(function(e){
     // if toolbar is hidden on click
     if($("#toggle_toolbar").html()=="View Toolbar"){
       // build toolbar and show hide toolbar
@@ -718,39 +718,39 @@ window.onload=function(){
       empty_toolbar();
       $("#toggle_toolbar").html("View Toolbar");
     }
-    event.preventDefault();
+    e.preventDefault();
   });
 
   // toggle element info view click event
-  $("#toggle_tip").click(function(){
+  $("#toggle_tip").click(function(e){
     $("#tb_tip").click();
-    event.preventDefault();
+    e.preventDefault();
   });
 
   // toggle backward dependencies view click event
-  $("#toggle_before").click(function(){
+  $("#toggle_before").click(function(e){
     $("#tb_before").click();
-    event.preventDefault();
+    e.preventDefault();
   });
 
   // toggle forward dependencies view click event
-  $("#toggle_after").click(function(){
+  $("#toggle_after").click(function(e){
     $("#tb_after").click();
-    event.preventDefault();
+    e.preventDefault();
   });
 
   // toggle correlation view click event
-  $("#toggle_correlation").click(function(){
+  $("#toggle_correlation").click(function(e){
     $("#tb_cor").click();
-    event.preventDefault();
+    e.preventDefault();
   });
 
 //***************************** Keypress Events ******************************//
 
   // keypress event
-  $(document).keypress(function(event){
+  $(document).keypress(function(e){
     // enter key is pressed, preventDefault
-    if(event.which==13){event.preventDefault();}
+    if(e.which==13){e.preventDefault();}
   });
 
 //****************************** Window Events *******************************//

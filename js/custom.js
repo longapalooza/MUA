@@ -2652,21 +2652,21 @@ function build_toolbar(){
     }
   });
   // add click event for dataset, source, input, and component buttons
-  $("#tb_ds").click(function(){
+  $("#tb_ds").click(function(e){
     $("#Datasets").click();
-    event.preventDefault();
+    e.preventDefault();
   });
-  $("#tb_src").click(function(){
+  $("#tb_src").click(function(e){
     $("#Sources").click();
-    event.preventDefault();
+    e.preventDefault();
   });
-  $("#tb_inp").click(function(){
+  $("#tb_inp").click(function(e){
     $("#Inputs").click();
-    event.preventDefault();
+    e.preventDefault();
   });
-  $("#tb_comp").click(function(){
+  $("#tb_comp").click(function(e){
     $("#Components").click();
-    event.preventDefault();
+    e.preventDefault();
   });
 }
 
@@ -5278,21 +5278,19 @@ function varID(array, variable){
 }
 
 // wheel performs the zoom feature of the application
-function wheel(event) {
+function wheel(e) {
   var delta=0;
   // determine what browser is being used
-  if(!event){event=window.event;}
-  if(event.wheelDelta){
-    delta=event.wheelDelta/120;
-  } else if(event.detail){
-    delta=-event.detail/3;
+  if(!e){e=window.event;}
+  if(e.wheelDelta){
+    delta=e.wheelDelta/120;
+  } else if(e.detail){
+    delta=-e.detail/3;
   }
   if(delta){
     // get the x and y
-    x=Number(viewbox[0])+Number((event.clientX-$("#holder").offset()
-      .left)/zoom);
-    y=Number(viewbox[1])+Number((event.clientY-$("#holder").offset()
-      .top)/zoom);
+    x=Number(viewbox[0])+Number((e.clientX-$("#holder").offset().left)/zoom);
+    y=Number(viewbox[1])+Number((e.clientY-$("#holder").offset().top)/zoom);
     // if the scroll is up or down, set delta to out or in zoom
     if(delta<0){
       delta=0.95;
@@ -5307,13 +5305,13 @@ function wheel(event) {
       zoom=0.1;
     }
     // change viewbox to reflect zoom calculated
-    viewbox[0]=x-(event.clientX-$("#holder").offset().left)/zoom;
-    viewbox[1]=y-(event.clientY-$("#holder").offset().top)/zoom;
+    viewbox[0]=x-(e.clientX-$("#holder").offset().left)/zoom;
+    viewbox[1]=y-(e.clientY-$("#holder").offset().top)/zoom;
     viewbox[2]=$("#holder").width()/zoom;
     viewbox[3]=$("#holder").height()/zoom;
     r.setViewBox.apply(r, viewbox);
   }
   // prevent the default action of scroll
-  if(event.preventDefault){event.preventDefault();}
-  event.returnValue=false;
+  if(e.preventDefault){e.preventDefault();}
+  e.returnValue=false;
 }
