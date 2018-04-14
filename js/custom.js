@@ -250,9 +250,9 @@ Raphael.fn.hoverIn=function(){
       // get the input id
       id=varID(inputs, this.data("variable"));
       // add nominal and random uncertainty value to element info
-      tiptxt+="<tr><td>Nominal:</td><td>"+engFormat(Number(
-        this.data("nominal")))+"</td></tr>";
-      tiptxt+="<tr><td>Random:</td><td>"+engFormat(Number(this.data("random")))
+      tiptxt+="<tr><td>Nominal:</td><td>"+engFormat(this.data("nominal"))
+        +"</td></tr>";
+      tiptxt+="<tr><td>Random:</td><td>"+engFormat(this.data("random"))
         +"</td></tr>";
       // if correlation view is set
       if(flags.cor){
@@ -317,10 +317,10 @@ Raphael.fn.hoverIn=function(){
       tiptxt+="<tr><td>Variable:</td><td>"+inputs[id].data("variable")+
         "</td></tr>";
       tiptxt+="<tr><td>Label:</td><td>"+inputs[id].data("label")+"</td></tr>";
-      tiptxt+="<tr><td>Nominal:</td><td>"+engFormat(Number(
-        inputs[id].data("nominal")))+"</td></tr>";
-      tiptxt+="<tr><td>Random:</td><td>"+engFormat(Number(
-        inputs[id].data("random")))+"</td></tr>";
+      tiptxt+="<tr><td>Nominal:</td><td>"+engFormat(inputs[id].data("nominal"))
+        +"</td></tr>";
+      tiptxt+="<tr><td>Random:</td><td>"+engFormat(inputs[id].data("random"))
+        +"</td></tr>";
       // set input color
       inputs[id].attr({stroke:"#999900", fill:"#FFFFE5"});
       // if correlation view is set
@@ -823,27 +823,27 @@ function build_inp_dialog(){
       // if nominal value comes from dataset, add which dataset
       if(inputs[i1].data("nom_ds")>=0){
         $("#inp_dialog form table tbody tr:last-child").append("<td style=\
-          'word-wrap: break-word; "+style+"'>"+engFormat(Number(
-          inputs[i1].data("nominal")))+" (ds "+(inputs[i1].data("nom_ds")+1)+
+          'word-wrap: break-word; "+style+"'>"+engFormat(
+            inputs[i1].data("nominal"))+" (ds "+(inputs[i1].data("nom_ds")+1)+
           ")</td>");
       // if nominal value does not come from dataset, simply add nominal value
       } else {
         $("#inp_dialog form table tbody tr:last-child").append("<td style=\
-          'word-wrap: break-word; "+style+"'>"+engFormat(Number(
-          inputs[i1].data("nominal")))+"</td>");
+          'word-wrap: break-word; "+style+"'>"+engFormat(
+            inputs[i1].data("nominal"))+"</td>");
       }
       // if random uncertainty value comes from dataset, add which dataset
       if(inputs[i1].data("rand_ds")>=0){
         $("#inp_dialog form table tbody tr:last-child").append("<td style=\
-          'word-wrap: break-word; "+style+"'>"+engFormat(Number(
-          inputs[i1].data("random")))+" (ds "+(inputs[i1].data("rand_ds")+1)+
+          'word-wrap: break-word; "+style+"'>"+engFormat(
+          inputs[i1].data("random"))+" (ds "+(inputs[i1].data("rand_ds")+1)+
           ")</td>");
       // if random uncertainty value does not come from dataset, simply add
       // random uncertainty value
       } else {
         $("#inp_dialog form table tbody tr:last-child").append("<td style=\
-          'word-wrap: break-word; "+style+"'>"+engFormat(Number(
-          inputs[i1].data("random")))+"</td>");
+          'word-wrap: break-word; "+style+"'>"+engFormat(
+          inputs[i1].data("random"))+"</td>");
       }
       // if no systematic uncertainty sources, add zero value
       if(inputs[i1].data("sys_src").length==0){
@@ -1896,23 +1896,23 @@ function build_sum_inp_dialog(){
         'word-wrap: break-word; "+style+"'>"+inputs[i1].data("label")+"</td>");
       if(inputs[i1].data("nom_ds")>=0){
         $("#sum_inp_dialog table tbody tr:last-child").append("<td style=\
-          'word-wrap: break-word; "+style+"'>"+engFormat(Number(
-          inputs[i1].data("nominal")))+" (ds "+(inputs[i1].data("nom_ds")+1)+
+          'word-wrap: break-word; "+style+"'>"+engFormat(
+          inputs[i1].data("nominal"))+" (ds "+(inputs[i1].data("nom_ds")+1)+
           ")</td>");
       } else {
         $("#sum_inp_dialog table tbody tr:last-child").append("<td style=\
-          'word-wrap: break-word; "+style+"'>"+engFormat(Number(
-          inputs[i1].data("nominal")))+"</td>");
+          'word-wrap: break-word; "+style+"'>"+engFormat(
+          inputs[i1].data("nominal"))+"</td>");
       }
       if(inputs[i1].data("rand_ds")>=0){
         $("#sum_inp_dialog table tbody tr:last-child").append("<td style=\
-          'word-wrap: break-word; "+style+"'>"+engFormat(Number(
-          inputs[i1].data("random")))+" (ds "+(inputs[i1].data("rand_ds")+1)+
+          'word-wrap: break-word; "+style+"'>"+engFormat(
+          inputs[i1].data("random"))+" (ds "+(inputs[i1].data("rand_ds")+1)+
           ")</td>");
       } else {
         $("#sum_inp_dialog table tbody tr:last-child").append("<td style=\
-          'word-wrap: break-word; "+style+"'>"+engFormat(Number(
-          inputs[i1].data("random")))+"</td>");
+          'word-wrap: break-word; "+style+"'>"+engFormat(
+          inputs[i1].data("random"))+"</td>");
       }
       if(inputs[i1].data("sys_src").length==0){
         $("#sum_inp_dialog table tbody tr:last-child").append("<td style=\
@@ -4783,6 +4783,10 @@ function resize(hdl){
 
 // engFormat displays numerics in a pleasing manner
 function engFormat(num){
+  if(isNaN(num)){
+    num=parseFloat(num);
+    if(isNaN(num)){num=0;}
+  }
   if(num==0){
     return num;
   } else if(num>0 && num<1){
