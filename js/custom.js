@@ -4783,7 +4783,7 @@ function resize(hdl){
 
 // engFormat displays numerics in a pleasing manner
 function engFormat(num){
-  if(isNaN(num)){
+  if(typeof num!=='number'){
     num=parseFloat(num);
     if(isNaN(num)){num=0;}
   }
