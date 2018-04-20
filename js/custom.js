@@ -5181,6 +5181,39 @@ function before_obj(variable){
   }
 }
 
+// browser duck types the client browser
+function browser(){
+  // Opera 8.0+
+  let isOpera=(!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/')>=0;
+  // Firefox 1.0+
+  let isFirefox=typeof InstallTrigger!=='undefined';
+  // Safari 3.0+ "[object HTMLElementConstructor]"
+  let isSafari=/constructor/i.test(window.HTMLElement)||(function(p){return p.toString()==="[object SafariRemoteNotification]";})(!window['safari'] || (typeof safari!=='undefined' && safari.pushNotification));
+  // Internet Explorer 6-11
+  let isIE = /*@cc_on!@*/false || !!document.documentMode;
+  // Edge 20+
+  let isEdge=!isIE && !!window.StyleMedia;
+  // Chrome 1+
+  let isChrome=!!window.chrome && !!window.chrome.webstore;
+  // Blink engine detection
+  let isBlink = (isChrome || isOpera) && !!window.CSS;
+  if(isOpera){
+    return 'opera';
+  } else if(isFirefox){
+    return 'firefox';
+  } else if(isSafari){
+    return 'safari';
+  } else if(isIE){
+    return 'ie';
+  } else if(isEdge){
+    return 'edge';
+  } else if(isChrome){
+    return 'chrome';
+  } else {
+    return 'other';
+  }
+}
+
 // reset_obj_color resets all objects to default color
 function reset_obj_color(){
   var i, il=inputs.length, cl=components.length, conl=connections.length;

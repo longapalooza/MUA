@@ -806,6 +806,8 @@ window.onload=function(){
 
   window.addEventListener('error', function(e){
     let stack=e.error.stack;
+    let browser=browser();
+    console.log(browser);
     console.log(stack);
   });
 };
