@@ -2670,6 +2670,13 @@ function build_toolbar(){
   });
 }
 
+// build_error_dialog builds the error dialog
+function build_error_dialog(){
+  $("#error_dialog").append("<p>Aw shucks! Looks like something went wrong. \
+  Would you like to send an error report to help make the app better?</p>");
+  resize($("#error_dialog"));
+}
+
 //****************************************************************************//
 //                                                                            //
 //                              Empty Functions                               //
@@ -4370,6 +4377,23 @@ function save_button_cancel(){
   save_dialog.dialog("close")
 }
 
+function error_send(){
+  let fieldIDs=[];
+  let fieldVals=[];
+  let url='';
+  url+='?';
+  fieldIDs.forEach(function(cv1, i1, arr1){
+    url+=cv1+'='+encodeURI(fieldVals[i1])+'&';
+  });
+  url=url.slice(0, -1);
+  console.log(url);
+  //window.open(url);
+}
+
+function error_cancel(){
+  error_dialog.dialog("close");
+}
+
 //****************************************************************************//
 //                                                                            //
 //                           Calculation Functions                            //
@@ -4783,10 +4807,10 @@ function resize(hdl){
 
 // engFormat displays numerics in a pleasing manner
 function engFormat(num){
-  if(typeof num!=='number'){
+  /*if(typeof num!=='number'){
     num=parseFloat(num);
     if(isNaN(num)){num=0;}
-  }
+  }*/
   if(num==0){
     return num;
   } else if(num>0 && num<1){
@@ -5282,7 +5306,7 @@ function varID(array, variable){
 }
 
 // wheel performs the zoom feature of the application
-function wheel(e) {
+function wheel(e){
   var delta=0;
   // determine what browser is being used
   if(!e){e=window.event;}

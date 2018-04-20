@@ -518,6 +518,20 @@ var save_dialog=$("#save_dialog").dialog({
   close: empty_dialog
 });
 
+var error_dialog=$("#error_dialog").dialog({
+  autoOpen: false,
+  modal: true,
+  width: 'auto',
+  height: 'auto',
+  resizable: false,
+  open: build_error_dialog,
+  buttons: {
+    'Yes': error_send,
+    'No': error_cancel
+  },
+  close: empty_dialog
+});
+
 // once the page loads
 window.onload=function(){
 
@@ -789,4 +803,9 @@ window.onload=function(){
   });
   window.addEventListener('DOMMouseScroll', wheel, false);
   window.onmousewheel=document.onmousewheel=wheel;
+
+  window.addEventListener('error', function(e){
+    let stack=e.error.stack;
+    console.log(stack);
+  });
 };
