@@ -803,7 +803,8 @@ window.onload=function(){
   });
   window.addEventListener('DOMMouseScroll', wheel, false);
   window.onmousewheel=document.onmousewheel=wheel;
-  console.log('upload 1');
+  console.log('upload 2');
+  console.log(browser());
   window.addEventListener('error', function(e){
     let stack=e.error.stack;
     let browser=browser();
