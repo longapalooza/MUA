@@ -806,7 +806,6 @@ window.onload=function(){
   window.onmousewheel=document.onmousewheel=wheel;
 
   window.addEventListener('error', function(e){
-    console.log(e);
     eStack=e.error.stack;
     error_dialog.dialog("open");
   });
