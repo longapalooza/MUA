@@ -4378,16 +4378,15 @@ function save_button_cancel(){
 }
 
 function error_send(){
-  let fieldIDs=['id1', 'id2'];
+  let fieldIDs=['entry.1244551315', 'entry.217310529'];
   let fieldVals=[browser(), eStack];
-  let url='someurl.com';
+  let url='https://docs.google.com/forms/d/e/1FAIpQLScDfEAmmr1NQxLamEj_BRSZorZhzoMLceG-M-W_djF_5wrc0Q/formResponse';
   url+='?';
   fieldIDs.forEach(function(cv1, i1, arr1){
     url+=cv1+'='+encodeURI(fieldVals[i1])+'&';
   });
   url=url.slice(0, -1);
-  console.log(url);
-  //window.open(url);
+  window.open(url);
   error_dialog.dialog("close");
 }
 

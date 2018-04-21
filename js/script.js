@@ -804,7 +804,7 @@ window.onload=function(){
   });
   window.addEventListener('DOMMouseScroll', wheel, false);
   window.onmousewheel=document.onmousewheel=wheel;
-  console.log('upload 6');
+
   window.addEventListener('error', function(e){
     console.log(e);
     eStack=e.error.stack;
