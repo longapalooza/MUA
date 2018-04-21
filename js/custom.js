@@ -4379,7 +4379,7 @@ function save_button_cancel(){
 
 function error_send(){
   let fieldIDs=[];
-  let fieldVals=[];
+  let fieldVals=[browser(), eStack];
   let url='';
   url+='?';
   fieldIDs.forEach(function(cv1, i1, arr1){
@@ -4388,9 +4388,11 @@ function error_send(){
   url=url.slice(0, -1);
   console.log(url);
   //window.open(url);
+  error_dialog.dialog("close");
 }
 
 function error_cancel(){
+  eStack='';
   error_dialog.dialog("close");
 }
 

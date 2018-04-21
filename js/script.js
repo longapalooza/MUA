@@ -11,7 +11,7 @@ var inputs=[], components=[], input_labels=[], component_labels=[],
     UMF=[], UPC=[], W=[], zoom=1, startX, startY, dX, dY, mousedown=false,
     data_str, ds_valid=false, ds_edit=-1, src_edit=-1, inp_edit=-1,
     comp_edit=-1, ds_nom=-1, ds_rand=-1, ds_del=-1, src_del=-1, inp_del=-1,
-    comp_del=-1;
+    comp_del=-1, eStack='';
 
 var flags={info:false, before:false, after:false, cor:false, J:false, Nu:false,
     U:false, UMF:false, UPC:false, W:false};
@@ -522,6 +522,7 @@ var error_dialog=$("#error_dialog").dialog({
   autoOpen: false,
   modal: true,
   width: 'auto',
+  maxWidth: 400,
   height: 'auto',
   resizable: false,
   open: build_error_dialog,
@@ -803,10 +804,10 @@ window.onload=function(){
   });
   window.addEventListener('DOMMouseScroll', wheel, false);
   window.onmousewheel=document.onmousewheel=wheel;
-  console.log('upload 4');
+  console.log('upload 5');
   window.addEventListener('error', function(e){
-    let stack=e.error.stack;
-    let user=browser();
+    console.log(e.error);
+    eStack=e.error.stack;
     error_dialog.dialog("open");
   });
 };
