@@ -4378,9 +4378,9 @@ function save_button_cancel(){
 }
 
 function error_send(){
-  let fieldIDs=[];
+  let fieldIDs=['id1', 'id2'];
   let fieldVals=[browser(), eStack];
-  let url='';
+  let url='someurl.com';
   url+='?';
   fieldIDs.forEach(function(cv1, i1, arr1){
     url+=cv1+'='+encodeURI(fieldVals[i1])+'&';

@@ -522,7 +522,7 @@ var error_dialog=$("#error_dialog").dialog({
   autoOpen: false,
   modal: true,
   width: 'auto',
-  maxWidth: 400,
+  maxWidth: 250,
   height: 'auto',
   resizable: false,
   open: build_error_dialog,
@@ -804,9 +804,9 @@ window.onload=function(){
   });
   window.addEventListener('DOMMouseScroll', wheel, false);
   window.onmousewheel=document.onmousewheel=wheel;
-  console.log('upload 5');
+  console.log('upload 6');
   window.addEventListener('error', function(e){
-    console.log(e.error);
+    console.log(e);
     eStack=e.error.stack;
     error_dialog.dialog("open");
   });
