@@ -539,6 +539,10 @@ window.onload=function(){
   // build the toolbar
   build_toolbar();
 
+  $('a').click(function(e){
+    e.preventDefault();
+  });
+
 //*************************** Action Click Events ****************************//
 
   // click event for dataset action
